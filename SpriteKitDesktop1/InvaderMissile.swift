@@ -30,11 +30,11 @@ class InvaderMissile : SKSpriteNode {
         self.physicsBody.contactTestBitMask = ColliderType.Player.toRaw()
         setScale(scale)
         
-        let moveDown = SKAction.moveBy(CGVectorMake(0,-40), duration:0.1);
+        let moveDown = SKAction.moveBy(CGVectorMake(0,-20), duration:0.1);
         runAction(SKAction.repeatActionForever(moveDown));
     }
     
-    func hitInvader(){
+    func hitPlayer(){
         let disappear = SKAction.removeFromParent()
         runAction(disappear)
     }

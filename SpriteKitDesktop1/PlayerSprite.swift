@@ -11,6 +11,8 @@ import SpriteKit
 
 class PlayerSprite : SKSpriteNode {
 
+    var alive : Bool
+    
     override convenience init(){
         self.init(coder: nil)
     }
@@ -20,6 +22,8 @@ class PlayerSprite : SKSpriteNode {
         
         atLeftEdge = false
         atRightEdge = false
+        
+        alive = true
         
         super.init(texture: texture, color: NSColor.clearColor(), size: texture.size())
         
@@ -51,6 +55,23 @@ class PlayerSprite : SKSpriteNode {
         }
     }
     
+    func hitByMissile(){
+        alive = false
+        
+        // Disable physics
+        self.physicsBody = nil
+        
+        let textures = [SKTexture(imageNamed: "PlayerExplosion")]
+        let die = SKAction.animateWithTextures(textures, timePerFrame: NSTimeInterval(0.5))
+        let remove = SKAction.removeFromParent()
+        let dieSequence = SKAction.sequence([die, remove])
+        
+        removeActionForKey("walk")
+        
+        runAction(dieSequence, withKey: "die")
+
+    }
+    
     func didEndContact(contact: SKPhysicsContact!) {
         if(ColliderType.Edge.toRaw() == contact.bodyA.categoryBitMask){
             // Unblock motion
@@ -60,6 +81,10 @@ class PlayerSprite : SKSpriteNode {
     }
     
     override func insertText(insertString: AnyObject){
+        if(!alive){
+            return
+        }
+        
         if(" " == insertString as NSString){
             NSLog("Space pressed");
             let missile = PlayerMissile();
@@ -69,14 +94,14 @@ class PlayerSprite : SKSpriteNode {
     }
     
     override func moveLeft(o: AnyObject){
-        if(!atLeftEdge){
+        if(alive && !atLeftEdge){
             let a = SKAction.moveBy(CGVectorMake(-20,0),duration:0);
             runAction(a)
         }
     }
     
     override func moveRight(o: AnyObject){
-        if(!atRightEdge){
+        if(alive && !atRightEdge){
             let a = SKAction.moveBy(CGVectorMake(20,0),duration:0);
             runAction(a)
         }

@@ -42,11 +42,11 @@ class InvaderSheet : SKSpriteNode {
         
         invader = InvaderASprite()
         
-        let moveRight = SKAction.moveBy(CGVectorMake(20,0), duration:0.0);
-        let moveLeft = SKAction.moveBy(CGVectorMake(-20,0), duration:0.0);
+        let moveRight = SKAction.moveBy(CGVectorMake(30,0), duration:0.0);
+        let moveLeft = SKAction.moveBy(CGVectorMake(-30,0), duration:0.0);
         let wait = SKAction.waitForDuration(1)
-        let waitHalf = SKAction.waitForDuration(0.5)
-        let moveDown = SKAction.moveBy(CGVectorMake(0,-20), duration:0.0);
+        let waitHalf = SKAction.waitForDuration(0.25)
+        let moveDown = SKAction.moveBy(CGVectorMake(0,-30), duration:0.0);
         sequenceRight = SKAction.sequence([wait,moveRight])
         sequenceLeft = SKAction.sequence([wait,moveLeft])
         sequenceDown = SKAction.sequence([waitHalf, moveDown])
@@ -208,6 +208,10 @@ class InvaderSheet : SKSpriteNode {
         setPhysicsBody()
         
         // TODO: Change speed based on number of invaders
+    }
+    
+    func pause(){
+        removeActionForKey("move")
     }
     
     var goingRight : Bool
