@@ -26,6 +26,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMoveToView(view: SKView) {
         
+        self.backgroundColor = SKColor.blackColor();
         shipSprite = PlayerSprite()
         shipSprite.position = CGPointMake(50, 50)
         self.addChild(shipSprite)
