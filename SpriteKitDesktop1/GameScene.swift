@@ -35,19 +35,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let playAreaBottom = 50
     
-    func newPlayer(){
-        // Reduce lives count
-        lives = lives - 1
-        
-        // Render new lives count
-        livesSprites[lives].removeFromParent()
-        livesCountLabel.text = "\(lives+1)"
-        
-        // Put ship in play
-        shipSprite = PlayerSprite()
-        shipSprite.position = CGPointMake(50,CGFloat(playAreaBottom + 50))
-        self.addChild(shipSprite)
-    }
+    // Is the invader sheet currently collided with an edge?
+    var invadersOnEdge : Bool!
     
     override func didMoveToView(view: SKView) {
         
@@ -97,6 +86,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
+    /**
+    * Bring a life out of reserve and into play
+    */
+    func newPlayer(){
+        // Reduce lives count
+        lives = lives - 1
+        
+        // Render new lives count
+        livesSprites[lives].removeFromParent()
+        livesCountLabel.text = "\(lives+1)"
+        
+        // Put ship in play
+        shipSprite = PlayerSprite()
+        shipSprite.position = CGPointMake(50,CGFloat(playAreaBottom + 50))
+        self.addChild(shipSprite)
+    }
+    
+    /**
+     * Add a border with a given collision category to the play area
+     */
     func addBorder(from: CGPoint, to: CGPoint, category: UInt32) -> SKNode {
         
         // Show the border
@@ -112,7 +121,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return border
     }
 
-    
+    /**
+     * Add a generic edge border to the play area
+     */
     func addBorder(from: CGPoint, to: CGPoint) -> SKNode {
         return addBorder(from, to: to, category: ColliderType.Edge.toRaw())
     }
@@ -126,23 +137,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         yourLine.strokeColor = color
         self.addChild(yourLine)
     }
-    
-    func drawCircle(at: CGPoint, radius: CGFloat){
-        let pathToDraw = CGPathCreateMutable()
-        
-        CGPathMoveToPoint(pathToDraw, nil, at.x - radius,at.y - radius)
-        CGPathAddLineToPoint(pathToDraw, nil, at.x + radius, at.y - radius)
-        CGPathAddLineToPoint(pathToDraw, nil, at.x + radius, at.y + radius)
-        CGPathAddLineToPoint(pathToDraw, nil, at.x - radius, at.y + radius)
-        CGPathAddLineToPoint(pathToDraw, nil, at.x - radius, at.y - radius)
-        
-        let yourLine : SKShapeNode = SKShapeNode()
-        yourLine.path = pathToDraw
-        yourLine.strokeColor = NSColor.redColor()
-        self.addChild(yourLine)
 
-    }
-    
+    /**
+     * End the game, player loses
+     */
     private func gameOver(){
         livesCountLabel.text = "\(lives)"
         // TODO: Go to game over screen
@@ -219,10 +217,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    var invadersOnEdge : Bool!
-    
     func didEndContact(contact: SKPhysicsContact!) {
-        //NSLog("End of collision between type %d and %d", contact.bodyA.categoryBitMask, contact.bodyB.categoryBitMask)
         
         if(ColliderType.Player.toRaw() == contact.bodyB.categoryBitMask){
             shipSprite.didEndContact(contact)
@@ -237,7 +232,4 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         shipSprite.interpretKeyEvents([theEvent])
     }
     
-    override func update(currentTime: CFTimeInterval) {
-        /* Called before each frame is rendered */
-    }
 }
