@@ -24,35 +24,83 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var shipSprite: PlayerSprite!
     var invaders : InvaderSheet!
+    var livesSprites : [SKSpriteNode]!
+    var livesCountLabel : SKLabelNode!
     var leftBorder : SKNode!
     var rightBorder : SKNode!
     var bottomBorder : SKNode!
     
+    // Number of lives in "reserve", not counting the life in play
+    var lives : Int!
+    
+    let playAreaBottom = 50
+    
+    func newPlayer(){
+        // Reduce lives count
+        lives = lives - 1
+        
+        // Render new lives count
+        livesSprites[lives].removeFromParent()
+        livesCountLabel.text = "\(lives+1)"
+        
+        // Put ship in play
+        shipSprite = PlayerSprite()
+        shipSprite.position = CGPointMake(50,CGFloat(playAreaBottom + 50))
+        self.addChild(shipSprite)
+    }
+    
     override func didMoveToView(view: SKView) {
         
-        self.backgroundColor = SKColor.blackColor();
-        
-        shipSprite = PlayerSprite()
-        shipSprite.position = CGPointMake(50, 50)
-        self.addChild(shipSprite)
-        
-        invaders = InvaderSheet()
-        invaders.position = CGPointMake(size.width/2,(size.height/2)+150)
-        self.addChild(invaders)
-        
+        // Configure gravity
         self.physicsWorld.gravity = CGVectorMake(0,0)
         self.physicsWorld.contactDelegate = self;
         
+        // Set background
+        self.backgroundColor = SKColor.blackColor();
+        
+        // Add green line above lives and credit count
+        drawLine(CGPointMake(0,CGFloat(playAreaBottom)),to: CGPointMake(size.width, CGFloat(playAreaBottom)), color: SKColor.greenColor())
+        
+        // Initial count of lives
+        lives = 3
+
+        // Show the current number of lives
+        livesCountLabel = SKLabelNode()
+        livesCountLabel.position = CGPointMake(CGFloat(playAreaBottom/2),CGFloat(playAreaBottom/4))
+        self.addChild(livesCountLabel)
+
+        livesSprites = []
+        let texture = SKTexture(imageNamed: "Spaceship")
+        var xPos : CGFloat = CGFloat(playAreaBottom/2+40)
+        for(var i = 0; i < lives; i++){
+            let life = SKSpriteNode(texture: texture, color: NSColor.clearColor(), size: texture.size())
+            life.setScale(0.5)
+            life.position = CGPointMake(xPos, CGFloat(playAreaBottom/2))
+            livesSprites.append(life)
+            self.addChild(life)
+            xPos += life.size.width + 10
+        }
+        
+        // Create the player
+        newPlayer()
+
+        // Initialize invader sheet
+        invaders = InvaderSheet()
+        invaders.position = CGPointMake(size.width/2,(size.height/2)+150)
+        self.addChild(invaders)
+
+        // Set playing area boundaries
         leftBorder = addBorder(CGPointMake(20,0), to: CGPointMake(20,size.height))
         rightBorder = addBorder(CGPointMake(size.width-20,0), to: CGPointMake(size.width-20,size.height))
         bottomBorder = addBorder(CGPointMake(0,shipSprite.position.y+shipSprite.size.height/2), to: CGPointMake(size.width,shipSprite.position.y+shipSprite.size.height/2), category: ColliderType.BottomEdge.toRaw())
         invadersOnEdge = false
+        
     }
     
     func addBorder(from: CGPoint, to: CGPoint, category: UInt32) -> SKNode {
         
         // Show the border
-        drawLine(from, to: to)
+        drawLine(from, to: to, color: SKColor.redColor())
         
         var border = SKNode()
         border.physicsBody = SKPhysicsBody(edgeFromPoint: from, toPoint: to)
@@ -69,13 +117,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return addBorder(from, to: to, category: ColliderType.Edge.toRaw())
     }
     
-    func drawLine(from: CGPoint, to: CGPoint){
+    func drawLine(from: CGPoint, to: CGPoint, color: SKColor){
         let pathToDraw = CGPathCreateMutable()
         CGPathMoveToPoint(pathToDraw, nil, from.x,from.y)
         CGPathAddLineToPoint(pathToDraw, nil, to.x, to.y)
         let yourLine : SKShapeNode = SKShapeNode()
         yourLine.path = pathToDraw
-        yourLine.strokeColor = NSColor.redColor()
+        yourLine.strokeColor = color
         self.addChild(yourLine)
     }
     
@@ -95,12 +143,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     }
     
+    private func gameOver(){
+        livesCountLabel.text = "\(lives)"
+        // TODO: Go to game over screen
+        invaders.pause()
+    }
+    
     /**
      * Handle collision between an invader missile and the player
      */
     private func missileCollision(invadermissile: InvaderMissile, player: PlayerSprite){
         invadermissile.hitPlayer()
         player.hitByMissile()
+        if(lives > 0){
+            // Create new ship
+            let wait5 = SKAction.waitForDuration(1)
+            let createNewPlayer = SKAction.runBlock({
+                self.newPlayer()
+            })
+            self.runAction(SKAction.sequence([wait5, createNewPlayer]))
+        } else {
+            lives = 0
+            gameOver()
+        }
     }
 
     /**
@@ -149,7 +214,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if(ColliderType.BottomEdge.toRaw() == contact.bodyA.categoryBitMask){
                 shipSprite.hitByMissile()
-                invaders.pause()
+                gameOver()
             }
         }
     }
