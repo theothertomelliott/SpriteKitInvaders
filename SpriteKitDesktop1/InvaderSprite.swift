@@ -62,11 +62,15 @@ class InvaderSprite : SKSpriteNode {
     func score() -> Int{
         return 10
     }
+    
     func fireMissile(){
-        let missile = InvaderMissile()
-        missile.position = CGPointMake(self.position.x, self.position.y - self.scaledSize.height)
-        if(self.parent != nil){
-            self.parent.addChild(missile)
+        if(self.parent != nil && self.parent.parent != nil){
+            let missile = InvaderMissile()
+            missile.position = CGPointMake(
+                self.position.x + self.parent.position.x,
+                self.position.y - self.scaledSize.height + self.parent.position.y
+            )
+            self.parent.parent.addChild(missile)
         }
     }
     
