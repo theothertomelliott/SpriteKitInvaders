@@ -20,4 +20,11 @@ class InvaderCSprite : InvaderSprite
         super.init(imageNames: ["InvaderCFrame1", "InvaderCFrame2"])
     }
     
+    /**
+    * Score awarded for destruction
+    */
+    override func score() -> Int{
+        return 30
+    }
+    
 }

@@ -56,6 +56,12 @@ class InvaderSprite : SKSpriteNode {
         super.init(texture: texture, color: NSColor.clearColor(), size: texture.size())
     }
     
+    /**
+     * Score awarded for destruction
+     */
+    func score() -> Int{
+        return 10
+    }
     func fireMissile(){
         let missile = InvaderMissile()
         missile.position = CGPointMake(self.position.x, self.position.y - self.scaledSize.height)

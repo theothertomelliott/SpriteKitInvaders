@@ -24,14 +24,48 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var shipSprite: PlayerSprite!
     var invaders : InvaderSheet!
-    var livesSprites : [SKSpriteNode]!
+    var livesSprites : [SKSpriteNode] = []
     var livesCountLabel : SKLabelNode!
+    var scoreLabel : SKLabelNode!
     var leftBorder : SKNode!
     var rightBorder : SKNode!
     var bottomBorder : SKNode!
     
+    var score : Int = 0 {
+        didSet {
+            if(scoreLabel != nil){
+                scoreLabel.text = "\(score)"
+            }
+        }
+    }
+    
     // Number of lives in "reserve", not counting the life in play
-    var lives : Int!
+    var lives : Int = 3 {
+        didSet {
+            // Render new lives count
+            if(livesSprites.count == 0){
+                let texture = SKTexture(imageNamed: "Spaceship")
+                var xPos : CGFloat = CGFloat(playAreaBottom/2+40)
+                for(var i = 0; i < (lives-1); i++){
+                    let life = SKSpriteNode(texture: texture, color: NSColor.clearColor(), size: texture.size())
+                    life.setScale(0.5)
+                    life.position = CGPointMake(xPos, CGFloat(playAreaBottom/2))
+                    livesSprites.append(life)
+                    self.addChild(life)
+                    xPos += life.size.width + 10
+                }
+            }
+            
+            var i = 0
+            for life : SKSpriteNode in livesSprites {
+                life.removeFromParent()
+                if(i < (lives-1)){
+                    addChild(life)
+                }
+            }
+            livesCountLabel.text = "\(lives+1)"
+        }
+    }
     
     let playAreaBottom = 50
     
@@ -49,27 +83,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Add green line above lives and credit count
         drawLine(CGPointMake(0,CGFloat(playAreaBottom)),to: CGPointMake(size.width, CGFloat(playAreaBottom)), color: SKColor.greenColor())
-        
-        // Initial count of lives
-        lives = 3
 
         // Show the current number of lives
         livesCountLabel = SKLabelNode()
         livesCountLabel.position = CGPointMake(CGFloat(playAreaBottom/2),CGFloat(playAreaBottom/4))
         self.addChild(livesCountLabel)
-
-        livesSprites = []
-        let texture = SKTexture(imageNamed: "Spaceship")
-        var xPos : CGFloat = CGFloat(playAreaBottom/2+40)
-        for(var i = 0; i < lives; i++){
-            let life = SKSpriteNode(texture: texture, color: NSColor.clearColor(), size: texture.size())
-            life.setScale(0.5)
-            life.position = CGPointMake(xPos, CGFloat(playAreaBottom/2))
-            livesSprites.append(life)
-            self.addChild(life)
-            xPos += life.size.width + 10
-        }
         
+        // Show the current score
+        let scoreHeadingLabel = SKLabelNode()
+        scoreHeadingLabel.text = "Score <1>"
+        scoreHeadingLabel.position = CGPointMake(150, self.size.height - 30)
+        self.addChild(scoreHeadingLabel)
+        scoreLabel = SKLabelNode()
+        scoreLabel.position = CGPointMake(150,self.size.height - 30 - 50)
+        self.addChild(scoreLabel)
+        
+        // Initial score
+        score = 0
+        
+        // Initial count of lives
+        lives = 3
+
         // Create the player
         newPlayer()
 
@@ -92,10 +126,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func newPlayer(){
         // Reduce lives count
         lives = lives - 1
-        
-        // Render new lives count
-        livesSprites[lives].removeFromParent()
-        livesCountLabel.text = "\(lives+1)"
         
         // Put ship in play
         shipSprite = PlayerSprite()
@@ -170,8 +200,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     * Handle collision between a player missile and an invader
     */
     private func missileCollision(playermissile: PlayerMissile, invader: InvaderSprite){
+        // Destroy the invader and missile
         playermissile.hitInvader()
         invaders.invaderHit(invader)
+        // Add the score for destroying this invader
+        score += invader.score()
      }
     
     func didBeginContact(contact: SKPhysicsContact!) {

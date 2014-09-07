@@ -20,4 +20,11 @@ class InvaderBSprite : InvaderSprite
         super.init(imageNames: ["InvaderBFrame1", "InvaderBFrame2"])
     }
     
+    /**
+    * Score awarded for destruction
+    */
+    override func score() -> Int{
+        return 20
+    }
+    
 }
