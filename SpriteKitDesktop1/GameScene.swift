@@ -87,16 +87,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         drawLine(CGPointMake(0,CGFloat(playAreaBottom)),to: CGPointMake(size.width, CGFloat(playAreaBottom)), color: SKColor.greenColor())
 
         // Show the current number of lives
-        livesCountLabel = SKLabelNode()
+        livesCountLabel = SKLabelNode(fontNamed: "Space Invaders")
         livesCountLabel.position = CGPointMake(CGFloat(playAreaBottom/2),CGFloat(playAreaBottom/4))
         self.addChild(livesCountLabel)
         
         // Show the current score
-        let scoreHeadingLabel = SKLabelNode()
+        let scoreHeadingLabel = SKLabelNode(fontNamed: "Space Invaders")
         scoreHeadingLabel.text = "Score <1>"
         scoreHeadingLabel.position = CGPointMake(150, self.size.height - 30)
         self.addChild(scoreHeadingLabel)
-        scoreLabel = SKLabelNode()
+        scoreLabel = SKLabelNode(fontNamed: "Space Invaders")
         scoreLabel.position = CGPointMake(150,self.size.height - 30 - 50)
         self.addChild(scoreLabel)
         

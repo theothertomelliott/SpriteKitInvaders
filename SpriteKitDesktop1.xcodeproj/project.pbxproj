@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E217941219BEB7FC0034EB43 /* space_invaders.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E217940F19BEB6AF0034EB43 /* space_invaders.ttf */; };
 		E21C0F5A19A914DA00F4D810 /* InvaderSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21C0F5919A914DA00F4D810 /* InvaderSprite.swift */; };
 		E21C0F5C19A9169700F4D810 /* InvaderASprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21C0F5B19A9169700F4D810 /* InvaderASprite.swift */; };
 		E21C0F5E19A916A200F4D810 /* InvaderBSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21C0F5D19A916A200F4D810 /* InvaderBSprite.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E217940F19BEB6AF0034EB43 /* space_invaders.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = space_invaders.ttf; sourceTree = "<group>"; };
 		E21C0F5919A914DA00F4D810 /* InvaderSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderSprite.swift; sourceTree = "<group>"; };
 		E21C0F5B19A9169700F4D810 /* InvaderASprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderASprite.swift; sourceTree = "<group>"; };
 		E21C0F5D19A916A200F4D810 /* InvaderBSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderBSprite.swift; sourceTree = "<group>"; };
@@ -74,6 +76,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E217941019BEB7DE0034EB43 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E217941119BEB7E40034EB43 /* Fonts */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		E217941119BEB7E40034EB43 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				E217940F19BEB6AF0034EB43 /* space_invaders.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		E24CB6C819A59A91004C7D93 = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +113,7 @@
 		E24CB6D319A59A91004C7D93 /* SpriteKitDesktop1 */ = {
 			isa = PBXGroup;
 			children = (
+				E217941019BEB7DE0034EB43 /* Resources */,
 				E2B75BE219A6D21300754136 /* Sprites */,
 				E24CB6D819A59A91004C7D93 /* AppDelegate.swift */,
 				E24CB6DA19A59A91004C7D93 /* GameScene.swift */,
@@ -227,6 +246,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E217941219BEB7FC0034EB43 /* space_invaders.ttf in Resources */,
 				E24CB6DD19A59A91004C7D93 /* GameScene.sks in Resources */,
 				E24CB6DF19A59A91004C7D93 /* Images.xcassets in Resources */,
 				E24CB6E219A59A91004C7D93 /* MainMenu.xib in Resources */,
