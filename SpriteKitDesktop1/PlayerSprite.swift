@@ -89,7 +89,19 @@ class PlayerSprite : SKSpriteNode {
             NSLog("Space pressed");
             let missile = PlayerMissile();
             missile.position = CGPointMake(position.x, position.y+40);
-            parent.addChild(missile);
+            
+            var hasMissile = false
+            
+            // Check there isn't already a missile on the parent
+            for node in parent.children {
+                if(node is PlayerMissile){
+                    hasMissile = true
+                    break
+                }
+            }
+            if(!hasMissile){
+                parent.addChild(missile)
+            }
         }
     }
     
