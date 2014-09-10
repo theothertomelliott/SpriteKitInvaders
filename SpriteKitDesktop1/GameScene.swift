@@ -146,10 +146,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         var border = SKNode()
         border.physicsBody = SKPhysicsBody(edgeFromPoint: from, toPoint: to)
-        border.physicsBody.usesPreciseCollisionDetection = true
-        border.physicsBody.categoryBitMask = category
-        border.physicsBody.collisionBitMask = 0
-        border.physicsBody.contactTestBitMask = ColliderType.Player.toRaw() | ColliderType.InvaderSheet.toRaw() | ColliderType.PlayerMissile.toRaw()
+        border.physicsBody?.usesPreciseCollisionDetection = true
+        border.physicsBody?.categoryBitMask = category
+        border.physicsBody?.collisionBitMask = 0
+        border.physicsBody?.contactTestBitMask = ColliderType.Player.toRaw() | ColliderType.InvaderSheet.toRaw() | ColliderType.PlayerMissile.toRaw()
         self.addChild(border)
         return border
     }

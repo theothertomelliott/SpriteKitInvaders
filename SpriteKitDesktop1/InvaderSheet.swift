@@ -193,10 +193,10 @@ class InvaderSheet : SKSpriteNode {
             yourLine.position = CGPointMake(position.x+edgeCenter.x,position.y+edgeCenter.y)
             yourLine.path = pathToDraw
             yourLine.physicsBody = SKPhysicsBody(rectangleOfSize: edgeSize)
-            yourLine.physicsBody.usesPreciseCollisionDetection = true
-            yourLine.physicsBody.categoryBitMask = ColliderType.InvaderSheet.toRaw()
-            yourLine.physicsBody.collisionBitMask = 0
-            yourLine.physicsBody.contactTestBitMask = 0
+            yourLine.physicsBody?.usesPreciseCollisionDetection = true
+            yourLine.physicsBody?.categoryBitMask = ColliderType.InvaderSheet.toRaw()
+            yourLine.physicsBody?.collisionBitMask = 0
+            yourLine.physicsBody?.contactTestBitMask = 0
             yourLine.strokeColor = NSColor.redColor()
             self.addChild(yourLine)
         }

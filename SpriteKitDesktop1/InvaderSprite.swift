@@ -39,10 +39,10 @@ class InvaderSprite : SKSpriteNode {
         
         // Configure physics body sized to texture
         self.physicsBody = SKPhysicsBody(rectangleOfSize: scaledSize)
-        self.physicsBody.usesPreciseCollisionDetection = true
-        self.physicsBody.categoryBitMask = ColliderType.Invader.toRaw()
-        self.physicsBody.collisionBitMask = 0
-        self.physicsBody.contactTestBitMask = 0
+        self.physicsBody?.usesPreciseCollisionDetection = true
+        self.physicsBody?.categoryBitMask = ColliderType.Invader.toRaw()
+        self.physicsBody?.collisionBitMask = 0
+        self.physicsBody?.contactTestBitMask = 0
         
         setScale(scale)
         
@@ -64,13 +64,15 @@ class InvaderSprite : SKSpriteNode {
     }
     
     func fireMissile(){
-        if(self.parent != nil && self.parent.parent != nil){
+        if(self.parent != nil && self.parent?.parent != nil){
             let missile = InvaderMissile()
-            missile.position = CGPointMake(
-                self.position.x + self.parent.position.x,
-                self.position.y - self.scaledSize.height + self.parent.position.y
-            )
-            self.parent.parent.addChild(missile)
+            if let pos = self.parent?.position {
+                missile.position = CGPointMake(
+                    self.position.x + pos.x,
+                    self.position.y - self.scaledSize.height + pos.y
+                )
+            }
+            self.parent?.parent?.addChild(missile)
         }
     }
     

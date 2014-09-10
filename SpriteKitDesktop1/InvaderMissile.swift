@@ -24,10 +24,10 @@ class InvaderMissile : SKSpriteNode {
         let size = CGSizeMake(texture.size().width*scale, texture.size().width*scale)
         
         self.physicsBody = SKPhysicsBody(rectangleOfSize: size)
-        self.physicsBody.usesPreciseCollisionDetection = true
-        self.physicsBody.categoryBitMask = ColliderType.InvaderMissile.toRaw()
-        self.physicsBody.collisionBitMask = 0
-        self.physicsBody.contactTestBitMask = ColliderType.Player.toRaw()
+        self.physicsBody?.usesPreciseCollisionDetection = true
+        self.physicsBody?.categoryBitMask = ColliderType.InvaderMissile.toRaw()
+        self.physicsBody?.collisionBitMask = 0
+        self.physicsBody?.contactTestBitMask = ColliderType.Player.toRaw()
         setScale(scale)
         
         let moveDown = SKAction.moveBy(CGVectorMake(0,-20), duration:0.1);

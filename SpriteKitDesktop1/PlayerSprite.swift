@@ -31,9 +31,9 @@ class PlayerSprite : SKSpriteNode {
         let size = CGSizeMake(texture.size().width*scale, texture.size().width*scale)
         
         self.physicsBody = SKPhysicsBody(rectangleOfSize: size)
-        self.physicsBody.categoryBitMask = ColliderType.Player.toRaw()
-        self.physicsBody.collisionBitMask = 0
-        self.physicsBody.contactTestBitMask = 0
+        self.physicsBody?.categoryBitMask = ColliderType.Player.toRaw()
+        self.physicsBody?.collisionBitMask = 0
+        self.physicsBody?.contactTestBitMask = 0
         setScale(scale)
     }
     
@@ -93,14 +93,16 @@ class PlayerSprite : SKSpriteNode {
             var hasMissile = false
             
             // Check there isn't already a missile on the parent
-            for node in parent.children {
-                if(node is PlayerMissile){
-                    hasMissile = true
-                    break
+            if let nodeList = parent?.children {
+                for node in nodeList {
+                    if(node is PlayerMissile){
+                        hasMissile = true
+                        break
+                    }
                 }
             }
             if(!hasMissile){
-                parent.addChild(missile)
+                parent?.addChild(missile)
             }
         }
     }
