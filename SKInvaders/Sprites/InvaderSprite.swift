@@ -64,20 +64,22 @@ class InvaderSprite : SKSpriteNode {
     }
     
     func fireMissile(){
-        if(self.parent != nil && self.parent?.parent != nil){
-            let missile = InvaderMissile()
-            if let pos = self.parent?.position {
-                missile.position = CGPointMake(
-                    self.position.x + pos.x,
-                    self.position.y - self.scaledSize.height + pos.y
-                )
-            }
-            self.parent?.parent?.addChild(missile)
+        let missile = InvaderMissile()
+        if let pos = self.parent?.position {
+            missile.position = CGPointMake(
+                self.position.x + pos.x,
+                self.position.y - self.scaledSize.height + pos.y
+            )
         }
+        self.parent?.addChild(missile)
     }
     
     func isAlive() -> Bool{
         return alive
+    }
+    
+    func isDestroyed() -> Bool {
+        return parent == nil
     }
     
     func hitByMissile(){

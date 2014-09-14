@@ -14,7 +14,6 @@ class InvaderSheetController {
     var _scoring : ScoreController
     var _scene : SKScene
     var _invaders : [InvaderSprite]
-    var _deadSprites : [InvaderSprite]
     
     let columns = 11
     
@@ -24,7 +23,6 @@ class InvaderSheetController {
         
         // Create invaders
         _invaders = []
-        _deadSprites = []
         
         // Type A
         for i in 1...2 {
@@ -57,7 +55,6 @@ class InvaderSheetController {
     
     func invaderHit(invader: InvaderSprite){
         invader.hitByMissile()
-        _deadSprites.append(invader)
     }
     
     /**
@@ -119,19 +116,13 @@ class InvaderSheetController {
      */
     func getNextSprite(){
         // Move on to the next non-dead sprite
+        
+        let workingStart = workingSprite
+        
         var done = false
         workingSprite++
-        while !done && workingSprite < _invaders.count {
-            done = true
-            
-            // Skip over dead sprites
-            for dead : InvaderSprite in _deadSprites {
-                if dead == _invaders[workingSprite] {
-                    done = false
-                    workingSprite++
-                    break
-                }
-            }
+        while workingSprite < _invaders.count && _invaders[workingSprite].isDestroyed() {
+            workingSprite++
         }
     }
     
