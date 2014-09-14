@@ -41,17 +41,20 @@ class PlayerSprite : SKSpriteNode {
     var atRightEdge : Bool
     
     func didBeginContact(contact: SKPhysicsContact!) {
-        if(ColliderType.Edge.toRaw() == contact.bodyA.categoryBitMask){
-            // Block motion to that direction
-            if(contact.contactPoint.x < position.x){
-                atLeftEdge = true
-            }
-            if(contact.contactPoint.x > position.x){
-                atRightEdge = true
-            }
-            if(contact.contactPoint.x == position.x){
-                // TODO: Figure out which is better
-            }
+        if(ColliderType.LeftEdge.toRaw() == contact.bodyA.categoryBitMask){
+            atLeftEdge = true
+        }
+        if(ColliderType.RightEdge.toRaw() == contact.bodyA.categoryBitMask){
+            atRightEdge = true
+        }
+    }
+    
+    func didEndContact(contact: SKPhysicsContact!) {
+        if(ColliderType.LeftEdge.toRaw() == contact.bodyA.categoryBitMask){
+            atLeftEdge = false
+        }
+        if(ColliderType.RightEdge.toRaw() == contact.bodyA.categoryBitMask){
+            atRightEdge = false
         }
     }
     
@@ -71,15 +74,7 @@ class PlayerSprite : SKSpriteNode {
         runAction(dieSequence, withKey: "die")
 
     }
-    
-    func didEndContact(contact: SKPhysicsContact!) {
-        if(ColliderType.Edge.toRaw() == contact.bodyA.categoryBitMask){
-            // Unblock motion
-            atRightEdge = false
-            atLeftEdge = false
-        }
-    }
-    
+
     override func insertText(insertString: AnyObject){
         if(!alive){
             return

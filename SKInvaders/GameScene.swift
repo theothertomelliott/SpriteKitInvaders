@@ -13,8 +13,6 @@ enum ColliderType: UInt32 {
     case PlayerMissile = 2
     case Invader = 4
     case InvaderMissile = 8
-    case Edge = 16
-    case InvaderSheet = 32
     case LeftEdge = 64
     case RightEdge = 128
     case BottomEdge = 256
@@ -147,16 +145,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         border.physicsBody?.usesPreciseCollisionDetection = true
         border.physicsBody?.categoryBitMask = category
         border.physicsBody?.collisionBitMask = 0
-        border.physicsBody?.contactTestBitMask = ColliderType.Player.toRaw() | ColliderType.InvaderSheet.toRaw() | ColliderType.PlayerMissile.toRaw() | ColliderType.Invader.toRaw()
+        border.physicsBody?.contactTestBitMask = ColliderType.Player.toRaw() | ColliderType.PlayerMissile.toRaw() | ColliderType.Invader.toRaw()
         self.addChild(border)
         return border
-    }
-    
-    /**
-    * Add a generic edge border to the play area
-    */
-    func addBorder(from: CGPoint, to: CGPoint) -> SKNode {
-        return addBorder(from, to: to, category: ColliderType.Edge.toRaw())
     }
     
     func drawLine(from: CGPoint, to: CGPoint, color: SKColor){
@@ -223,7 +214,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         
         /** Edge collisions **/
         if(ColliderType.Player.toRaw() == contact.bodyB.categoryBitMask){
-            if(ColliderType.Edge.toRaw() == contact.bodyA.categoryBitMask){
+            if(ColliderType.LeftEdge.toRaw() == contact.bodyA.categoryBitMask || ColliderType.RightEdge.toRaw() == contact.bodyA.categoryBitMask){
                 shipSprite.didBeginContact(contact)
             }
         }
