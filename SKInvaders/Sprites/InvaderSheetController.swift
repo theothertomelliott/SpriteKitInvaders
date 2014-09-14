@@ -11,14 +11,16 @@ import SpriteKit
 
 class InvaderSheetController {
     
+    var _scoring : ScoreController
     var _scene : SKScene
     var _invaders : [InvaderSprite]
     var _deadSprites : [InvaderSprite]
     
     let columns = 11
     
-    init(scene: SKScene){
-        _scene = scene;
+    init(scene: SKScene, scoring: ScoreController){
+        _scene = scene
+        _scoring = scoring
         
         // Create invaders
         _invaders = []
@@ -65,8 +67,9 @@ class InvaderSheetController {
         // Destroy the invader and missile
         playermissile.hitInvader()
         self.invaderHit(invader)
-        // TODO: Add the score for destroying this invader
-        //score += invader.score()
+        
+        // Add the score for destroying this invader
+        _scoring.incrementScore(invader.score())
     }
     
     func didBeginContact(contact: SKPhysicsContact!) {
@@ -101,18 +104,12 @@ class InvaderSheetController {
             otherBody = contact.bodyB
         }
         
-        
-        
-        
+        /** Edge end collisions **/
         if(ColliderType.LeftEdge.toRaw() == otherBody.categoryBitMask){
-            NSLog("didEndContactLeft")
             spritesAtLeft--
-            NSLog("now %d at left", spritesAtLeft)
         }
         if(ColliderType.RightEdge.toRaw() == otherBody.categoryBitMask){
-            NSLog("didEndContactRight")
             spritesAtRight--
-            NSLog("now %d at right", spritesAtRight)
         }
 
     }
@@ -158,8 +155,6 @@ class InvaderSheetController {
             getNextSprite()
         } else {
             workingSprite = 0
-            
-            NSLog("Sprites at edge left = %d, right = %d", spritesAtLeft, spritesAtRight)
             
             if(spritesAtRight > 0 || spritesAtLeft > 0){
                 goingDown = true

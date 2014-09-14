@@ -17,6 +17,7 @@
 		E2799A1919C3EC7B008229FB /* PlayerMissile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2799A1119C3EC7B008229FB /* PlayerMissile.swift */; };
 		E2799A1A19C3EC7B008229FB /* PlayerSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2799A1219C3EC7B008229FB /* PlayerSprite.swift */; };
 		E2799A1E19C3ECA0008229FB /* space_invaders.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E2799A1D19C3ECA0008229FB /* space_invaders.ttf */; };
+		E2A4500419C6327A00DB12AC /* ScoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A4500319C6327A00DB12AC /* ScoreController.swift */; };
 		E2FEF5F919C3EA1400B3E366 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEF5F819C3EA1400B3E366 /* main.swift */; };
 		E2FEF5FB19C3EA1400B3E366 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEF5FA19C3EA1400B3E366 /* AppDelegate.swift */; };
 		E2FEF5FD19C3EA1400B3E366 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEF5FC19C3EA1400B3E366 /* GameScene.swift */; };
@@ -37,7 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E2043A2F19C40714003BDBAD /* InvaderSheetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderSheetController.swift; sourceTree = "<group>"; };
+		E2043A2F19C40714003BDBAD /* InvaderSheetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InvaderSheetController.swift; path = Sprites/InvaderSheetController.swift; sourceTree = "<group>"; };
 		E2799A0B19C3EC7B008229FB /* InvaderASprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderASprite.swift; sourceTree = "<group>"; };
 		E2799A0C19C3EC7B008229FB /* InvaderBSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderBSprite.swift; sourceTree = "<group>"; };
 		E2799A0D19C3EC7B008229FB /* InvaderCSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderCSprite.swift; sourceTree = "<group>"; };
@@ -47,6 +48,7 @@
 		E2799A1119C3EC7B008229FB /* PlayerMissile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerMissile.swift; sourceTree = "<group>"; };
 		E2799A1219C3EC7B008229FB /* PlayerSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerSprite.swift; sourceTree = "<group>"; };
 		E2799A1D19C3ECA0008229FB /* space_invaders.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = space_invaders.ttf; sourceTree = "<group>"; };
+		E2A4500319C6327A00DB12AC /* ScoreController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreController.swift; sourceTree = "<group>"; };
 		E2FEF5F319C3EA1400B3E366 /* SKInvaders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SKInvaders.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2FEF5F719C3EA1400B3E366 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2FEF5F819C3EA1400B3E366 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -89,7 +91,6 @@
 				E2799A1019C3EC7B008229FB /* InvaderSprite.swift */,
 				E2799A1119C3EC7B008229FB /* PlayerMissile.swift */,
 				E2799A1219C3EC7B008229FB /* PlayerSprite.swift */,
-				E2043A2F19C40714003BDBAD /* InvaderSheetController.swift */,
 			);
 			path = Sprites;
 			sourceTree = "<group>";
@@ -108,6 +109,15 @@
 				E2799A1D19C3ECA0008229FB /* space_invaders.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		E2A4500219C6325D00DB12AC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E2043A2F19C40714003BDBAD /* InvaderSheetController.swift */,
+				E2A4500319C6327A00DB12AC /* ScoreController.swift */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		E2FEF5EA19C3EA1400B3E366 = {
@@ -131,6 +141,7 @@
 		E2FEF5F519C3EA1400B3E366 /* SKInvaders */ = {
 			isa = PBXGroup;
 			children = (
+				E2A4500219C6325D00DB12AC /* Controllers */,
 				E2799A1B19C3ECA0008229FB /* Resources */,
 				E2799A0A19C3EC7B008229FB /* Sprites */,
 				E2FEF5FA19C3EA1400B3E366 /* AppDelegate.swift */,
@@ -277,6 +288,7 @@
 				E2799A1519C3EC7B008229FB /* InvaderCSprite.swift in Sources */,
 				E2043A3019C40714003BDBAD /* InvaderSheetController.swift in Sources */,
 				E2799A1419C3EC7B008229FB /* InvaderBSprite.swift in Sources */,
+				E2A4500419C6327A00DB12AC /* ScoreController.swift in Sources */,
 				E2FEF5FB19C3EA1400B3E366 /* AppDelegate.swift in Sources */,
 				E2799A1619C3EC7B008229FB /* InvaderMissile.swift in Sources */,
 				E2FEF5F919C3EA1400B3E366 /* main.swift in Sources */,

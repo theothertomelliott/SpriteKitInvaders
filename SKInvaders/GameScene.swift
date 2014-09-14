@@ -21,12 +21,14 @@ enum ColliderType: UInt32 {
     case TopEdge = 512
 }
 
-class GameScene: SKScene, SKPhysicsContactDelegate {
+class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate {
     
     var shipSprite: PlayerSprite!
     var invaders : InvaderSheet!
     
     var invaderSheet : InvaderSheetController!
+    
+    var scoreCtl : ScoreController!
     
     var livesSprites : [SKSpriteNode] = []
     var livesCountLabel : SKLabelNode!
@@ -36,12 +38,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var bottomBorder : SKNode!
     var topBorder : SKNode!
     
-    var score : Int = 0 {
-        didSet {
-            if(scoreLabel != nil){
-                scoreLabel.text = "\(score)"
-            }
-        }
+    func scoreUpdated(sender: ScoreController){
+        let score = sender.getScore()
+        scoreLabel?.text = "\(score)"
     }
     
     // Number of lives in "reserve", not counting the life in play
@@ -79,6 +78,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMoveToView(view: SKView) {
         
+        // Set up the score controller
+        scoreCtl = ScoreController()
+        scoreCtl.delegate = self
+        
         // Configure gravity
         self.physicsWorld.gravity = CGVectorMake(0,0)
         self.physicsWorld.contactDelegate = self;
@@ -103,21 +106,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.position = CGPointMake(150,self.size.height - 30 - 50)
         self.addChild(scoreLabel)
         
-        // Initial score
-        score = 0
-        
         // Initial count of lives
         lives = 3
         
         // Create the player
         newPlayer()
-        
-        // Initialize invader sheet
-        /*
-        invaders = InvaderSheet()
-        invaders.position = CGPointMake(size.width/2,(size.height/2)+150)
-        self.addChild(invaders)
-        */
         
         // Set playing area boundaries
         leftBorder = addBorder(CGPointMake(20,0), to: CGPointMake(20,size.height), category: ColliderType.LeftEdge.toRaw())
@@ -126,7 +119,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         topBorder = addBorder(CGPointMake(0,size.height - 50), to: CGPointMake(size.width, size.height-50), category: ColliderType.TopEdge.toRaw())
         invadersOnEdge = false
         
-        invaderSheet = InvaderSheetController(scene: self)
+        invaderSheet = InvaderSheetController(scene: self, scoring: scoreCtl)
         invaderSheet.addToScene(CGPointMake(size.width/2-60*7,(size.height/2)-50))
         invaderSheet.start()
         
