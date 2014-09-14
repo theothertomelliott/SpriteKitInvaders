@@ -53,20 +53,13 @@ class InvaderSheetController {
     var goingRight = true
     var goingDown = false
     
-    var spritesAtLeft = 0
-    var spritesAtRight = 0
-    
-    func invaderHit(invader: InvaderSprite){
-        invader.hitByMissile()
-    }
-    
     /**
     * Handle collision between a player missile and an invader
     */
     private func missileCollision(playermissile: PlayerMissile, invader: InvaderSprite){
         // Destroy the invader and missile
         playermissile.hitInvader()
-        self.invaderHit(invader)
+        invader.hitByMissile()
         
         // Add the score for destroying this invader
         _scoring.incrementScore(invader.score())
@@ -82,17 +75,13 @@ class InvaderSheetController {
             invaderHit = contact.bodyA
         }
         
+        if let invaderNode = invaderHit?.node as? InvaderSprite {
+            invaderNode.didBeginContact(otherBody, contact: contact)
+        }
+        
         /** Player missile collisions **/
         if(ColliderType.PlayerMissile.toRaw() == otherBody.categoryBitMask){
                 missileCollision(otherBody.node as PlayerMissile, invader: invaderHit.node as InvaderSprite)
-        }
-
-        /** Edge collisions **/
-        if(ColliderType.LeftEdge.toRaw() == otherBody.categoryBitMask){
-                spritesAtLeft++
-        }
-        if(ColliderType.RightEdge.toRaw() == otherBody.categoryBitMask){
-                spritesAtRight++
         }
     }
     
@@ -100,18 +89,16 @@ class InvaderSheetController {
         
         // Identify the non-invader body in the collision
         var otherBody = contact.bodyA
+        var invaderHit = contact.bodyB
         if ColliderType.Invader.toRaw() == contact.bodyA.categoryBitMask {
             otherBody = contact.bodyB
+            invaderHit = contact.bodyA
         }
         
-        /** Edge end collisions **/
-        if(ColliderType.LeftEdge.toRaw() == otherBody.categoryBitMask){
-            spritesAtLeft--
+        if let invaderNode = invaderHit?.node as? InvaderSprite {
+            invaderNode.didEndContact(otherBody, contact: contact)
         }
-        if(ColliderType.RightEdge.toRaw() == otherBody.categoryBitMask){
-            spritesAtRight--
-        }
-
+        
     }
     
     /**
@@ -127,6 +114,26 @@ class InvaderSheetController {
         while workingSprite < _invaders.count && _invaders[workingSprite].isDestroyed() {
             workingSprite++
         }
+    }
+    
+    private func spritesAtRight() -> Int {
+        var count = 0
+        for sprite in _invaders {
+            if(sprite.isAlive() && sprite.collidingRight){
+                count++
+            }
+        }
+        return count
+    }
+    
+    private func spritesAtLeft() -> Int {
+        var count = 0
+        for sprite in _invaders {
+            if(sprite.isAlive() && sprite.collidingLeft){
+                count++
+            }
+        }
+        return count
     }
     
     /** Move the current working invader **/
@@ -150,17 +157,20 @@ class InvaderSheetController {
         } else {
             workingSprite = 0
             
-            if(spritesAtRight > 0 || spritesAtLeft > 0){
+            let sl = spritesAtLeft()
+            let sr = spritesAtRight()
+            
+            if(sl > 0 || sr > 0){
                 goingDown = true
             } else {
                 goingDown = false
             }
             
             // Change direction (need to move down too)
-            if(spritesAtRight > 0){
+            if(sr > 0){
                 goingRight = false
             }
-            if(spritesAtLeft > 0){
+            if(sl > 0){
                 goingRight = true
             }
         }

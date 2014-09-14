@@ -81,13 +81,9 @@
 		E2799A0A19C3EC7B008229FB /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
-				E2799A0B19C3EC7B008229FB /* InvaderASprite.swift */,
-				E2799A0C19C3EC7B008229FB /* InvaderBSprite.swift */,
-				E2799A0D19C3EC7B008229FB /* InvaderCSprite.swift */,
-				E2799A0E19C3EC7B008229FB /* InvaderMissile.swift */,
-				E2799A1019C3EC7B008229FB /* InvaderSprite.swift */,
-				E2799A1119C3EC7B008229FB /* PlayerMissile.swift */,
-				E2799A1219C3EC7B008229FB /* PlayerSprite.swift */,
+				E2A4500719C640FD00DB12AC /* Player */,
+				E2A4500619C640EE00DB12AC /* Invaders */,
+				E2A4500519C640E200DB12AC /* Missiles */,
 			);
 			path = Sprites;
 			sourceTree = "<group>";
@@ -115,6 +111,34 @@
 				E2A4500319C6327A00DB12AC /* ScoreController.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		E2A4500519C640E200DB12AC /* Missiles */ = {
+			isa = PBXGroup;
+			children = (
+				E2799A1119C3EC7B008229FB /* PlayerMissile.swift */,
+				E2799A0E19C3EC7B008229FB /* InvaderMissile.swift */,
+			);
+			name = Missiles;
+			sourceTree = "<group>";
+		};
+		E2A4500619C640EE00DB12AC /* Invaders */ = {
+			isa = PBXGroup;
+			children = (
+				E2799A0B19C3EC7B008229FB /* InvaderASprite.swift */,
+				E2799A0C19C3EC7B008229FB /* InvaderBSprite.swift */,
+				E2799A0D19C3EC7B008229FB /* InvaderCSprite.swift */,
+				E2799A1019C3EC7B008229FB /* InvaderSprite.swift */,
+			);
+			name = Invaders;
+			sourceTree = "<group>";
+		};
+		E2A4500719C640FD00DB12AC /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				E2799A1219C3EC7B008229FB /* PlayerSprite.swift */,
+			);
+			name = Player;
 			sourceTree = "<group>";
 		};
 		E2FEF5EA19C3EA1400B3E366 = {

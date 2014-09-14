@@ -11,9 +11,11 @@ import SpriteKit
 
 class InvaderSprite : SKSpriteNode {
     
-    var textures: [SKTexture]
-    var alive : Bool
-    var scaledSize : CGSize
+    private var textures: [SKTexture]
+    private var alive : Bool
+    private var scaledSize : CGSize
+    private(set) var collidingLeft : Bool
+    private(set) var collidingRight : Bool
     
     init(imageNames: [NSString]) {
         
@@ -21,6 +23,9 @@ class InvaderSprite : SKSpriteNode {
         
         textures = []
         alive = true;
+        
+        collidingLeft = false
+        collidingRight = false
         
         for imageN in imageNames {
             let texture  = SKTexture(imageNamed: imageN)
@@ -53,8 +58,30 @@ class InvaderSprite : SKSpriteNode {
         let texture  = SKTexture(imageNamed: "InvaderAFrame1")
         scaledSize = texture.size()
         alive = true
+        collidingLeft = false
+        collidingRight = false
         super.init(texture: texture, color: NSColor.clearColor(), size: texture.size())
     }
+    
+    func didBeginContact(body: SKPhysicsBody, contact: SKPhysicsContact!) {
+        if body.categoryBitMask == ColliderType.LeftEdge.toRaw(){
+            collidingLeft = true
+        }
+        if body.categoryBitMask == ColliderType.RightEdge.toRaw(){
+            collidingRight = true
+        }
+    }
+    
+    
+    func didEndContact(body: SKPhysicsBody, contact: SKPhysicsContact!) {
+        if body.categoryBitMask == ColliderType.LeftEdge.toRaw(){
+            collidingLeft = false
+        }
+        if body.categoryBitMask == ColliderType.RightEdge.toRaw(){
+            collidingRight = false
+        }
+    }
+    
     
     /**
      * Score awarded for destruction
