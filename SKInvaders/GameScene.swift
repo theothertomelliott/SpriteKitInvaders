@@ -25,6 +25,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var shipSprite: PlayerSprite!
     var invaders : InvaderSheet!
+    
+    var invaderSheet : InvaderSheetController!
+    
     var livesSprites : [SKSpriteNode] = []
     var livesCountLabel : SKLabelNode!
     var scoreLabel : SKLabelNode!
@@ -110,16 +113,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         newPlayer()
         
         // Initialize invader sheet
+        /*
         invaders = InvaderSheet()
         invaders.position = CGPointMake(size.width/2,(size.height/2)+150)
         self.addChild(invaders)
+        */
         
         // Set playing area boundaries
-        leftBorder = addBorder(CGPointMake(20,0), to: CGPointMake(20,size.height))
-        rightBorder = addBorder(CGPointMake(size.width-20,0), to: CGPointMake(size.width-20,size.height))
+        leftBorder = addBorder(CGPointMake(20,0), to: CGPointMake(20,size.height), category: ColliderType.LeftEdge.toRaw())
+        rightBorder = addBorder(CGPointMake(size.width-20,0), to: CGPointMake(size.width-20,size.height), category: ColliderType.RightEdge.toRaw())
         bottomBorder = addBorder(CGPointMake(0,shipSprite.position.y+shipSprite.size.height/2), to: CGPointMake(size.width,shipSprite.position.y+shipSprite.size.height/2), category: ColliderType.BottomEdge.toRaw())
         topBorder = addBorder(CGPointMake(0,size.height - 50), to: CGPointMake(size.width, size.height-50), category: ColliderType.TopEdge.toRaw())
         invadersOnEdge = false
+        
+        invaderSheet = InvaderSheetController(scene: self)
+        invaderSheet.addToScene(CGPointMake(size.width/2-60*7,(size.height/2)-50))
+        invaderSheet.start()
         
     }
     
@@ -149,7 +158,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         border.physicsBody?.usesPreciseCollisionDetection = true
         border.physicsBody?.categoryBitMask = category
         border.physicsBody?.collisionBitMask = 0
-        border.physicsBody?.contactTestBitMask = ColliderType.Player.toRaw() | ColliderType.InvaderSheet.toRaw() | ColliderType.PlayerMissile.toRaw()
+        border.physicsBody?.contactTestBitMask = ColliderType.Player.toRaw() | ColliderType.InvaderSheet.toRaw() | ColliderType.PlayerMissile.toRaw() | ColliderType.Invader.toRaw()
         self.addChild(border)
         return border
     }
@@ -199,44 +208,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    /**
-    * Handle collision between a player missile and an invader
-    */
-    private func missileCollision(playermissile: PlayerMissile, invader: InvaderSprite){
-        // Destroy the invader and missile
-        playermissile.hitInvader()
-        invaders.invaderHit(invader)
-        // Add the score for destroying this invader
-        score += invader.score()
-    }
-    
     func didBeginContact(contact: SKPhysicsContact!) {
         
-        /** Player missile collisions **/
-        if(ColliderType.PlayerMissile.toRaw() == contact.bodyA.categoryBitMask){
-            if(ColliderType.Invader.toRaw() == contact.bodyB.categoryBitMask){
-                missileCollision(contact.bodyA.node as PlayerMissile, invader: contact.bodyB.node as InvaderSprite)
-            } else if(ColliderType.TopEdge.toRaw() == contact.bodyB.categoryBitMask){
-                let playerMissile : PlayerMissile = contact.bodyA.node as PlayerMissile
-                playerMissile.hitInvader()
-            }
+        // Pass invader collisions to the invader sheet
+        if(ColliderType.Invader.toRaw() == contact.bodyA.categoryBitMask
+            || ColliderType.Invader.toRaw() == contact.bodyB.categoryBitMask){
+                invaderSheet.didBeginContact(contact)
         }
         
-        if(ColliderType.PlayerMissile.toRaw() == contact.bodyB.categoryBitMask){
-            if(ColliderType.Invader.toRaw() == contact.bodyA.categoryBitMask){
-                missileCollision(contact.bodyB.node as PlayerMissile, invader: contact.bodyA.node as InvaderSprite)
-            } else if(ColliderType.TopEdge.toRaw() == contact.bodyA.categoryBitMask){
-                let playerMissile : PlayerMissile = contact.bodyB.node as PlayerMissile
-                playerMissile.hitInvader()
-            }
+        /** Get rid of missiles that go off the screen **/
+        if(ColliderType.PlayerMissile.toRaw() == contact.bodyA.categoryBitMask
+            && ColliderType.TopEdge.toRaw() == contact.bodyB.categoryBitMask){
+                let missile : PlayerMissile = contact.bodyA.node as PlayerMissile
+                missile.hitInvader()
         }
-        
-        /** Invader missile collisions **/
-        if(ColliderType.InvaderMissile.toRaw() == contact.bodyA.categoryBitMask){
-            missileCollision(contact.bodyA.node as InvaderMissile, player: contact.bodyB.node as PlayerSprite)
-        }
-        if(ColliderType.InvaderMissile.toRaw() == contact.bodyB.categoryBitMask){
-            missileCollision(contact.bodyB.node as InvaderMissile, player: contact.bodyA.node as PlayerSprite)
+        if(ColliderType.PlayerMissile.toRaw() == contact.bodyB.categoryBitMask
+            && ColliderType.TopEdge.toRaw() == contact.bodyA.categoryBitMask){
+                let missile : PlayerMissile = contact.bodyB.node as PlayerMissile
+                missile.hitInvader()
         }
         
         /** Edge collisions **/
@@ -246,15 +235,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
+        // TODO: Handle this collision for the new invader model
         if(ColliderType.InvaderSheet.toRaw() == contact.bodyB.categoryBitMask){
-            
-            if(ColliderType.Edge.toRaw() == contact.bodyA.categoryBitMask){
-                if(!invadersOnEdge){
-                    invadersOnEdge = true
-                    invaders.edgeCollision()
-                }
-            }
-            
             
             if(ColliderType.BottomEdge.toRaw() == contact.bodyA.categoryBitMask){
                 shipSprite.hitByMissile()
@@ -264,6 +246,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func didEndContact(contact: SKPhysicsContact!) {
+        
+        if(ColliderType.Invader.toRaw() == contact.bodyA.categoryBitMask
+            || ColliderType.Invader.toRaw() == contact.bodyB.categoryBitMask){
+                invaderSheet.didEndContact(contact)
+        }
         
         if(ColliderType.Player.toRaw() == contact.bodyB.categoryBitMask){
             shipSprite.didEndContact(contact)

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E2043A3019C40714003BDBAD /* InvaderSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2043A2F19C40714003BDBAD /* InvaderSheetController.swift */; };
 		E2799A1319C3EC7B008229FB /* InvaderASprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2799A0B19C3EC7B008229FB /* InvaderASprite.swift */; };
 		E2799A1419C3EC7B008229FB /* InvaderBSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2799A0C19C3EC7B008229FB /* InvaderBSprite.swift */; };
 		E2799A1519C3EC7B008229FB /* InvaderCSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2799A0D19C3EC7B008229FB /* InvaderCSprite.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E2043A2F19C40714003BDBAD /* InvaderSheetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderSheetController.swift; sourceTree = "<group>"; };
 		E2799A0B19C3EC7B008229FB /* InvaderASprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderASprite.swift; sourceTree = "<group>"; };
 		E2799A0C19C3EC7B008229FB /* InvaderBSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderBSprite.swift; sourceTree = "<group>"; };
 		E2799A0D19C3EC7B008229FB /* InvaderCSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderCSprite.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				E2799A1019C3EC7B008229FB /* InvaderSprite.swift */,
 				E2799A1119C3EC7B008229FB /* PlayerMissile.swift */,
 				E2799A1219C3EC7B008229FB /* PlayerSprite.swift */,
+				E2043A2F19C40714003BDBAD /* InvaderSheetController.swift */,
 			);
 			path = Sprites;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				E2799A1819C3EC7B008229FB /* InvaderSprite.swift in Sources */,
 				E2799A1919C3EC7B008229FB /* PlayerMissile.swift in Sources */,
 				E2799A1519C3EC7B008229FB /* InvaderCSprite.swift in Sources */,
+				E2043A3019C40714003BDBAD /* InvaderSheetController.swift in Sources */,
 				E2799A1419C3EC7B008229FB /* InvaderBSprite.swift in Sources */,
 				E2FEF5FB19C3EA1400B3E366 /* AppDelegate.swift in Sources */,
 				E2799A1619C3EC7B008229FB /* InvaderMissile.swift in Sources */,
