@@ -86,7 +86,7 @@ class PlayerSprite : SKSpriteNode {
         }
         
         if(" " == insertString as NSString){
-            NSLog("Space pressed");
+
             let missile = PlayerMissile();
             missile.position = CGPointMake(position.x, position.y+40);
             
