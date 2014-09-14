@@ -9,13 +9,16 @@
 import Foundation
 import SpriteKit
 
+/// A controller class for managing a full sheet of invaders
 class InvaderSheetController {
     
     var _scoring : ScoreController
     var _scene : SKScene
     var _invaders : [InvaderSprite]
     
+    /// Number of columns of invaders in the sheet
     let columns = 11
+    
     
     init(scene: SKScene, scoring: ScoreController){
         _scene = scene
@@ -165,20 +168,12 @@ class InvaderSheetController {
     
     func start(){
         
-        var moveSprite = SKAction.runBlock({
-            self.moveWorking()
-        })
-        
-        let delay = 0.5 / _invaders.count
-        
-        var waitAction = SKAction.waitForDuration(NSTimeInterval(delay))
-        
-        var seq = SKAction.sequence([waitAction,moveSprite])
-        
-        _scene.runAction(SKAction.repeatActionForever(seq))
+        setMoveSequence()
+        setFiringSequence()
         
     }
     
+    /** Add the invaders to the scene **/
     func addToScene(startPos: CGPoint){
         
         var xPos = 0
@@ -199,5 +194,54 @@ class InvaderSheetController {
         }
         
     }
+    
+    func fireMissile(){
+        
+        // Identify the invaders that don't have any invaders below them
+        var frontRow : [InvaderSprite] = []
+        
+        for i in 0...(columns-1) {
+            // For the current column, find the invader on the lowest row that is still alive
+            var row = 0
+            while (row*columns + i) < _invaders.count {
+                if(_invaders[row*columns + i].isAlive()){
+                    frontRow.append(_invaders[row*columns + i])
+                    break;
+                }
+                row++
+            }
+        }
+        
+        // Choose a random invader in the front row to fire
+        let ri = arc4random_uniform(UInt32(frontRow.count))
+        frontRow[Int(ri)].fireMissile()
+        
+    }
+    
+    func setMoveSequence(){
+        var moveSprite = SKAction.runBlock({
+            self.moveWorking()
+        })
+        
+        let delay = 0.5 / _invaders.count
+        
+        var waitAction = SKAction.waitForDuration(NSTimeInterval(delay))
+        
+        var seq = SKAction.sequence([waitAction,moveSprite])
+        
+        _scene.runAction(SKAction.repeatActionForever(seq))
+    }
+    
+    func setFiringSequence(){
+        let firingActions = [
+            SKAction.waitForDuration(3),
+            SKAction.runBlock {
+                self.fireMissile()
+            }
+        ]
+        _scene.runAction(SKAction.repeatActionForever(SKAction.sequence(firingActions)))
+        
+    }
+
     
 }
