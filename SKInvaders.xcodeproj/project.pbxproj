@@ -12,7 +12,6 @@
 		E2799A1419C3EC7B008229FB /* InvaderBSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2799A0C19C3EC7B008229FB /* InvaderBSprite.swift */; };
 		E2799A1519C3EC7B008229FB /* InvaderCSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2799A0D19C3EC7B008229FB /* InvaderCSprite.swift */; };
 		E2799A1619C3EC7B008229FB /* InvaderMissile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2799A0E19C3EC7B008229FB /* InvaderMissile.swift */; };
-		E2799A1719C3EC7B008229FB /* InvaderSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2799A0F19C3EC7B008229FB /* InvaderSheet.swift */; };
 		E2799A1819C3EC7B008229FB /* InvaderSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2799A1019C3EC7B008229FB /* InvaderSprite.swift */; };
 		E2799A1919C3EC7B008229FB /* PlayerMissile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2799A1119C3EC7B008229FB /* PlayerMissile.swift */; };
 		E2799A1A19C3EC7B008229FB /* PlayerSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2799A1219C3EC7B008229FB /* PlayerSprite.swift */; };
@@ -43,7 +42,6 @@
 		E2799A0C19C3EC7B008229FB /* InvaderBSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderBSprite.swift; sourceTree = "<group>"; };
 		E2799A0D19C3EC7B008229FB /* InvaderCSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderCSprite.swift; sourceTree = "<group>"; };
 		E2799A0E19C3EC7B008229FB /* InvaderMissile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderMissile.swift; sourceTree = "<group>"; };
-		E2799A0F19C3EC7B008229FB /* InvaderSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderSheet.swift; sourceTree = "<group>"; };
 		E2799A1019C3EC7B008229FB /* InvaderSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderSprite.swift; sourceTree = "<group>"; };
 		E2799A1119C3EC7B008229FB /* PlayerMissile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerMissile.swift; sourceTree = "<group>"; };
 		E2799A1219C3EC7B008229FB /* PlayerSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerSprite.swift; sourceTree = "<group>"; };
@@ -87,7 +85,6 @@
 				E2799A0C19C3EC7B008229FB /* InvaderBSprite.swift */,
 				E2799A0D19C3EC7B008229FB /* InvaderCSprite.swift */,
 				E2799A0E19C3EC7B008229FB /* InvaderMissile.swift */,
-				E2799A0F19C3EC7B008229FB /* InvaderSheet.swift */,
 				E2799A1019C3EC7B008229FB /* InvaderSprite.swift */,
 				E2799A1119C3EC7B008229FB /* PlayerMissile.swift */,
 				E2799A1219C3EC7B008229FB /* PlayerSprite.swift */,
@@ -293,7 +290,6 @@
 				E2799A1619C3EC7B008229FB /* InvaderMissile.swift in Sources */,
 				E2FEF5F919C3EA1400B3E366 /* main.swift in Sources */,
 				E2799A1A19C3EC7B008229FB /* PlayerSprite.swift in Sources */,
-				E2799A1719C3EC7B008229FB /* InvaderSheet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

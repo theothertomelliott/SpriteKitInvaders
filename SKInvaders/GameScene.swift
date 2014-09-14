@@ -24,7 +24,6 @@ enum ColliderType: UInt32 {
 class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate {
     
     var shipSprite: PlayerSprite!
-    var invaders : InvaderSheet!
     
     var invaderSheet : InvaderSheetController!
     
@@ -179,7 +178,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate {
     private func gameOver(){
         livesCountLabel.text = "\(lives)"
         // TODO: Go to game over screen
-        invaders.pause()
+        // invaders.pause()
     }
     
     /**
