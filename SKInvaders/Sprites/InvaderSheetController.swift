@@ -138,6 +138,7 @@ class InvaderSheetController {
         }
     }
     
+    /** Move the current working invader **/
     func moveWorking(){
         if(workingSprite < self._invaders.count){
             let sprite : InvaderSprite = self._invaders[workingSprite]
