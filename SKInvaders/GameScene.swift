@@ -173,9 +173,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     * End the game, player loses
     */
     private func gameOver(){
+        
+        shipSprite.hitByMissile()
         livesCountLabel.text = "\(lives)"
+        
         // TODO: Go to game over screen
-        // invaders.pause()
+        
+        invaderSheet.pause()
     }
     
     /**
@@ -227,7 +231,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     }
     
     func landed(){
-        shipSprite.hitByMissile()
         gameOver()
     }
     

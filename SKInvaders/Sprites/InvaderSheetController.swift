@@ -71,6 +71,20 @@ class InvaderSheetController {
         _scoring.incrementScore(invader.score())
     }
     
+    /**
+        Get rid of remaining invaders
+    */
+    func clearSheet(){
+        for invader in _invaders {
+            invader.removeFromParent()
+        }
+    }
+    
+    func pause(){
+        _scene.removeActionForKey("invaders.move")
+        _scene.removeActionForKey("invaders.fire")
+    }
+    
     func didBeginContact(contact: SKPhysicsContact!) {
         
         // Identify the non-invader body in the collision
@@ -262,7 +276,7 @@ class InvaderSheetController {
         
         var seq = SKAction.sequence([waitAction,moveSprite])
         
-        _scene.runAction(SKAction.repeatActionForever(seq))
+        _scene.runAction(SKAction.repeatActionForever(seq), withKey: "invaders.move")
     }
     
     func setFiringSequence(){
@@ -272,7 +286,7 @@ class InvaderSheetController {
                 self.fireMissile()
             }
         ]
-        _scene.runAction(SKAction.repeatActionForever(SKAction.sequence(firingActions)))
+        _scene.runAction(SKAction.repeatActionForever(SKAction.sequence(firingActions)), withKey: "invaders.fire")
         
     }
 
