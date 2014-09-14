@@ -38,7 +38,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     var topBorder : SKNode!
     
     func scoreUpdated(sender: ScoreController){
-        let score = sender.getScore()
+        let score = sender.score
         scoreLabel?.text = "\(score)"
     }
     

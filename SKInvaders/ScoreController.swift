@@ -21,15 +21,10 @@ class ScoreController {
     }
     
     var delegate : ScoreUpdateDelegate!
-    private var score : Int {
+    private(set) var score : Int {
         didSet {
             delegate?.scoreUpdated(self)
         }
-    }
-    
-    // TODO: Implement this using the var structure
-    func getScore() -> Int {
-        return score
     }
     
     /**
