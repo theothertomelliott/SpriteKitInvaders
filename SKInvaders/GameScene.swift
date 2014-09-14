@@ -21,7 +21,7 @@ enum ColliderType: UInt32 {
     case TopEdge = 512
 }
 
-class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate {
+class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, InvaderDelegate {
     
     var shipSprite: PlayerSprite!
     
@@ -72,9 +72,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate {
     
     let playAreaBottom = 50
     
-    // Is the invader sheet currently collided with an edge?
-    var invadersOnEdge : Bool!
-    
     override func didMoveToView(view: SKView) {
         
         // Set up the score controller
@@ -116,9 +113,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate {
         rightBorder = addBorder(CGPointMake(size.width-20,0), to: CGPointMake(size.width-20,size.height), category: ColliderType.RightEdge.toRaw())
         bottomBorder = addBorder(CGPointMake(0,shipSprite.position.y+shipSprite.size.height/2), to: CGPointMake(size.width,shipSprite.position.y+shipSprite.size.height/2), category: ColliderType.BottomEdge.toRaw())
         topBorder = addBorder(CGPointMake(0,size.height - 50), to: CGPointMake(size.width, size.height-50), category: ColliderType.TopEdge.toRaw())
-        invadersOnEdge = false
         
         invaderSheet = InvaderSheetController(scene: self, scoring: scoreCtl)
+        invaderSheet.delegate = self
         invaderSheet.addToScene(CGPointMake(size.width/2-60*7,(size.height/2)-50))
         invaderSheet.start()
         
@@ -227,14 +224,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate {
             }
         }
         
-        // TODO: Handle this collision for the new invader model
-        if(ColliderType.InvaderSheet.toRaw() == contact.bodyB.categoryBitMask){
-            
-            if(ColliderType.BottomEdge.toRaw() == contact.bodyA.categoryBitMask){
-                shipSprite.hitByMissile()
-                gameOver()
-            }
-        }
+    }
+    
+    func landed(){
+        shipSprite.hitByMissile()
+        gameOver()
     }
     
     func didEndContact(contact: SKPhysicsContact!) {
@@ -246,10 +240,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate {
         
         if(ColliderType.Player.toRaw() == contact.bodyB.categoryBitMask){
             shipSprite.didEndContact(contact)
-        }
-        
-        if(ColliderType.Edge.toRaw() == contact.bodyA.categoryBitMask){
-            invadersOnEdge = false
         }
     }
     

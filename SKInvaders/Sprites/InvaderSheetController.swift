@@ -9,16 +9,22 @@
 import Foundation
 import SpriteKit
 
+protocol InvaderDelegate {
+    
+    func landed()
+    
+}
+
 /// A controller class for managing a full sheet of invaders
 class InvaderSheetController {
     
-    var _scoring : ScoreController
-    var _scene : SKScene
-    var _invaders : [InvaderSprite]
+    private var _scoring : ScoreController
+    private var _scene : SKScene
+    private var _invaders : [InvaderSprite]
+    var delegate : InvaderDelegate!
     
     /// Number of columns of invaders in the sheet
     let columns = 11
-    
     
     init(scene: SKScene, scoring: ScoreController){
         _scene = scene
@@ -83,6 +89,12 @@ class InvaderSheetController {
         if(ColliderType.PlayerMissile.toRaw() == otherBody.categoryBitMask){
                 missileCollision(otherBody.node as PlayerMissile, invader: invaderHit.node as InvaderSprite)
         }
+        
+        /** When an invader reaches the bottom of the screen **/
+        if(ColliderType.BottomEdge.toRaw() == otherBody.categoryBitMask){
+            // TODO: Force a game over
+            delegate?.landed()
+        }
     }
     
     func didEndContact(contact: SKPhysicsContact!) {
@@ -116,6 +128,11 @@ class InvaderSheetController {
         }
     }
     
+    /**
+    
+        Obtain a count of sprites currently on the right edge
+    
+    */
     private func spritesAtRight() -> Int {
         var count = 0
         for sprite in _invaders {
@@ -125,7 +142,13 @@ class InvaderSheetController {
         }
         return count
     }
+
     
+    /**
+    
+    Obtain a count of sprites currently on the left edge
+    
+    */
     private func spritesAtLeft() -> Int {
         var count = 0
         for sprite in _invaders {
