@@ -35,6 +35,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     var bottomBorder : SKNode!
     var topBorder : SKNode!
     
+    var sheetNumber = 0
+    
     func scoreUpdated(sender: ScoreController){
         let score = sender.score
         scoreLabel?.text = "\(score)"
@@ -116,11 +118,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     }
     
     func addInvaderSheet(){
-        
+        sheetNumber++
         
         invaderSheet = InvaderSheetController(scene: self, scoring: scoreCtl)
         invaderSheet.delegate = self
         invaderSheet.addToScene(CGPointMake(size.width/2-60*7,(size.height/2)+100))
+        
+        // Calculate the current speed
+        invaderSheet.cycleInterval = NSTimeInterval(0.5 - (sheetNumber * 0.01))
         invaderSheet.start()
     }
     

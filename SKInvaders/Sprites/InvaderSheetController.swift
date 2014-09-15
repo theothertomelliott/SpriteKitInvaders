@@ -22,6 +22,9 @@ class InvaderSheetController {
     private var _scoring : ScoreController
     private var _scene : SKScene
     private var _invaders : [InvaderSprite]
+    
+    var cycleInterval : NSTimeInterval
+    
     var delegate : InvaderDelegate!
     
     /// Number of columns of invaders in the sheet
@@ -54,6 +57,8 @@ class InvaderSheetController {
                 _invaders.append(InvaderCSprite())
             }
         }
+        
+        cycleInterval = NSTimeInterval(0.5)
     }
     
     var workingSprite = 0
@@ -72,6 +77,7 @@ class InvaderSheetController {
         _scoring.incrementScore(invader.score())
         
         if liveInvaderCount() == 0 {
+            self.pause()
             delegate?.SheetCompleted()
         }
     }
@@ -291,7 +297,7 @@ class InvaderSheetController {
             self.moveWorking()
         })
         
-        let delay = 0.5 / _invaders.count
+        let delay = Int(cycleInterval) / _invaders.count
         
         var waitAction = SKAction.waitForDuration(NSTimeInterval(delay))
         
