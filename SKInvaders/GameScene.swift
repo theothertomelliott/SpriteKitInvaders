@@ -212,6 +212,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
                 missile.hitInvader()
         }
         
+        
+        /** Collision between invader missile and player **/
+        if(ColliderType.InvaderMissile.toRaw() == contact.bodyA.categoryBitMask &&
+        ColliderType.Player.toRaw() == contact.bodyB.categoryBitMask)
+        {
+            missileCollision(contact.bodyA.node as InvaderMissile, player: contact.bodyB.node as PlayerSprite)
+        }
+        if(ColliderType.InvaderMissile.toRaw() == contact.bodyB.categoryBitMask &&
+            ColliderType.Player.toRaw() == contact.bodyA.categoryBitMask)
+        {
+            missileCollision(contact.bodyB.node as InvaderMissile, player: contact.bodyA.node as PlayerSprite)
+        }
+        
         /** Edge collisions **/
         if(ColliderType.Player.toRaw() == contact.bodyB.categoryBitMask){
             if(ColliderType.LeftEdge.toRaw() == contact.bodyA.categoryBitMask || ColliderType.RightEdge.toRaw() == contact.bodyA.categoryBitMask){
