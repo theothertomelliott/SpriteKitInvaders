@@ -12,6 +12,7 @@ import SpriteKit
 protocol InvaderDelegate {
     
     func landed()
+    func SheetCompleted()
     
 }
 
@@ -69,6 +70,26 @@ class InvaderSheetController {
         
         // Add the score for destroying this invader
         _scoring.incrementScore(invader.score())
+        
+        if liveInvaderCount() == 0 {
+            delegate?.SheetCompleted()
+        }
+    }
+    
+    
+    /**
+        Count the remaining live invaders
+    */
+    func liveInvaderCount() -> Int {
+        var count = 0
+        for invader in _invaders {
+            if(invader.isAlive()){
+                count++
+            }
+        }
+        
+        
+        return count
     }
     
     /**

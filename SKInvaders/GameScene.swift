@@ -112,11 +112,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         bottomBorder = addBorder(CGPointMake(0,shipSprite.position.y+shipSprite.size.height/2), to: CGPointMake(size.width,shipSprite.position.y+shipSprite.size.height/2), category: ColliderType.BottomEdge.toRaw())
         topBorder = addBorder(CGPointMake(0,size.height - 50), to: CGPointMake(size.width, size.height-50), category: ColliderType.TopEdge.toRaw())
         
+        addInvaderSheet()
+    }
+    
+    func addInvaderSheet(){
+        
+        
         invaderSheet = InvaderSheetController(scene: self, scoring: scoreCtl)
         invaderSheet.delegate = self
-        invaderSheet.addToScene(CGPointMake(size.width/2-60*7,(size.height/2)-50))
+        invaderSheet.addToScene(CGPointMake(size.width/2-60*7,(size.height/2)+100))
         invaderSheet.start()
-        
     }
     
     /**
@@ -236,6 +241,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     
     func landed(){
         gameOver()
+    }
+    
+    func SheetCompleted() {
+        
+        // Wait for a couple of seconds, then create a new sheet
+        let wait = SKAction.waitForDuration(2)
+        let nextSheet = SKAction.runBlock({
+            self.addInvaderSheet()
+        })
+        self.runAction(SKAction.sequence([wait, nextSheet]))
     }
     
     func didEndContact(contact: SKPhysicsContact!) {
