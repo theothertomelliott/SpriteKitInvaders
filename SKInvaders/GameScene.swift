@@ -96,11 +96,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         p1ScoreLabel = self.childNodeWithName("p1ScoreLabel") as SKLabelNode
         
         // Create the game over label
-        gameOverLabel = SKLabelNode(fontNamed: "Space Invaders")
-        gameOverLabel.text = "GAME OVER"
-        gameOverLabel.position = CGPointMake(self.size.width/2,self.size.height - 120)
+        gameOverLabel = self.childNodeWithName("GameOverLabel") as SKLabelNode
         gameOverLabel.hidden = true
-        self.addChild(gameOverLabel)
         
         // Initial count of lives
         lives = 3
