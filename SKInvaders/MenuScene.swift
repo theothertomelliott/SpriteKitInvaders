@@ -14,6 +14,9 @@ class MenuScene : SKScene {
     override func didMoveToView(view: SKView) {
         let gameOverLabel = self.childNodeWithName("GameOverLabel") as SKLabelNode
         gameOverLabel.hidden = true
+        
+        let playArea = self.childNodeWithName("PlayArea") as SKShapeNode
+        playArea.hidden = true
     }
     
     override func keyDown(theEvent: NSEvent){

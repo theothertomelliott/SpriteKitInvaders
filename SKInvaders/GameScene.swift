@@ -38,6 +38,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     var bottomBorder : SKNode!
     var topBorder : SKNode!
     
+    var playArea : SKShapeNode!
+    
     var sheetNumber = 0
     
     func scoreUpdated(sender: ScoreController){
@@ -91,6 +93,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         livesCountLabel = SKLabelNode(fontNamed: "Space Invaders")
         livesCountLabel.position = CGPointMake(CGFloat(playAreaBottom/2),CGFloat(playAreaBottom/4))
         self.addChild(livesCountLabel)
+
+        // Obtain the bounds of the game area
+        playArea = self.childNodeWithName("PlayArea") as SKShapeNode
+        playArea.hidden = true
         
         // Show the current score
         p1ScoreLabel = self.childNodeWithName("p1ScoreLabel") as SKLabelNode
@@ -105,11 +111,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         // Create the player
         newPlayer()
         
+        let bottomLeft = CGPointMake(playArea.position.x - playArea.frame.width/2, playArea.position.y - playArea.frame.height / 2)
+        let bottomRight = CGPointMake(playArea.position.x + playArea.frame.width/2, playArea.position.y - playArea.frame.height / 2)
+        let topRight = CGPointMake(playArea.position.x + playArea.frame.width/2, playArea.position.y + playArea.frame.height / 2)
+        let topLeft = CGPointMake(playArea.position.x - playArea.frame.width/2, playArea.position.y + playArea.frame.height / 2)
+        
         // Set playing area boundaries
-        leftBorder = addBorder(CGPointMake(20,0), to: CGPointMake(20,size.height), category: ColliderType.LeftEdge.toRaw())
-        rightBorder = addBorder(CGPointMake(size.width-20,0), to: CGPointMake(size.width-20,size.height), category: ColliderType.RightEdge.toRaw())
-        bottomBorder = addBorder(CGPointMake(0,shipSprite.position.y+shipSprite.size.height/2), to: CGPointMake(size.width,shipSprite.position.y+shipSprite.size.height/2), category: ColliderType.BottomEdge.toRaw())
-        topBorder = addBorder(CGPointMake(0,size.height - 50), to: CGPointMake(size.width, size.height-50), category: ColliderType.TopEdge.toRaw())
+        leftBorder = addBorder(bottomLeft, to: topLeft, category: ColliderType.LeftEdge.toRaw())
+        rightBorder = addBorder(bottomRight, to: topRight, category: ColliderType.RightEdge.toRaw())
+        bottomBorder = addBorder(bottomLeft, to: bottomRight, category: ColliderType.BottomEdge.toRaw())
+        topBorder = addBorder(topLeft, to: topRight, category: ColliderType.TopEdge.toRaw())
         
         addInvaderSheet()
     }
@@ -119,7 +130,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         
         invaderSheet = InvaderSheetController(scene: self, scoring: scoreCtl)
         invaderSheet.delegate = self
-        invaderSheet.addToScene(CGPointMake(size.width/2-60*7,(size.height/2)+100))
+        let startPos = CGPointMake(playArea.position.x - playArea.frame.width/2, playArea.position.y)
+        invaderSheet.addToScene(startPos)
         
         // Calculate the current speed
         invaderSheet.cycleInterval = NSTimeInterval(0.5 - (sheetNumber * 0.01))
@@ -135,7 +147,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         
         // Put ship in play
         shipSprite = PlayerSprite()
-        shipSprite.position = CGPointMake(50,CGFloat(playAreaBottom + 50))
+        shipSprite.position = CGPointMake(playArea.position.x - playArea.frame.width/2,playArea.position.y - playArea.frame.height/2)
         self.addChild(shipSprite)
     }
     
@@ -145,7 +157,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     func addBorder(from: CGPoint, to: CGPoint, category: UInt32) -> SKNode {
         
         // Show the border
-        drawLine(from, to: to, color: SKColor.redColor())
+        //drawLine(from, to: to, color: SKColor.redColor())
         
         var border = SKNode()
         border.physicsBody = SKPhysicsBody(edgeFromPoint: from, toPoint: to)
