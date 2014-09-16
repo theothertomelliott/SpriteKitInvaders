@@ -96,6 +96,10 @@ class PlayerSprite : SKSpriteNode {
                     }
                 }
             }
+            
+            // Cheat :P
+            hasMissile = false
+            
             if(!hasMissile){
                 parent?.addChild(missile)
             }

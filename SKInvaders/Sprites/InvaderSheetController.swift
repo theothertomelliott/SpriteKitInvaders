@@ -27,6 +27,10 @@ class InvaderSheetController {
     
     var delegate : InvaderDelegate!
     
+    var workingSprite = 0
+    var goingRight = true
+    var goingDown = false
+    
     /// Number of columns of invaders in the sheet
     let columns = 11
     
@@ -60,11 +64,7 @@ class InvaderSheetController {
         
         cycleInterval = NSTimeInterval(0.5)
     }
-    
-    var workingSprite = 0
-    var goingRight = true
-    var goingDown = false
-    
+
     /**
     * Handle collision between a player missile and an invader
     */

@@ -29,7 +29,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     
     var livesSprites : [SKSpriteNode] = []
     var livesCountLabel : SKLabelNode!
-    var scoreLabel : SKLabelNode!
+    
+    var gameOverLabel : SKLabelNode!
+    
+    var p1ScoreLabel : SKLabelNode!
     var leftBorder : SKNode!
     var rightBorder : SKNode!
     var bottomBorder : SKNode!
@@ -39,8 +42,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     
     func scoreUpdated(sender: ScoreController){
         let score = sender.score
-        scoreLabel?.text = "\(score)"
-    }
+        p1ScoreLabel?.text = NSString(format:"%04d", score)
+}
     
     // Number of lives in "reserve", not counting the life in play
     var lives : Int = 3 {
@@ -78,12 +81,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         scoreCtl = ScoreController()
         scoreCtl.delegate = self
         
-        // Configure gravity
-        self.physicsWorld.gravity = CGVectorMake(0,0)
+        // Configure collisions
         self.physicsWorld.contactDelegate = self;
-        
-        // Set background
-        self.backgroundColor = SKColor.blackColor();
         
         // Add green line above lives and credit count
         drawLine(CGPointMake(0,CGFloat(playAreaBottom)),to: CGPointMake(size.width, CGFloat(playAreaBottom)), color: SKColor.greenColor())
@@ -94,13 +93,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         self.addChild(livesCountLabel)
         
         // Show the current score
-        let scoreHeadingLabel = SKLabelNode(fontNamed: "Space Invaders")
-        scoreHeadingLabel.text = "Score <1>"
-        scoreHeadingLabel.position = CGPointMake(150, self.size.height - 30)
-        self.addChild(scoreHeadingLabel)
-        scoreLabel = SKLabelNode(fontNamed: "Space Invaders")
-        scoreLabel.position = CGPointMake(150,self.size.height - 30 - 50)
-        self.addChild(scoreLabel)
+        p1ScoreLabel = self.childNodeWithName("p1ScoreLabel") as SKLabelNode
+        
+        // Create the game over label
+        gameOverLabel = SKLabelNode(fontNamed: "Space Invaders")
+        gameOverLabel.text = "GAME OVER"
+        gameOverLabel.position = CGPointMake(self.size.width/2,self.size.height - 120)
+        gameOverLabel.hidden = true
+        self.addChild(gameOverLabel)
         
         // Initial count of lives
         lives = 3
@@ -174,13 +174,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     * End the game, player loses
     */
     private func gameOver(){
-        
-        shipSprite.hitByMissile()
-        livesCountLabel.text = "\(lives)"
-        
-        // TODO: Go to game over screen
-        
+        if(lives > 0){
+            lives = 0
+            shipSprite.hitByMissile()
+        }
         invaderSheet.pause()
+        
+        gameOverLabel.text = ""
+        gameOverLabel.hidden = false
+        
+        let pause = SKAction.waitForDuration(0.25)
+        let drawLetter = SKAction.runBlock({
+            let current = countElements(self.gameOverLabel.text)
+            self.gameOverLabel.text = "GAME OVER".substringToIndex(current+1)
+        })
+        
+        let drawSequence = SKAction.sequence([drawLetter, pause]);
+        let drawFullText = SKAction.repeatAction(drawSequence, count: countElements("GAME OVER"))
+        
+        let loadMenu = SKAction.runBlock({
+            if let scene = MenuScene.unarchiveFromFile("GameScene") as? MenuScene {
+                /* Set the scale mode to scale to fit the window */
+                scene.scaleMode = .AspectFill
+                
+                self.view!.presentScene(scene)
+            }
+        })
+        
+        let fullSeq = SKAction.sequence([drawFullText, SKAction.waitForDuration(2), loadMenu])
+        
+        self.runAction(fullSeq)
     }
     
     /**
