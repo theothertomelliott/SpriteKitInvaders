@@ -236,6 +236,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     
     func didBeginContact(contact: SKPhysicsContact!) {
         
+        /*** Handle missile to missile collisions ***/
         if(ColliderType.InvaderMissile.toRaw() == contact.bodyA.categoryBitMask &&
             ColliderType.PlayerMissile.toRaw() == contact.bodyB.categoryBitMask){
                 let im = contact.bodyA.node as InvaderMissile
