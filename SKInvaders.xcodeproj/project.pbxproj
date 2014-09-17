@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		E2043A3019C40714003BDBAD /* InvaderSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2043A2F19C40714003BDBAD /* InvaderSheetController.swift */; };
+		E24C79B919C9BD1200962731 /* InvaderMissileA.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24C79B819C9BD1200962731 /* InvaderMissileA.swift */; };
+		E24C79BB19C9BD3000962731 /* InvaderMissileB.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24C79BA19C9BD3000962731 /* InvaderMissileB.swift */; };
+		E24C79BD19C9BD3A00962731 /* InvaderMissileC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24C79BC19C9BD3A00962731 /* InvaderMissileC.swift */; };
 		E2799A1319C3EC7B008229FB /* InvaderASprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2799A0B19C3EC7B008229FB /* InvaderASprite.swift */; };
 		E2799A1419C3EC7B008229FB /* InvaderBSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2799A0C19C3EC7B008229FB /* InvaderBSprite.swift */; };
 		E2799A1519C3EC7B008229FB /* InvaderCSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2799A0D19C3EC7B008229FB /* InvaderCSprite.swift */; };
@@ -39,6 +42,9 @@
 
 /* Begin PBXFileReference section */
 		E2043A2F19C40714003BDBAD /* InvaderSheetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InvaderSheetController.swift; path = Sprites/InvaderSheetController.swift; sourceTree = "<group>"; };
+		E24C79B819C9BD1200962731 /* InvaderMissileA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderMissileA.swift; sourceTree = "<group>"; };
+		E24C79BA19C9BD3000962731 /* InvaderMissileB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderMissileB.swift; sourceTree = "<group>"; };
+		E24C79BC19C9BD3A00962731 /* InvaderMissileC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderMissileC.swift; sourceTree = "<group>"; };
 		E2799A0B19C3EC7B008229FB /* InvaderASprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderASprite.swift; sourceTree = "<group>"; };
 		E2799A0C19C3EC7B008229FB /* InvaderBSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderBSprite.swift; sourceTree = "<group>"; };
 		E2799A0D19C3EC7B008229FB /* InvaderCSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderCSprite.swift; sourceTree = "<group>"; };
@@ -120,6 +126,9 @@
 			children = (
 				E2799A1119C3EC7B008229FB /* PlayerMissile.swift */,
 				E2799A0E19C3EC7B008229FB /* InvaderMissile.swift */,
+				E24C79B819C9BD1200962731 /* InvaderMissileA.swift */,
+				E24C79BA19C9BD3000962731 /* InvaderMissileB.swift */,
+				E24C79BC19C9BD3A00962731 /* InvaderMissileC.swift */,
 			);
 			name = Missiles;
 			sourceTree = "<group>";
@@ -305,7 +314,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E24C79B919C9BD1200962731 /* InvaderMissileA.swift in Sources */,
 				E2799A1319C3EC7B008229FB /* InvaderASprite.swift in Sources */,
+				E24C79BD19C9BD3A00962731 /* InvaderMissileC.swift in Sources */,
 				E2FEF5FD19C3EA1400B3E366 /* GameScene.swift in Sources */,
 				E2799A1819C3EC7B008229FB /* InvaderSprite.swift in Sources */,
 				E2799A1919C3EC7B008229FB /* PlayerMissile.swift in Sources */,
@@ -313,6 +324,7 @@
 				E2043A3019C40714003BDBAD /* InvaderSheetController.swift in Sources */,
 				E2851AB719C7D3EE00397025 /* MenuScene.swift in Sources */,
 				E2799A1419C3EC7B008229FB /* InvaderBSprite.swift in Sources */,
+				E24C79BB19C9BD3000962731 /* InvaderMissileB.swift in Sources */,
 				E2A4500419C6327A00DB12AC /* ScoreController.swift in Sources */,
 				E2FEF5FB19C3EA1400B3E366 /* AppDelegate.swift in Sources */,
 				E2799A1619C3EC7B008229FB /* InvaderMissile.swift in Sources */,

@@ -91,7 +91,15 @@ class InvaderSprite : SKSpriteNode {
     }
     
     func fireMissile(){
-        let missile = InvaderMissile()
+        var missile : InvaderMissile
+        let num = arc4random_uniform(3)
+        if(num == 0){
+            missile = InvaderMissileA()
+        } else if(num == 1){
+            missile = InvaderMissileB()
+        } else {
+            missile = InvaderMissileC()
+        }
         if let pos = self.parent?.position {
             missile.position = CGPointMake(
                 self.position.x + pos.x,

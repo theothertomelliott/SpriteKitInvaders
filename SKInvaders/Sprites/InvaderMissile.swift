@@ -15,6 +15,11 @@ class InvaderMissile : SKSpriteNode {
         self.init(coder: nil)
     }
     
+    func setMovement(){
+        let moveDown = SKAction.moveBy(CGVectorMake(0,-20), duration:0.1);
+        runAction(SKAction.repeatActionForever(moveDown));
+    }
+    
     required init(coder: NSCoder!) {
         let texture = SKTexture(imageNamed: "InvaderMissile")
         
@@ -30,8 +35,7 @@ class InvaderMissile : SKSpriteNode {
         self.physicsBody?.contactTestBitMask = ColliderType.Player.toRaw() | ColliderType.PlayerMissile.toRaw()
         setScale(scale)
         
-        let moveDown = SKAction.moveBy(CGVectorMake(0,-20), duration:0.1);
-        runAction(SKAction.repeatActionForever(moveDown));
+        setMovement()
     }
     
     func hitPlayer(){
