@@ -236,6 +236,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     
     func didBeginContact(contact: SKPhysicsContact!) {
         
+        if(ColliderType.InvaderMissile.toRaw() == contact.bodyA.categoryBitMask &&
+            ColliderType.PlayerMissile.toRaw() == contact.bodyB.categoryBitMask){
+                let im = contact.bodyA.node as InvaderMissile
+                let pm = contact.bodyB.node as PlayerMissile
+                im.hitPlayer()
+                pm.hitInvader()
+        }
+
+        if(ColliderType.InvaderMissile.toRaw() == contact.bodyB.categoryBitMask &&
+            ColliderType.PlayerMissile.toRaw() == contact.bodyA.categoryBitMask){
+                let im = contact.bodyB.node as InvaderMissile
+                let pm = contact.bodyA.node as PlayerMissile
+                im.hitPlayer()
+                pm.hitInvader()
+        }
+        
         // Pass invader collisions to the invader sheet
         if(ColliderType.Invader.toRaw() == contact.bodyA.categoryBitMask
             || ColliderType.Invader.toRaw() == contact.bodyB.categoryBitMask){

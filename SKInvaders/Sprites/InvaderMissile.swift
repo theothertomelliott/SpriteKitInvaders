@@ -27,7 +27,7 @@ class InvaderMissile : SKSpriteNode {
         self.physicsBody?.usesPreciseCollisionDetection = true
         self.physicsBody?.categoryBitMask = ColliderType.InvaderMissile.toRaw()
         self.physicsBody?.collisionBitMask = 0
-        self.physicsBody?.contactTestBitMask = ColliderType.Player.toRaw()
+        self.physicsBody?.contactTestBitMask = ColliderType.Player.toRaw() | ColliderType.PlayerMissile.toRaw()
         setScale(scale)
         
         let moveDown = SKAction.moveBy(CGVectorMake(0,-20), duration:0.1);
