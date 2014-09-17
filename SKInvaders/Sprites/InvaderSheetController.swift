@@ -224,7 +224,7 @@ class InvaderSheetController {
             let sl = spritesAtLeft()
             let sr = spritesAtRight()
             
-            if(sl > 0 || sr > 0){
+            if((sl > 0 || sr > 0) && !goingDown){
                 goingDown = true
             } else {
                 goingDown = false
