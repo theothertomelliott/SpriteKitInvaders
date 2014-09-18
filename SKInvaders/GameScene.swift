@@ -33,6 +33,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     var gameOverLabel : SKLabelNode!
     
     var p1ScoreLabel : SKLabelNode!
+    var HighScoreLabel : SKLabelNode!
+    
     var leftBorder : SKNode!
     var rightBorder : SKNode!
     var bottomBorder : SKNode!
@@ -43,9 +45,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     var sheetNumber = 0
     
     func scoreUpdated(sender: ScoreController){
-        let score = sender.score
-        p1ScoreLabel?.text = NSString(format:"%04d", score)
-}
+        p1ScoreLabel?.text = NSString(format:"%04d", sender.score)
+        HighScoreLabel?.text = NSString(format:"%04d", sender.highScore)
+    }
     
     // Number of lives in "reserve", not counting the life in play
     var lives : Int = 3 {
@@ -82,6 +84,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         // Set up the score controller
         scoreCtl = ScoreController()
         scoreCtl.delegate = self
+        // Show the current score
+        p1ScoreLabel = self.childNodeWithName("p1ScoreLabel") as SKLabelNode
+        HighScoreLabel = self.childNodeWithName("HighScoreLabel") as SKLabelNode
+        scoreUpdated(scoreCtl);
         
         // Configure collisions
         self.physicsWorld.contactDelegate = self;
@@ -97,9 +103,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         // Obtain the bounds of the game area
         playArea = self.childNodeWithName("PlayArea") as SKShapeNode
         playArea.hidden = true
-        
-        // Show the current score
-        p1ScoreLabel = self.childNodeWithName("p1ScoreLabel") as SKLabelNode
         
         // Create the game over label
         gameOverLabel = self.childNodeWithName("GameOverLabel") as SKLabelNode

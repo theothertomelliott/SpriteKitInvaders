@@ -17,6 +17,13 @@ class MenuScene : SKScene {
         
         let playArea = self.childNodeWithName("PlayArea") as SKShapeNode
         playArea.hidden = true
+        
+        // Set up the score controller
+        let scoreCtl = ScoreController()
+        // Show the current score
+        let HighScoreLabel : SKLabelNode = self.childNodeWithName("HighScoreLabel") as SKLabelNode
+        HighScoreLabel.text = NSString(format:"%04d",scoreCtl.highScore)
+        
     }
     
     override func keyDown(theEvent: NSEvent){
