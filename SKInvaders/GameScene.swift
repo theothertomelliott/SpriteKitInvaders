@@ -81,6 +81,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     
     override func didMoveToView(view: SKView) {
         
+        // Hide instructions
+        self.childNodeWithName("PushLabel")?.hidden = true
+        self.childNodeWithName("ButtonInstructionLabel")?.hidden = true
+        
         // Set up the score controller
         scoreCtl = ScoreController()
         scoreCtl.delegate = self
