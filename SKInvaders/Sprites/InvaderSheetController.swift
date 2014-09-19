@@ -22,6 +22,8 @@ class InvaderSheetController {
     private var _scoring : ScoreController
     private var _scene : SKScene
     private var _invaders : [InvaderSprite]
+    private var _motherShip : MotherShipSprite!
+    private var _playArea : SKNode
     
     var cycleInterval : NSTimeInterval
     
@@ -34,9 +36,10 @@ class InvaderSheetController {
     /// Number of columns of invaders in the sheet
     let columns = 11
     
-    init(scene: SKScene, scoring: ScoreController){
+    init(scene: SKScene, scoring: ScoreController, playArea: SKNode){
         _scene = scene
         _scoring = scoring
+        _playArea = playArea
         
         // Create invaders
         _invaders = []
@@ -110,6 +113,7 @@ class InvaderSheetController {
     func pause(){
         _scene.removeActionForKey("invaders.move")
         _scene.removeActionForKey("invaders.fire")
+        _scene.removeActionForKey("mothership.spawn")
     }
     
     func didBeginContact(contact: SKPhysicsContact!) {
@@ -244,6 +248,7 @@ class InvaderSheetController {
         
         setMoveSequence()
         setFiringSequence()
+        setMothershipSequence()
         
     }
     
@@ -315,6 +320,26 @@ class InvaderSheetController {
         ]
         _scene.runAction(SKAction.repeatActionForever(SKAction.sequence(firingActions)), withKey: "invaders.fire")
         
+    }
+    
+    func setMothershipSequence(){
+        let mothershipAction = [
+            SKAction.waitForDuration(10),
+            SKAction.runBlock {
+                if (self._motherShip == nil) || self._motherShip.isDestroyed() {
+                    if arc4random_uniform(5) == 1 {
+                        self._motherShip = MotherShipSprite()
+                    
+                        let xPos = self._playArea.position.x + self._playArea.frame.width/2
+                        let yPos = self._playArea.position.y + self._playArea.frame.height/2
+                    
+                        self._motherShip.position = CGPointMake(xPos, yPos)
+                        self._scene.addChild(self._motherShip)
+                    }
+                }
+            }
+        ]
+        _scene.runAction(SKAction.repeatActionForever(SKAction.sequence(mothershipAction)), withKey: "mothership.spawn")
     }
 
     

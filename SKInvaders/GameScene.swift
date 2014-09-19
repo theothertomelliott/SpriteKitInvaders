@@ -135,9 +135,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     func addInvaderSheet(){
         sheetNumber++
         
-        invaderSheet = InvaderSheetController(scene: self, scoring: scoreCtl)
+        invaderSheet = InvaderSheetController(scene: self, scoring: scoreCtl, playArea: playArea)
         invaderSheet.delegate = self
-        let startPos = CGPointMake(playArea.position.x - playArea.frame.width/2, playArea.position.y)
+        let startPos = CGPointMake(playArea.position.x - playArea.frame.width/2, playArea.position.y-50)
         invaderSheet.addToScene(startPos)
         
         // Calculate the current speed
@@ -154,7 +154,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         
         // Put ship in play
         shipSprite = PlayerSprite()
-        shipSprite.position = CGPointMake(playArea.position.x - playArea.frame.width/2,playArea.position.y - playArea.frame.height/2)
+        shipSprite.position = CGPointMake(playArea.position.x - playArea.frame.width/2,playArea.position.y - playArea.frame.height/2 + shipSprite.frame.height/2)
         self.addChild(shipSprite)
     }
     

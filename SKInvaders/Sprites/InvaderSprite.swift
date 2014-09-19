@@ -17,7 +17,7 @@ class InvaderSprite : SKSpriteNode {
     private(set) var collidingLeft : Bool
     private(set) var collidingRight : Bool
     
-    init(imageNames: [NSString]) {
+    init(imageNames: [NSString], scale: CGFloat) {
         
         NSLog("Create Invader")
         
@@ -31,8 +31,6 @@ class InvaderSprite : SKSpriteNode {
             let texture  = SKTexture(imageNamed: imageN)
             textures += [texture]
         }
-        
-        let scale = CGFloat(0.4)
         
         scaledSize = CGSizeMake(textures[0].size().width*scale, textures[0].size().height*scale)
         
@@ -131,6 +129,7 @@ class InvaderSprite : SKSpriteNode {
         removeActionForKey("walk")
         
         runAction(dieSequence, withKey: "die")
+        
     }
     
     deinit {
