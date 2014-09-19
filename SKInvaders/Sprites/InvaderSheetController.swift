@@ -25,6 +25,7 @@ class InvaderSheetController {
     private var _motherShip : MotherShipSprite!
     private var _playArea : SKNode
     private var _level : UInt
+    private var _invaderSpeed : CGFloat!
     
     var cycleInterval : NSTimeInterval
     
@@ -68,6 +69,8 @@ class InvaderSheetController {
         }
         
         cycleInterval = NSTimeInterval(0.5)
+        
+        _invaderSpeed = (_playArea.frame.width - startingSize().width)/30
     }
     
     private func invaderSeparation() -> CGSize {
@@ -256,8 +259,8 @@ class InvaderSheetController {
     func moveWorking(){
         if(workingSprite < self._invaders.count){
             let sprite : InvaderSprite = self._invaders[workingSprite]
-            let moveRight = SKAction.moveBy(CGVectorMake(30,0), duration:0.0);
-            let moveLeft = SKAction.moveBy(CGVectorMake(-30,0), duration:0.0);
+            let moveRight = SKAction.moveBy(CGVectorMake(_invaderSpeed,0), duration:0.0);
+            let moveLeft = SKAction.moveBy(CGVectorMake(_invaderSpeed,0), duration:0.0);
             if(goingRight){
                 sprite.runAction(moveRight)
             } else {
