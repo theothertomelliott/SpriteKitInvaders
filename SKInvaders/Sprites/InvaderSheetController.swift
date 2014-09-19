@@ -24,6 +24,7 @@ class InvaderSheetController {
     private var _invaders : [InvaderSprite]
     private var _motherShip : MotherShipSprite!
     private var _playArea : SKNode
+    private var _level : UInt
     
     var cycleInterval : NSTimeInterval
     
@@ -36,10 +37,11 @@ class InvaderSheetController {
     /// Number of columns of invaders in the sheet
     let columns = 11
     
-    init(scene: SKScene, scoring: ScoreController, playArea: SKNode){
+    init(scene: SKScene, scoring: ScoreController, playArea: SKNode, level: UInt){
         _scene = scene
         _scoring = scoring
         _playArea = playArea
+        _level = level
         
         // Create invaders
         _invaders = []
@@ -66,6 +68,52 @@ class InvaderSheetController {
         }
         
         cycleInterval = NSTimeInterval(0.5)
+    }
+    
+    private func invaderSeparation() -> CGSize {
+        
+        var maxW = CGFloat(0)
+        var maxH = CGFloat(0)
+        
+        for invader : InvaderSprite in _invaders {
+            
+            let w = invader.size.width
+            let h = invader.size.height
+            
+            if(w > maxW){
+                maxW = w
+            }
+            
+            if(h > maxH){
+                maxH = h
+            }
+            
+        }
+        
+        return CGSizeMake(maxW * 1.5,maxH * 2)
+    }
+    
+    private func startingSize() -> CGSize {
+        
+        let separation = self.invaderSeparation()
+        
+        var xPos = CGFloat(0)
+        var yPos = CGFloat(0)
+        
+        var column = 1
+        for invader : InvaderSprite in _invaders {
+            xPos += separation.width
+            
+            column++
+            if(column > (columns)){
+                xPos = 0
+                yPos += separation.height
+                column = 1
+            }
+        }
+        
+        return CGSizeMake(CGFloat(xPos) + separation.width,CGFloat(yPos) + separation.height)
+        
     }
 
     /**
@@ -253,22 +301,31 @@ class InvaderSheetController {
     }
     
     /** Add the invaders to the scene **/
-    func addToScene(startPos: CGPoint){
+    func addToScene(){
         
-        var xPos = 0
-        var yPos = 0
+        let sheetSize = self.startingSize()
+        let startPos = CGPointMake(
+            _playArea.position.x - _playArea.frame.width/2,
+            _playArea.position.y// - _playArea.frame.height/2
+        )
         
-        let xSeparation = 60
-        let ySeparation = 60
+        let separation = self.invaderSeparation()
         
+        var xPos = CGFloat(0)
+        var yPos = CGFloat(0)
+        
+        var column = 1
         for invader : InvaderSprite in _invaders {
             invader.position = CGPointMake(CGFloat(startPos.x + CGFloat(xPos)), CGFloat(startPos.y + CGFloat(yPos)))
             _scene.addChild(invader)
             
-            xPos += xSeparation
-            if(xPos/xSeparation >= (columns)){
+            xPos += separation.width
+            
+            column++
+            if(column > (columns)){
                 xPos = 0
-                yPos += ySeparation
+                yPos += separation.height
+                column = 1
             }
         }
         

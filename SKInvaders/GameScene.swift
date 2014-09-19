@@ -135,13 +135,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     func addInvaderSheet(){
         sheetNumber++
         
-        invaderSheet = InvaderSheetController(scene: self, scoring: scoreCtl, playArea: playArea)
+        invaderSheet = InvaderSheetController(scene: self, scoring: scoreCtl, playArea: playArea, level: UInt(sheetNumber))
         invaderSheet.delegate = self
-        let startPos = CGPointMake(playArea.position.x - playArea.frame.width/2, playArea.position.y-50)
-        invaderSheet.addToScene(startPos)
+        invaderSheet.addToScene()
         
         // Calculate the current speed
-        invaderSheet.cycleInterval = NSTimeInterval(0.5 - (sheetNumber * 0.01))
+        invaderSheet.cycleInterval = NSTimeInterval(0.5)
         invaderSheet.start()
     }
     

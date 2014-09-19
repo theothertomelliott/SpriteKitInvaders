@@ -17,7 +17,7 @@ class InvaderCSprite : InvaderSprite
     }
     
     required init(coder: NSCoder!){
-        super.init(imageNames: ["InvaderCFrame1", "InvaderCFrame2"], scale: 0.4)
+        super.init(imageNames: ["InvaderCFrame1", "InvaderCFrame2"], scale: 0.3)
     }
     
     /**
