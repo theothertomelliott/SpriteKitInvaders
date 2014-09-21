@@ -20,8 +20,6 @@ class ShieldDamageSprite : SKSpriteNode {
         
         super.init(texture: texture, color: NSColor.clearColor(), size: texture.size())
 
-        NSLog("created shield damage")
-        
         let scale = CGFloat(1)
         let size = CGSizeMake((texture.size().width*scale)/2.5, texture.size().height*scale)
         

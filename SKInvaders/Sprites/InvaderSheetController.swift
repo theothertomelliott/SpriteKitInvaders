@@ -70,7 +70,11 @@ class InvaderSheetController {
         
         cycleInterval = NSTimeInterval(0.5)
         
-        _invaderSpeed = (_playArea.frame.width - startingSize().width)/15
+        let sw : CGFloat = startingSize().width
+        
+        _invaderSpeed = (_playArea.frame.width - sw)/15
+        NSLog("Play area width = %@, starting width = %@", _playArea.frame.width, sw)
+        NSLog("Invader speed = %@", _invaderSpeed)
     }
     
     private func invaderSeparation() -> CGSize {
@@ -100,22 +104,10 @@ class InvaderSheetController {
         
         let separation = self.invaderSeparation()
         
-        var xPos = CGFloat(0)
-        var yPos = CGFloat(0)
+        let w : CGFloat = separation.width * CGFloat(columns)
+        let h : CGFloat = CGFloat(_invaders.count / columns) * separation.height
         
-        var column = 1
-        for invader : InvaderSprite in _invaders {
-            xPos += separation.width
-            
-            column++
-            if(column > (columns)){
-                xPos = 0
-                yPos += separation.height
-                column = 1
-            }
-        }
-        
-        return CGSizeMake(CGFloat(xPos) + separation.width,CGFloat(yPos) + separation.height)
+        return CGSizeMake(w,h)
         
     }
 
@@ -280,8 +272,6 @@ class InvaderSheetController {
             
             let sl = spritesAtLeft()
             let sr = spritesAtRight()
-            
-            NSLog("%d at left, %d at right", sl, sr)
             
             if((sl > 0 || sr > 0) && !goingDown){
                 goingDown = true
