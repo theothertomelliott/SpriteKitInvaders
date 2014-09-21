@@ -111,8 +111,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         
         let bottomLeft = CGPointMake(playArea.position.x - playArea.frame.width/2, playArea.position.y - playArea.frame.height / 2)
         let bottomRight = CGPointMake(playArea.position.x + playArea.frame.width/2, playArea.position.y - playArea.frame.height / 2)
-        let topRight = CGPointMake(playArea.position.x + playArea.frame.width/2, playArea.position.y + playArea.frame.height / 2)
-        let topLeft = CGPointMake(playArea.position.x - playArea.frame.width/2, playArea.position.y + playArea.frame.height / 2)
         
         // Set playing area boundaries
         
@@ -123,8 +121,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         
         // TODO: Create a proper edge border from the play area object
         bottomBorder = addBorder(bottomLeft, to: bottomRight, category: ColliderType.BottomEdge.toRaw())
-        
-        
         
         addInvaderSheet()
         addShields()
