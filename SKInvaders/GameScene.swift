@@ -17,6 +17,7 @@ enum ColliderType: UInt32 {
     case RightEdge = 128
     case BottomEdge = 256
     case TopEdge = 512
+    case Shield = 1024
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, InvaderDelegate {
@@ -24,6 +25,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     var shipSprite: PlayerSprite!
     
     var invaderSheet : InvaderSheetController!
+    
+    var shields : ShieldController!
     
     var scoreCtl : ScoreController!
     
@@ -124,12 +127,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         let topLeft = CGPointMake(playArea.position.x - playArea.frame.width/2, playArea.position.y + playArea.frame.height / 2)
         
         // Set playing area boundaries
+        
+        // TODO: Create a proper edge border from the play area object
         leftBorder = addBorder(bottomLeft, to: topLeft, category: ColliderType.LeftEdge.toRaw())
         rightBorder = addBorder(bottomRight, to: topRight, category: ColliderType.RightEdge.toRaw())
         bottomBorder = addBorder(bottomLeft, to: bottomRight, category: ColliderType.BottomEdge.toRaw())
         topBorder = addBorder(topLeft, to: topRight, category: ColliderType.TopEdge.toRaw())
         
         addInvaderSheet()
+        addShields()
+        
+        startGame()
+    }
+    
+    func addShields(){
+        shields = ShieldController(scene: self, scoring: scoreCtl, playArea: playArea)
+        shields.addToScene()
+    }
+    
+    func startGame(){
+        invaderSheet.start()
     }
     
     func addInvaderSheet(){
@@ -138,10 +155,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         invaderSheet = InvaderSheetController(scene: self, scoring: scoreCtl, playArea: playArea, level: UInt(sheetNumber))
         invaderSheet.delegate = self
         invaderSheet.addToScene()
-        
-        // Calculate the current speed
-        invaderSheet.cycleInterval = NSTimeInterval(0.5)
-        invaderSheet.start()
     }
     
     /**
@@ -240,7 +253,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         }
     }
     
+    func isCollisionInvolving(contact: SKPhysicsContact!, type : ColliderType) -> Bool {
+        
+        return (type.toRaw() == contact.bodyA.categoryBitMask ||
+            type.toRaw() == contact.bodyB.categoryBitMask )
+        
+    }
+    
     func didBeginContact(contact: SKPhysicsContact!) {
+        
+        /*** Shield collisions ***/
+        if(isCollisionInvolving(contact, type: ColliderType.Shield)){
+            shields.didBeginContact(contact)
+        }
+        
+        // Pass invader collisions to the invader sheet
+        if(isCollisionInvolving(contact, type: ColliderType.Invader)){
+            invaderSheet.didBeginContact(contact)
+        }
         
         /*** Handle missile to missile collisions ***/
         if(ColliderType.InvaderMissile.toRaw() == contact.bodyA.categoryBitMask &&
@@ -257,12 +287,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
                 let pm = contact.bodyA.node as PlayerMissile
                 im.hitPlayer()
                 pm.hitInvader()
-        }
-        
-        // Pass invader collisions to the invader sheet
-        if(ColliderType.Invader.toRaw() == contact.bodyA.categoryBitMask
-            || ColliderType.Invader.toRaw() == contact.bodyB.categoryBitMask){
-                invaderSheet.didBeginContact(contact)
         }
         
         /** Get rid of missiles that go off the screen **/
@@ -315,9 +339,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     
     func didEndContact(contact: SKPhysicsContact!) {
         
-        if(ColliderType.Invader.toRaw() == contact.bodyA.categoryBitMask
-            || ColliderType.Invader.toRaw() == contact.bodyB.categoryBitMask){
-                invaderSheet.didEndContact(contact)
+        /*** Shield collisions ***/
+        if(isCollisionInvolving(contact, type: ColliderType.Shield)){
+            shields.didEndContact(contact)
+        }
+        
+        // Pass invader collisions to the invader sheet
+        if(isCollisionInvolving(contact, type: ColliderType.Invader)){
+            invaderSheet.didEndContact(contact)
         }
         
         if(ColliderType.Player.toRaw() == contact.bodyB.categoryBitMask){

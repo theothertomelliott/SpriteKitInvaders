@@ -70,7 +70,7 @@ class InvaderSheetController {
         
         cycleInterval = NSTimeInterval(0.5)
         
-        _invaderSpeed = (_playArea.frame.width - startingSize().width)/30
+        _invaderSpeed = (_playArea.frame.width - startingSize().width)/50
     }
     
     private func invaderSeparation() -> CGSize {
