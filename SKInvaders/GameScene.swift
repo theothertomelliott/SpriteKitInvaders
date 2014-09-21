@@ -8,18 +8,6 @@
 
 import SpriteKit
 
-enum ColliderType: UInt32 {
-    case Player = 1
-    case PlayerMissile = 2
-    case Invader = 4
-    case InvaderMissile = 8
-    case LeftEdge = 64
-    case RightEdge = 128
-    case BottomEdge = 256
-    case TopEdge = 512
-    case Shield = 1024
-}
-
 class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, InvaderDelegate {
     
     var shipSprite: PlayerSprite!
@@ -128,11 +116,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         
         // Set playing area boundaries
         
+        playArea.physicsBody = SKPhysicsBody(rectangleOfSize: playArea.frame.size)
+        playArea.physicsBody?.categoryBitMask = ColliderType.PlayArea.toRaw()
+        playArea.physicsBody?.collisionBitMask = 0
+        playArea.physicsBody?.contactTestBitMask = 0
+        
         // TODO: Create a proper edge border from the play area object
-        leftBorder = addBorder(bottomLeft, to: topLeft, category: ColliderType.LeftEdge.toRaw())
-        rightBorder = addBorder(bottomRight, to: topRight, category: ColliderType.RightEdge.toRaw())
         bottomBorder = addBorder(bottomLeft, to: bottomRight, category: ColliderType.BottomEdge.toRaw())
-        topBorder = addBorder(topLeft, to: topRight, category: ColliderType.TopEdge.toRaw())
+        
+        
         
         addInvaderSheet()
         addShields()
@@ -166,6 +158,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         
         // Put ship in play
         shipSprite = PlayerSprite()
+        shipSprite.playArea = playArea
         shipSprite.position = CGPointMake(playArea.position.x - playArea.frame.width/2,playArea.position.y - playArea.frame.height/2 + shipSprite.frame.height/2)
         self.addChild(shipSprite)
     }
@@ -260,6 +253,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         
     }
     
+    func getColliderOfType(contact: SKPhysicsContact!, type : ColliderType) -> SKPhysicsBody? {
+        if (type.toRaw() == contact.bodyA.categoryBitMask){
+            return contact.bodyA
+        }
+        if (type.toRaw() == contact.bodyB.categoryBitMask){
+            return contact.bodyB
+        }
+        return nil
+    }
+    
     func didBeginContact(contact: SKPhysicsContact!) {
         
         /*** Shield collisions ***/
@@ -289,19 +292,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
                 pm.hitInvader()
         }
         
-        /** Get rid of missiles that go off the screen **/
-        if(ColliderType.PlayerMissile.toRaw() == contact.bodyA.categoryBitMask
-            && ColliderType.TopEdge.toRaw() == contact.bodyB.categoryBitMask){
-                let missile : PlayerMissile = contact.bodyA.node as PlayerMissile
-                missile.hitInvader()
-        }
-        if(ColliderType.PlayerMissile.toRaw() == contact.bodyB.categoryBitMask
-            && ColliderType.TopEdge.toRaw() == contact.bodyA.categoryBitMask){
-                let missile : PlayerMissile = contact.bodyB.node as PlayerMissile
-                missile.hitInvader()
-        }
-        
-        
         /** Collision between invader missile and player **/
         if(ColliderType.InvaderMissile.toRaw() == contact.bodyA.categoryBitMask &&
         ColliderType.Player.toRaw() == contact.bodyB.categoryBitMask)
@@ -313,14 +303,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         {
             missileCollision(contact.bodyB.node as InvaderMissile, player: contact.bodyA.node as PlayerSprite)
         }
-        
-        /** Edge collisions **/
-        if(ColliderType.Player.toRaw() == contact.bodyB.categoryBitMask){
-            if(ColliderType.LeftEdge.toRaw() == contact.bodyA.categoryBitMask || ColliderType.RightEdge.toRaw() == contact.bodyA.categoryBitMask){
-                shipSprite.didBeginContact(contact)
-            }
-        }
-        
     }
     
     func landed(){
@@ -351,6 +333,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         
         if(ColliderType.Player.toRaw() == contact.bodyB.categoryBitMask){
             shipSprite.didEndContact(contact)
+        }
+        
+        // Someone went out of bounds!
+        if(isCollisionInvolving(contact, type: ColliderType.PlayArea)){
+            if let collider = getColliderOfType(contact, type: ColliderType.PlayerMissile) {
+                (collider.node as PlayerMissile).hitInvader()
+            }
+            if let collider = getColliderOfType(contact, type: ColliderType.InvaderMissile){
+                (collider.node as InvaderMissile).hitPlayer()
+            }
+            if let collider = getColliderOfType(contact, type: ColliderType.Invader){
+                (collider.node as InvaderSprite).outOfBounds()
+            }
         }
     }
     

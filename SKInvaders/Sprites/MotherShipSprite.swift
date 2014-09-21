@@ -30,14 +30,16 @@ class MotherShipSprite : InvaderSprite {
         return 50
     }
     
+    override func outOfBounds(){
+        // Get rid of this sprite if it ever goes out of the play area
+        self.removeFromParent()
+    }
+    
     override func didBeginContact(body: SKPhysicsBody, contact: SKPhysicsContact!) {
     }
     
     
     override func didEndContact(body: SKPhysicsBody, contact: SKPhysicsContact!) {
-        if body.categoryBitMask == ColliderType.LeftEdge.toRaw(){
-            self.runAction(SKAction.removeFromParent())
-        }
     }
 
 }

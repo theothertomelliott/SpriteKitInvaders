@@ -12,6 +12,7 @@ import SpriteKit
 class PlayerSprite : SKSpriteNode {
 
     var alive : Bool
+    var playArea : SKNode!
     
     override convenience init(){
         self.init(coder: nil)
@@ -41,21 +42,11 @@ class PlayerSprite : SKSpriteNode {
     var atRightEdge : Bool
     
     func didBeginContact(contact: SKPhysicsContact!) {
-        if(ColliderType.LeftEdge.toRaw() == contact.bodyA.categoryBitMask){
-            atLeftEdge = true
-        }
-        if(ColliderType.RightEdge.toRaw() == contact.bodyA.categoryBitMask){
-            atRightEdge = true
-        }
+
     }
     
     func didEndContact(contact: SKPhysicsContact!) {
-        if(ColliderType.LeftEdge.toRaw() == contact.bodyA.categoryBitMask){
-            atLeftEdge = false
-        }
-        if(ColliderType.RightEdge.toRaw() == contact.bodyA.categoryBitMask){
-            atRightEdge = false
-        }
+
     }
     
     func hitByMissile(){
@@ -103,17 +94,30 @@ class PlayerSprite : SKSpriteNode {
         }
     }
     
+    func checkEdges(){
+        if let p : SKNode = playArea {
+            atLeftEdge = (self.position.x - self.frame.width/2 < p.position.x - p.frame.width/2);
+            atRightEdge = (self.position.x + self.frame.width/2 > p.position.x + p.frame.width/2);
+        }
+    }
+    
     override func moveLeft(o: AnyObject){
         if(alive && !atLeftEdge){
             let a = SKAction.moveBy(CGVectorMake(-20,0),duration:0);
-            runAction(a)
+            let b = SKAction.runBlock({
+                    self.checkEdges();
+                })
+            runAction(SKAction.sequence([a,b]))
         }
     }
     
     override func moveRight(o: AnyObject){
         if(alive && !atRightEdge){
             let a = SKAction.moveBy(CGVectorMake(20,0),duration:0);
-            runAction(a)
+            let b = SKAction.runBlock({
+                self.checkEdges();
+            })
+            runAction(SKAction.sequence([a,b]))
         }
     }
     

@@ -14,8 +14,6 @@ class InvaderSprite : SKSpriteNode {
     private var textures: [SKTexture]
     private var alive : Bool
     private var scaledSize : CGSize
-    private(set) var collidingLeft : Bool
-    private(set) var collidingRight : Bool
     
     init(imageNames: [NSString], scale: CGFloat) {
         
@@ -23,9 +21,6 @@ class InvaderSprite : SKSpriteNode {
         
         textures = []
         alive = true;
-        
-        collidingLeft = false
-        collidingRight = false
         
         for imageN in imageNames {
             let texture  = SKTexture(imageNamed: imageN)
@@ -45,7 +40,7 @@ class InvaderSprite : SKSpriteNode {
         self.physicsBody?.usesPreciseCollisionDetection = true
         self.physicsBody?.categoryBitMask = ColliderType.Invader.toRaw()
         self.physicsBody?.collisionBitMask = 0
-        self.physicsBody?.contactTestBitMask = 0
+        self.physicsBody?.contactTestBitMask = ColliderType.PlayArea.toRaw()
         
         setScale(scale)
         
@@ -56,30 +51,18 @@ class InvaderSprite : SKSpriteNode {
         let texture  = SKTexture(imageNamed: "InvaderAFrame1")
         scaledSize = texture.size()
         alive = true
-        collidingLeft = false
-        collidingRight = false
         super.init(texture: texture, color: NSColor.clearColor(), size: texture.size())
     }
     
     func didBeginContact(body: SKPhysicsBody, contact: SKPhysicsContact!) {
-        if body.categoryBitMask == ColliderType.LeftEdge.toRaw(){
-            collidingLeft = true
-        }
-        if body.categoryBitMask == ColliderType.RightEdge.toRaw(){
-            collidingRight = true
-        }
     }
     
     
     func didEndContact(body: SKPhysicsBody, contact: SKPhysicsContact!) {
-        if body.categoryBitMask == ColliderType.LeftEdge.toRaw(){
-            collidingLeft = false
-        }
-        if body.categoryBitMask == ColliderType.RightEdge.toRaw(){
-            collidingRight = false
-        }
     }
     
+    func outOfBounds(){
+    }
     
     /**
      * Score awarded for destruction

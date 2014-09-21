@@ -26,6 +26,7 @@
 		E282EA5A19CBECCB0081836F /* MotherShipSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E282EA5919CBECCB0081836F /* MotherShipSprite.swift */; };
 		E2851AB719C7D3EE00397025 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2851AB619C7D3EE00397025 /* MenuScene.swift */; };
 		E2A4500419C6327A00DB12AC /* ScoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A4500319C6327A00DB12AC /* ScoreController.swift */; };
+		E2D6BF0A19CE9B7B008F0539 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D6BF0919CE9B7B008F0539 /* Common.swift */; };
 		E2FEF5F919C3EA1400B3E366 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEF5F819C3EA1400B3E366 /* main.swift */; };
 		E2FEF5FB19C3EA1400B3E366 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEF5FA19C3EA1400B3E366 /* AppDelegate.swift */; };
 		E2FEF5FD19C3EA1400B3E366 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEF5FC19C3EA1400B3E366 /* GameScene.swift */; };
@@ -65,6 +66,7 @@
 		E282EA5919CBECCB0081836F /* MotherShipSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotherShipSprite.swift; sourceTree = "<group>"; };
 		E2851AB619C7D3EE00397025 /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		E2A4500319C6327A00DB12AC /* ScoreController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreController.swift; sourceTree = "<group>"; };
+		E2D6BF0919CE9B7B008F0539 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		E2FEF5F319C3EA1400B3E366 /* SKInvaders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SKInvaders.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2FEF5F719C3EA1400B3E366 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2FEF5F819C3EA1400B3E366 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				E2799A0A19C3EC7B008229FB /* Sprites */,
 				E2FEF5FA19C3EA1400B3E366 /* AppDelegate.swift */,
 				E2851AB619C7D3EE00397025 /* MenuScene.swift */,
+				E2D6BF0919CE9B7B008F0539 /* Common.swift */,
 				E2FEF5FC19C3EA1400B3E366 /* GameScene.swift */,
 				E2FEF5FE19C3EA1400B3E366 /* GameScene.sks */,
 				E2FEF62E19C3EA5200B3E366 /* Images.xcassets */,
@@ -341,6 +344,7 @@
 				E2799A1319C3EC7B008229FB /* InvaderASprite.swift in Sources */,
 				E24C79BD19C9BD3A00962731 /* InvaderMissileC.swift in Sources */,
 				E2FEF5FD19C3EA1400B3E366 /* GameScene.swift in Sources */,
+				E2D6BF0A19CE9B7B008F0539 /* Common.swift in Sources */,
 				E229FDF319CE7C5F00D7DF71 /* ShieldController.swift in Sources */,
 				E2799A1819C3EC7B008229FB /* InvaderSprite.swift in Sources */,
 				E2799A1919C3EC7B008229FB /* PlayerMissile.swift in Sources */,

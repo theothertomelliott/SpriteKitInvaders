@@ -70,7 +70,7 @@ class InvaderSheetController {
         
         cycleInterval = NSTimeInterval(0.5)
         
-        _invaderSpeed = (_playArea.frame.width - startingSize().width)/50
+        _invaderSpeed = (_playArea.frame.width - startingSize().width)/15
     }
     
     private func invaderSeparation() -> CGSize {
@@ -232,8 +232,10 @@ class InvaderSheetController {
     private func spritesAtRight() -> Int {
         var count = 0
         for sprite in _invaders {
-            if(sprite.isAlive() && sprite.collidingRight){
-                count++
+            if(sprite.isAlive()){
+                if(sprite.position.x + sprite.frame.width/2 > _playArea.position.x + _playArea.frame.width/2){
+                    count++
+                }
             }
         }
         return count
@@ -248,8 +250,10 @@ class InvaderSheetController {
     private func spritesAtLeft() -> Int {
         var count = 0
         for sprite in _invaders {
-            if(sprite.isAlive() && sprite.collidingLeft){
-                count++
+            if(sprite.isAlive()){
+                if(sprite.position.x - sprite.frame.width/2 < _playArea.position.x - _playArea.frame.width/2){
+                    count++
+                }
             }
         }
         return count
@@ -260,12 +264,9 @@ class InvaderSheetController {
         if(workingSprite < self._invaders.count){
             let sprite : InvaderSprite = self._invaders[workingSprite]
             let moveRight = SKAction.moveBy(CGVectorMake(_invaderSpeed,0), duration:0.0);
-            let moveLeft = SKAction.moveBy(CGVectorMake(_invaderSpeed,0), duration:0.0);
-            if(goingRight){
-                sprite.runAction(moveRight)
-            } else {
-                sprite.runAction(moveLeft)
-            }
+            let moveLeft = SKAction.moveBy(CGVectorMake(-_invaderSpeed,0), duration:0.0);
+            
+            sprite.runAction(goingRight ? moveRight : moveLeft)
             
             if goingDown {
                 let moveDown = SKAction.moveBy(CGVectorMake(0,-30), duration:0.0);
@@ -273,11 +274,14 @@ class InvaderSheetController {
             }
             
             getNextSprite()
+            
         } else {
             workingSprite = 0
             
             let sl = spritesAtLeft()
             let sr = spritesAtRight()
+            
+            NSLog("%d at left, %d at right", sl, sr)
             
             if((sl > 0 || sr > 0) && !goingDown){
                 goingDown = true
@@ -309,7 +313,7 @@ class InvaderSheetController {
         let sheetSize = self.startingSize()
         let startPos = CGPointMake(
             _playArea.position.x - _playArea.frame.width/2,
-            _playArea.position.y// - _playArea.frame.height/2
+            _playArea.position.y
         )
         
         let separation = self.invaderSeparation()
