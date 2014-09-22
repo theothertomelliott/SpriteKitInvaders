@@ -25,7 +25,8 @@ class InvaderSheetController {
     private var _motherShip : MotherShipSprite!
     private var _playArea : SKNode
     private var _level : UInt
-    private var _invaderSpeed : CGFloat!
+    private var _invaderSpeedX : CGFloat!
+    private var _invaderSpeedY : CGFloat!
     
     var cycleInterval : NSTimeInterval
     
@@ -71,10 +72,13 @@ class InvaderSheetController {
         cycleInterval = NSTimeInterval(0.5)
         
         let sw : CGFloat = startingSize().width
+        let sh : CGFloat = startingSize().height
         
-        _invaderSpeed = (_playArea.frame.width - sw)/15
+        _invaderSpeedX = (_playArea.frame.width - sw)/15
+        _invaderSpeedY = (_playArea.frame.height - sh)/10
+        
         NSLog("Play area width = %@, starting width = %@", _playArea.frame.width, sw)
-        NSLog("Invader speed = %@", _invaderSpeed)
+        NSLog("Invader speed = %@", _invaderSpeedX)
     }
     
     private func invaderSeparation() -> CGSize {
@@ -255,13 +259,13 @@ class InvaderSheetController {
     func moveWorking(){
         if(workingSprite < self._invaders.count){
             let sprite : InvaderSprite = self._invaders[workingSprite]
-            let moveRight = SKAction.moveBy(CGVectorMake(_invaderSpeed,0), duration:0.0);
-            let moveLeft = SKAction.moveBy(CGVectorMake(-_invaderSpeed,0), duration:0.0);
+            let moveRight = SKAction.moveBy(CGVectorMake(_invaderSpeedX,0), duration:0.0);
+            let moveLeft = SKAction.moveBy(CGVectorMake(-_invaderSpeedX,0), duration:0.0);
             
             sprite.runAction(goingRight ? moveRight : moveLeft)
             
             if goingDown {
-                let moveDown = SKAction.moveBy(CGVectorMake(0,-30), duration:0.0);
+                let moveDown = SKAction.moveBy(CGVectorMake(0,-_invaderSpeedY), duration:0.0);
                 sprite.runAction(moveDown)
             }
             
@@ -302,8 +306,8 @@ class InvaderSheetController {
         
         let sheetSize = self.startingSize()
         let startPos = CGPointMake(
-            _playArea.position.x - _playArea.frame.width/2,
-            _playArea.position.y
+            _playArea.position.x - _playArea.frame.width/2 + _invaderSpeedX*7,
+            ((_playArea.position.y + _playArea.frame.height/2) - sheetSize.height/2) - _invaderSpeedY*(2+CGFloat(_level))
         )
         
         let separation = self.invaderSeparation()
