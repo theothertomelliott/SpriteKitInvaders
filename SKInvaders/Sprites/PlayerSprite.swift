@@ -28,7 +28,7 @@ class PlayerSprite : SKSpriteNode {
         
         super.init(texture: texture, color: NSColor.clearColor(), size: texture.size())
         
-        let scale = CGFloat(1)
+        let scale = CGFloat(0.8)
         let size = CGSizeMake(texture.size().width*scale, texture.size().height*scale)
         
         self.physicsBody = SKPhysicsBody(rectangleOfSize: size)
@@ -103,7 +103,7 @@ class PlayerSprite : SKSpriteNode {
     
     override func moveLeft(o: AnyObject){
         if(alive && !atLeftEdge){
-            let a = SKAction.moveBy(CGVectorMake(-20,0),duration:0);
+            let a = SKAction.moveBy(CGVectorMake(-20,0),duration:0.1);
             let b = SKAction.runBlock({
                     self.checkEdges();
                 })
@@ -113,7 +113,7 @@ class PlayerSprite : SKSpriteNode {
     
     override func moveRight(o: AnyObject){
         if(alive && !atRightEdge){
-            let a = SKAction.moveBy(CGVectorMake(20,0),duration:0);
+            let a = SKAction.moveBy(CGVectorMake(20,0),duration:0.1);
             let b = SKAction.runBlock({
                 self.checkEdges();
             })
