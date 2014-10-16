@@ -27,9 +27,9 @@ class PlayerMissile : SKSpriteNode {
         
         self.physicsBody = SKPhysicsBody(rectangleOfSize: size)
         self.physicsBody?.usesPreciseCollisionDetection = true
-        self.physicsBody?.categoryBitMask = ColliderType.PlayerMissile.toRaw()
+        self.physicsBody?.categoryBitMask = ColliderType.PlayerMissile.rawValue
         self.physicsBody?.collisionBitMask = 0
-        self.physicsBody?.contactTestBitMask = ColliderType.PlayArea.toRaw() | ColliderType.Invader.toRaw() | ColliderType.InvaderMissile.toRaw()
+        self.physicsBody?.contactTestBitMask = ColliderType.PlayArea.rawValue | ColliderType.Invader.rawValue | ColliderType.InvaderMissile.rawValue
         setScale(scale)
         
         let moveUp = SKAction.moveBy(CGVectorMake(0,40), duration:0.1);

@@ -38,28 +38,28 @@ class ShieldController : GameSubController, SKPhysicsContactDelegate {
         
         var collidedShield : ShieldDamageSprite!
         
-        if(contact.bodyA.categoryBitMask == ColliderType.Shield.toRaw()){
+        if(contact.bodyA.categoryBitMask == ColliderType.Shield.rawValue){
             collidedShield = contact.bodyA.node as ShieldDamageSprite
         }
-        if(contact.bodyB.categoryBitMask == ColliderType.Shield.toRaw()){
+        if(contact.bodyB.categoryBitMask == ColliderType.Shield.rawValue){
             collidedShield = contact.bodyB.node as ShieldDamageSprite
         }
         collidedShield.shot()
         
-        if(contact.bodyA.categoryBitMask == ColliderType.PlayerMissile.toRaw()){
+        if(contact.bodyA.categoryBitMask == ColliderType.PlayerMissile.rawValue){
             let missile : PlayerMissile = contact.bodyA.node as PlayerMissile
             missile.hitInvader()
         }
-        if(contact.bodyB.categoryBitMask == ColliderType.PlayerMissile.toRaw()){
+        if(contact.bodyB.categoryBitMask == ColliderType.PlayerMissile.rawValue){
             let missile : PlayerMissile = contact.bodyB.node as PlayerMissile
             missile.hitInvader()
         }
         
-        if(contact.bodyA.categoryBitMask == ColliderType.InvaderMissile.toRaw()){
+        if(contact.bodyA.categoryBitMask == ColliderType.InvaderMissile.rawValue){
             let missile : InvaderMissile = contact.bodyA.node as InvaderMissile
             missile.hitPlayer()
         }
-        if(contact.bodyB.categoryBitMask == ColliderType.InvaderMissile.toRaw()){
+        if(contact.bodyB.categoryBitMask == ColliderType.InvaderMissile.rawValue){
             let missile : InvaderMissile = contact.bodyB.node as InvaderMissile
             missile.hitPlayer()
         }

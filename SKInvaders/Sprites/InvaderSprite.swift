@@ -38,9 +38,9 @@ class InvaderSprite : SKSpriteNode {
         // Configure physics body sized to texture
         self.physicsBody = SKPhysicsBody(rectangleOfSize: scaledSize)
         self.physicsBody?.usesPreciseCollisionDetection = true
-        self.physicsBody?.categoryBitMask = ColliderType.Invader.toRaw()
+        self.physicsBody?.categoryBitMask = ColliderType.Invader.rawValue
         self.physicsBody?.collisionBitMask = 0
-        self.physicsBody?.contactTestBitMask = ColliderType.PlayArea.toRaw()
+        self.physicsBody?.contactTestBitMask = ColliderType.PlayArea.rawValue
         
         setScale(scale)
         

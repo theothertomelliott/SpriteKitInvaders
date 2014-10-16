@@ -28,9 +28,9 @@ class ShieldDamageSprite : SKSpriteNode {
         
         self.physicsBody = SKPhysicsBody(rectangleOfSize: size)
         self.physicsBody?.usesPreciseCollisionDetection = true
-        self.physicsBody?.categoryBitMask = ColliderType.Shield.toRaw()
+        self.physicsBody?.categoryBitMask = ColliderType.Shield.rawValue
         self.physicsBody?.collisionBitMask = 0
-        self.physicsBody?.contactTestBitMask = ColliderType.PlayerMissile.toRaw() | ColliderType.InvaderMissile.toRaw()
+        self.physicsBody?.contactTestBitMask = ColliderType.PlayerMissile.rawValue | ColliderType.InvaderMissile.rawValue
         
         setScale(scale)
     }

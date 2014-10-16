@@ -32,7 +32,7 @@ class PlayerSprite : SKSpriteNode {
         let size = CGSizeMake(texture.size().width*scale, texture.size().height*scale)
         
         self.physicsBody = SKPhysicsBody(rectangleOfSize: size)
-        self.physicsBody?.categoryBitMask = ColliderType.Player.toRaw()
+        self.physicsBody?.categoryBitMask = ColliderType.Player.rawValue
         self.physicsBody?.collisionBitMask = 0
         self.physicsBody?.contactTestBitMask = 0
         setScale(scale)
@@ -101,7 +101,7 @@ class PlayerSprite : SKSpriteNode {
         }
     }
     
-    override func moveLeft(o: AnyObject){
+    override func moveLeft(sender: AnyObject?) {
         if(alive && !atLeftEdge){
             let a = SKAction.moveBy(CGVectorMake(-20,0),duration:0.1);
             let b = SKAction.runBlock({
@@ -111,7 +111,7 @@ class PlayerSprite : SKSpriteNode {
         }
     }
     
-    override func moveRight(o: AnyObject){
+    override func moveRight(sender: AnyObject?){
         if(alive && !atRightEdge){
             let a = SKAction.moveBy(CGVectorMake(20,0),duration:0.1);
             let b = SKAction.runBlock({

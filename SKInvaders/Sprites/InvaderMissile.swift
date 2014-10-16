@@ -32,9 +32,9 @@ class InvaderMissile : SKSpriteNode {
         
         self.physicsBody = SKPhysicsBody(rectangleOfSize: size)
         self.physicsBody?.usesPreciseCollisionDetection = true
-        self.physicsBody?.categoryBitMask = ColliderType.InvaderMissile.toRaw()
+        self.physicsBody?.categoryBitMask = ColliderType.InvaderMissile.rawValue
         self.physicsBody?.collisionBitMask = 0
-        self.physicsBody?.contactTestBitMask = ColliderType.Player.toRaw() | ColliderType.PlayerMissile.toRaw() | ColliderType.PlayArea.toRaw()
+        self.physicsBody?.contactTestBitMask = ColliderType.Player.rawValue | ColliderType.PlayerMissile.rawValue | ColliderType.PlayArea.rawValue
         setScale(scale)
         
         setMovement()

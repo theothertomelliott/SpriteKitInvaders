@@ -19,7 +19,7 @@ class MotherShipSprite : InvaderSprite {
         super.init(imageNames: ["Mothership"], scale: 0.6)
         
         removeActionForKey("walk")
-        let moveLeft = SKAction.moveBy(CGVector(-20,0), duration: 0.1)
+        let moveLeft = SKAction.moveBy(CGVector(dx: -20,dy: 0), duration: 0.1)
         self.runAction(SKAction.repeatActionForever(moveLeft), withKey: "walk")
     }
     

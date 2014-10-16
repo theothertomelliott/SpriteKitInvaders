@@ -168,7 +168,7 @@ class InvaderSheetController {
         // Identify the non-invader body in the collision
         var otherBody = contact.bodyA
         var invaderHit = contact.bodyB
-        if ColliderType.Invader.toRaw() == contact.bodyA.categoryBitMask {
+        if ColliderType.Invader.rawValue == contact.bodyA.categoryBitMask {
             otherBody = contact.bodyB
             invaderHit = contact.bodyA
         }
@@ -178,12 +178,12 @@ class InvaderSheetController {
         }
         
         /** Player missile collisions **/
-        if(ColliderType.PlayerMissile.toRaw() == otherBody.categoryBitMask){
+        if(ColliderType.PlayerMissile.rawValue == otherBody.categoryBitMask){
                 missileCollision(otherBody.node as PlayerMissile, invader: invaderHit.node as InvaderSprite)
         }
         
         /** When an invader reaches the bottom of the screen **/
-        if(ColliderType.BottomEdge.toRaw() == otherBody.categoryBitMask){
+        if(ColliderType.BottomEdge.rawValue == otherBody.categoryBitMask){
             // TODO: Force a game over
             delegate?.landed()
         }
@@ -194,7 +194,7 @@ class InvaderSheetController {
         // Identify the non-invader body in the collision
         var otherBody = contact.bodyA
         var invaderHit = contact.bodyB
-        if ColliderType.Invader.toRaw() == contact.bodyA.categoryBitMask {
+        if ColliderType.Invader.rawValue == contact.bodyA.categoryBitMask {
             otherBody = contact.bodyB
             invaderHit = contact.bodyA
         }
