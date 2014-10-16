@@ -87,9 +87,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         // Configure collisions
         self.physicsWorld.contactDelegate = self;
         
-        // Add green line above lives and credit count
-        drawLine(CGPointMake(0,CGFloat(playAreaBottom)),to: CGPointMake(size.width, CGFloat(playAreaBottom)), color: SKColor.greenColor())
-        
         // Show the current number of lives
         livesCountLabel = SKLabelNode(fontNamed: "Space Invaders")
         livesCountLabel.position = CGPointMake(CGFloat(playAreaBottom/2),CGFloat(playAreaBottom/4))
