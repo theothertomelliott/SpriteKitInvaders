@@ -18,8 +18,6 @@ class ShieldSprite : SKSpriteNode {
     override init() {
         let texture = SKTexture(imageNamed: "Shield")
         
-        var _colliders : [SKNode] = []
-        
         super.init(texture: texture, color: NSColor.clearColor(), size: texture.size())
         
         let scale = CGFloat(1)
@@ -32,13 +30,9 @@ class ShieldSprite : SKSpriteNode {
         
         for var x : CGFloat = 0; x < size.width; x+=w {
             for var y : CGFloat = 0; y < size.height; y+=h {
-                
                 let segment = ShieldDamageSprite()
                 segment.position = CGPointMake(x-size.width/2,y-size.height/2)
                 self.addChild(segment)
-                
-                _colliders.append(segment)
-                
             }
         }
         
