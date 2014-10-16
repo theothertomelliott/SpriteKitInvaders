@@ -23,7 +23,7 @@ class InvaderSprite : SKSpriteNode {
         alive = true;
         
         for imageN in imageNames {
-            let texture  = SKTexture(imageNamed: imageN)
+            let texture = SKTexture(imageNamed: imageN)
             textures += [texture]
         }
         
@@ -46,12 +46,8 @@ class InvaderSprite : SKSpriteNode {
         
     }
     
-    required init(coder: NSCoder!) {
-        textures = []
-        let texture  = SKTexture(imageNamed: "InvaderAFrame1")
-        scaledSize = texture.size()
-        alive = true
-        super.init(texture: texture, color: NSColor.clearColor(), size: texture.size())
+    convenience required init(coder: NSCoder) {
+        fatalError("NSCoding not supported")
     }
     
     func didBeginContact(body: SKPhysicsBody, contact: SKPhysicsContact!) {

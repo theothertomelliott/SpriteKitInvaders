@@ -11,11 +11,11 @@ import SpriteKit
 
 class ShieldSprite : SKSpriteNode {
     
-    override convenience init(){
-        self.init(coder: nil)
+    required init(coder: NSCoder) {
+        fatalError("NSCoding not supported")
     }
     
-    required init(coder: NSCoder!) {
+    override init() {
         let texture = SKTexture(imageNamed: "Shield")
         
         var _colliders : [SKNode] = []

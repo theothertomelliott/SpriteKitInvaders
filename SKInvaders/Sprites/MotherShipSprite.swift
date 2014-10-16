@@ -11,11 +11,11 @@ import SpriteKit
 
 class MotherShipSprite : InvaderSprite {
     
-    convenience init(){
-        self.init(coder: nil)
+    required init(coder: NSCoder) {
+        fatalError("NSCoding not supported")
     }
     
-    required init(coder: NSCoder!){
+    required init(){
         super.init(imageNames: ["Mothership"], scale: 0.6)
         
         removeActionForKey("walk")

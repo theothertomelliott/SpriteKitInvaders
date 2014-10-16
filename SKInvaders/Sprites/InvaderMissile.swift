@@ -11,16 +11,7 @@ import SpriteKit
 
 class InvaderMissile : SKSpriteNode {
     
-    override convenience init(){
-        self.init(coder: nil)
-    }
-    
-    func setMovement(){
-        let moveDown = SKAction.moveBy(CGVectorMake(0,-20), duration:0.1);
-        runAction(SKAction.repeatActionForever(moveDown));
-    }
-    
-    required init(coder: NSCoder!) {
+    override init(){
         let texture = SKTexture(imageNamed: "InvaderMissile")
         
         super.init(texture: texture, color: NSColor.clearColor(), size: texture.size())
@@ -38,6 +29,16 @@ class InvaderMissile : SKSpriteNode {
         setScale(scale)
         
         setMovement()
+
+    }
+    
+    required init(coder: NSCoder) {
+        fatalError("NSCoding not supported")
+    }
+    
+    func setMovement(){
+        let moveDown = SKAction.moveBy(CGVectorMake(0,-20), duration:0.1);
+        runAction(SKAction.repeatActionForever(moveDown));
     }
     
     func hitPlayer(){

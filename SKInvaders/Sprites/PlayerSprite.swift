@@ -14,11 +14,11 @@ class PlayerSprite : SKSpriteNode {
     var alive : Bool
     var playArea : SKNode!
     
-    override convenience init(){
-        self.init(coder: nil)
+    required init(coder: NSCoder) {
+        fatalError("NSCoding not supported")
     }
     
-    required init(coder: NSCoder!) {
+    override init() {
         let texture = SKTexture(imageNamed: "Spaceship")
         
         atLeftEdge = false

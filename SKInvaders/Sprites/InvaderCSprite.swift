@@ -12,11 +12,11 @@ import SpriteKit
 class InvaderCSprite : InvaderSprite
 {
     
-    convenience init(){
-        self.init(coder: nil)
+    required init(coder: NSCoder) {
+        fatalError("NSCoding not supported")
     }
     
-    required init(coder: NSCoder!){
+    required init(){
         super.init(imageNames: ["InvaderCFrame1", "InvaderCFrame2"], scale: 0.3)
     }
     
