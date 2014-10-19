@@ -8,28 +8,35 @@
 
 import SpriteKit
 
+// The main scene for the game itself
 class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, InvaderDelegate {
     
-    var shipSprite: PlayerSprite!
-    
-    var invaderSheet : InvaderSheetController!
-    
-    var shields : ShieldController!
-    
-    var scoreCtl : ScoreController!
-    
-    var livesSprites : [SKSpriteNode] = []
-    var livesCountLabel : SKLabelNode!
-    
-    var gameOverLabel : SKLabelNode!
-    
-    var p1ScoreLabel : SKLabelNode!
-    var HighScoreLabel : SKLabelNode!
+    // Bounds of the game (doesn't include score labels and lives remaining)
+    private var playArea : SKShapeNode!
 
-    var playArea : SKShapeNode!
+    // Elements in play
+    private var shipSprite: PlayerSprite!
+    private var invaderSheet : InvaderSheetController!
+    private var shields : ShieldController!
     
-    var sheetNumber = 0
+    // Labels
+    private var gameOverLabel : SKLabelNode!
+    private var p1ScoreLabel : SKLabelNode!
+    private var HighScoreLabel : SKLabelNode!
+    private var livesCountLabel : SKLabelNode!
+
+    // Sprites indicating remaining lives
+    private var livesSprites : [SKSpriteNode] = []
+
+    // Handles scoring
+    private var scoreCtl : ScoreController!
+
+    private var sheetNumber = 0
     
+    /**
+        Called when this scene is launched. Initializes the scene.
+        :param: view View containing this scene
+    */
     override func didMoveToView(view: SKView) {
         
         // Hide instructions
@@ -58,14 +65,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         gameOverLabel = self.childNodeWithName("GameOverLabel") as SKLabelNode
         gameOverLabel.hidden = true
         
-        // Initial count of lives
-        lives = 3
-        
         // Create the player
         newPlayer()
-        
-        let bottomLeft = CGPointMake(playArea.position.x - playArea.frame.width/2, playArea.position.y - playArea.frame.height / 2)
-        let bottomRight = CGPointMake(playArea.position.x + playArea.frame.width/2, playArea.position.y - playArea.frame.height / 2)
         
         // Set playing area boundaries
         
@@ -81,7 +82,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     }
     
     // Number of lives in "reserve", not counting the life in play
-    var lives : Int = 3 {
+    private var lives : Int = 3 {
         didSet {
             // Render new lives count
             if(livesSprites.count == 0){
@@ -99,25 +100,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
             
             var i = 0
             for life : SKSpriteNode in livesSprites {
-                if(i >= (lives)){
+                if(i > (lives)){
                     life.removeFromParent()
                 }
                 i++
             }
-            livesCountLabel.text = "\(lives+1)"
+            livesCountLabel.text = "\(lives)"
         }
     }
     
-    func addShields(){
+    /**
+        Add shields to the scene
+    */
+    private func addShields(){
         shields = ShieldController(scene: self, scoring: scoreCtl, playArea: playArea)
         shields.addToScene()
     }
     
-    func startGame(){
+    /**
+        Start a new game
+    */
+    private func startGame(){
+        // Initial count of lives
+        lives = 3
         invaderSheet.start()
     }
     
-    func addInvaderSheet(){
+    /**
+        Add a new sheet of invaders to the game
+    */
+    private func addInvaderSheet(){
         sheetNumber++
         
         invaderSheet = InvaderSheetController(scene: self, scoring: scoreCtl, playArea: playArea, level: UInt(sheetNumber))
@@ -126,9 +138,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     }
     
     /**
-    * Bring a life out of reserve and into play
+        Bring a life out of reserve and into play
     */
-    func newPlayer(){
+    private func newPlayer(){
         // Reduce lives count
         lives = lives - 1
         
@@ -140,7 +152,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     }
     
     /**
-    * End the game, player loses
+        End the game, player loses
     */
     private func gameOver(){
         if(lives > 0){
@@ -182,7 +194,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     // MARK: Collision helpers
     
     /**
-    * Handle collision between an invader missile and the player
+        Handle collision between an invader missile and the player
+        :param: invaderMissile The invader missile involved in the collision
+        :param: player The player sprite involved in the collision
     */
     private func missileCollision(invadermissile: InvaderMissile, player: PlayerSprite){
         invadermissile.hitPlayer()
@@ -200,6 +214,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         }
     }
     
+    /**
+        Determine if a collision involves a physics body of a particular type
+        :param: contact The physics contact representing this collision
+        :param: type The collider type to test for
+        :return: true if either of the bodies in the contact is of the specified type
+    */
     private func isCollisionInvolving(contact: SKPhysicsContact!, type : ColliderType) -> Bool {
         
         return (type.rawValue == contact.bodyA.categoryBitMask ||
@@ -207,6 +227,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         
     }
     
+    /**
+        Get the physics body of a particular type from a contact.
+        Note that this will only return bodyA if both bodies are of the same type.
+        :param: contact The physics contact to be checked
+        :param: type The type of the body we want to retrieve
+        :return: The first body of the specified type in this contact
+    */
     private func getColliderOfType(contact: SKPhysicsContact!, type : ColliderType) -> SKPhysicsBody? {
         if (type.rawValue == contact.bodyA.categoryBitMask){
             return contact.bodyA
@@ -284,9 +311,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
             }
             if let collider = getColliderOfType(contact, type: ColliderType.InvaderMissile){
                 (collider.node as InvaderMissile).hitPlayer()
-            }
-            if let collider = getColliderOfType(contact, type: ColliderType.Invader){
-                (collider.node as InvaderSprite).outOfBounds()
             }
         }
     }

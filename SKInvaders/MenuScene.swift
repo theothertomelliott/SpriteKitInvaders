@@ -9,12 +9,16 @@
 import Foundation
 import SpriteKit
 
+// Scene for the pre-game menu
 class MenuScene : SKScene {
     
+    /**
+        Called when this scene is launched. Initializes the scene.
+        :param: view View containing this scene
+    */
     override func didMoveToView(view: SKView) {
         self.childNodeWithName("GameOverLabel")?.hidden = true
         self.childNodeWithName("PlayArea")?.hidden = true
-        self.childNodeWithName("PushLabel")?.hidden = true
         self.childNodeWithName("LivesCountLabel")?.hidden = true
         
         // Set up the score controller
@@ -25,6 +29,10 @@ class MenuScene : SKScene {
         
     }
     
+    /**
+        Handle key events, move to the game itself
+        :param: theEvent Event for this keypress
+    */
     override func keyDown(theEvent: NSEvent){
         if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
             /* Set the scale mode to scale to fit the window */
