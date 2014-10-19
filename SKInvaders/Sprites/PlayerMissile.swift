@@ -31,7 +31,7 @@ class PlayerMissile : SKSpriteNode {
         self.physicsBody?.contactTestBitMask = ColliderType.PlayArea.rawValue | ColliderType.Invader.rawValue | ColliderType.InvaderMissile.rawValue
         setScale(scale)
         
-        let moveUp = SKAction.moveBy(CGVectorMake(0,40), duration:0.1);
+        let moveUp = SKAction.moveBy(CGVectorMake(0,60), duration:0.1);
         runAction(SKAction.repeatActionForever(moveUp));
     }
     
