@@ -259,16 +259,7 @@ class InvaderSheetController {
     func moveWorking(){
         if(workingSprite < self._invaders.count){
             let sprite : InvaderSprite = self._invaders[workingSprite]
-            let moveRight = SKAction.moveBy(CGVectorMake(_invaderSpeedX,0), duration:0.0);
-            let moveLeft = SKAction.moveBy(CGVectorMake(-_invaderSpeedX,0), duration:0.0);
-            
-            sprite.runAction(goingRight ? moveRight : moveLeft)
-            
-            if goingDown {
-                let moveDown = SKAction.moveBy(CGVectorMake(0,-_invaderSpeedY), duration:0.0);
-                sprite.runAction(moveDown)
-            }
-            
+            sprite.move(CGVectorMake(_invaderSpeedX,_invaderSpeedY), isMovingRight: goingRight, isMovingDown: goingDown)
             getNextSprite()
             
         } else {

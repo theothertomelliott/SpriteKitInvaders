@@ -37,7 +37,9 @@ class InvaderSprite : SKSpriteNode {
         self.physicsBody?.usesPreciseCollisionDetection = true
         self.physicsBody?.categoryBitMask = ColliderType.Invader.rawValue
         self.physicsBody?.collisionBitMask = 0
-        self.physicsBody?.contactTestBitMask = ColliderType.PlayArea.rawValue
+        self.physicsBody?.contactTestBitMask = ColliderType.PlayArea.rawValue | ColliderType.Shield.rawValue
+        
+        self.zPosition = 2
         
         setScale(scale)
         
@@ -50,8 +52,35 @@ class InvaderSprite : SKSpriteNode {
     func didBeginContact(body: SKPhysicsBody, contact: SKPhysicsContact!) {
     }
     
-    
     func didEndContact(body: SKPhysicsBody, contact: SKPhysicsContact!) {
+    }
+    
+    /**
+     * Move this sprite
+     */
+    func move(speed: CGVector, isMovingRight: Bool, isMovingDown: Bool){
+        let moveRight = SKAction.moveBy(CGVectorMake(speed.dx,0), duration:0.0);
+        let moveLeft = SKAction.moveBy(CGVectorMake(-speed.dx,0), duration:0.0);
+        
+        // Run the post move action for this invader
+        let postMove = SKAction.runBlock({
+            self.didMove()
+        })
+        
+        self.runAction(SKAction.sequence([isMovingRight ? moveRight : moveLeft, postMove]))
+        
+        if isMovingDown {
+            let moveDown = SKAction.moveBy(CGVectorMake(0,-speed.dy), duration:0.0);
+            self.runAction(moveDown)
+        }
+
+    }
+    
+    /**
+     * Actions to perform after the sprite has been moved
+     */
+    func didMove(){
+        // Anything we need to do after moving this sprite
     }
     
     func outOfBounds(){
