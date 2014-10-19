@@ -25,12 +25,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     
     var p1ScoreLabel : SKLabelNode!
     var HighScoreLabel : SKLabelNode!
-    
-    var leftBorder : SKNode!
-    var rightBorder : SKNode!
-    var bottomBorder : SKNode!
-    var topBorder : SKNode!
-    
+
     var playArea : SKShapeNode!
     
     var sheetNumber = 0
@@ -115,9 +110,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         playArea.physicsBody?.categoryBitMask = ColliderType.PlayArea.rawValue
         playArea.physicsBody?.collisionBitMask = 0
         playArea.physicsBody?.contactTestBitMask = 0
-        
-        // TODO: Create a proper edge border from the play area object
-        bottomBorder = addBorder(bottomLeft, to: bottomRight, category: ColliderType.BottomEdge.rawValue)
         
         addInvaderSheet()
         addShields()
