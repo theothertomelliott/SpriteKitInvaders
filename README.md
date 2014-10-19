@@ -3,6 +3,11 @@ SpriteKitInvaders
 
 A SpriteKit clone of Space Invaders for OS X. Currently a work in progress.
 
+Building
+========
+
+This project should build out of the box with XCode 6.1+ on OSX 10.9 or later.
+
 Credits
 =======
 
