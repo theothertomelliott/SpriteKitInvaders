@@ -12,11 +12,10 @@ import SpriteKit
 class MenuScene : SKScene {
     
     override func didMoveToView(view: SKView) {
-        let gameOverLabel = self.childNodeWithName("GameOverLabel") as SKLabelNode
-        gameOverLabel.hidden = true
-        
-        let playArea = self.childNodeWithName("PlayArea") as SKShapeNode
-        playArea.hidden = true
+        self.childNodeWithName("GameOverLabel")?.hidden = true
+        self.childNodeWithName("PlayArea")?.hidden = true
+        self.childNodeWithName("PushLabel")?.hidden = true
+        self.childNodeWithName("LivesCountLabel")?.hidden = true
         
         // Set up the score controller
         let scoreCtl = ScoreController()

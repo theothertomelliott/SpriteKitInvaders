@@ -30,41 +30,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     
     var sheetNumber = 0
     
-    func scoreUpdated(sender: ScoreController){
-        p1ScoreLabel?.text = NSString(format:"%04d", sender.score)
-        HighScoreLabel?.text = NSString(format:"%04d", sender.highScore)
-    }
-    
-    // Number of lives in "reserve", not counting the life in play
-    var lives : Int = 3 {
-        didSet {
-            // Render new lives count
-            if(livesSprites.count == 0){
-                let texture = SKTexture(imageNamed: "Spaceship")
-                var xPos : CGFloat = CGFloat(playAreaBottom/2+40)
-                for(var i = 0; i < (lives-1); i++){
-                    let life = SKSpriteNode(texture: texture, color: NSColor.clearColor(), size: texture.size())
-                    life.setScale(0.5)
-                    life.position = CGPointMake(xPos, CGFloat(playAreaBottom/2))
-                    livesSprites.append(life)
-                    self.addChild(life)
-                    xPos += life.size.width + 10
-                }
-            }
-            
-            var i = 0
-            for life : SKSpriteNode in livesSprites {
-                life.removeFromParent()
-                if(i < (lives-1)){
-                    addChild(life)
-                }
-            }
-            livesCountLabel.text = "\(lives+1)"
-        }
-    }
-    
-    let playAreaBottom = 50
-    
     override func didMoveToView(view: SKView) {
         
         // Hide instructions
@@ -83,10 +48,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         self.physicsWorld.contactDelegate = self;
         
         // Show the current number of lives
-        livesCountLabel = SKLabelNode(fontNamed: "Space Invaders")
-        livesCountLabel.position = CGPointMake(CGFloat(playAreaBottom/2),CGFloat(playAreaBottom/4))
-        self.addChild(livesCountLabel)
-
+        livesCountLabel = self.childNodeWithName("LivesCountLabel") as SKLabelNode
+        
         // Obtain the bounds of the game area
         playArea = self.childNodeWithName("PlayArea") as SKShapeNode
         playArea.hidden = true
@@ -115,6 +78,39 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         addShields()
         
         startGame()
+    }
+    
+    func scoreUpdated(sender: ScoreController){
+        p1ScoreLabel?.text = NSString(format:"%04d", sender.score)
+        HighScoreLabel?.text = NSString(format:"%04d", sender.highScore)
+    }
+    
+    // Number of lives in "reserve", not counting the life in play
+    var lives : Int = 3 {
+        didSet {
+            // Render new lives count
+            if(livesSprites.count == 0){
+                let texture = SKTexture(imageNamed: "Spaceship")
+                var xPos : CGFloat = CGFloat(livesCountLabel.position.x + 50)
+                for(var i = 0; i < (lives-1); i++){
+                    let life = SKSpriteNode(texture: texture, color: NSColor.clearColor(), size: texture.size())
+                    life.setScale(0.6)
+                    life.position = CGPointMake(xPos, livesCountLabel.position.y + life.size.height/2)
+                    livesSprites.append(life)
+                    self.addChild(life)
+                    xPos += life.size.width + 10
+                }
+            }
+            
+            var i = 0
+            for life : SKSpriteNode in livesSprites {
+                if(i >= (lives)){
+                    life.removeFromParent()
+                }
+                i++
+            }
+            livesCountLabel.text = "\(lives+1)"
+        }
     }
     
     func addShields(){
