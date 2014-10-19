@@ -29,9 +29,8 @@ class PlayerSprite : SKSpriteNode {
         super.init(texture: texture, color: NSColor.clearColor(), size: texture.size())
         
         let scale = CGFloat(0.8)
-        let size = CGSizeMake(texture.size().width*scale, texture.size().height*scale)
         
-        self.physicsBody = SKPhysicsBody(rectangleOfSize: size)
+        self.physicsBody = SKPhysicsBody(rectangleOfSize: texture.size())
         self.physicsBody?.categoryBitMask = ColliderType.Player.rawValue
         self.physicsBody?.collisionBitMask = 0
         self.physicsBody?.contactTestBitMask = 0

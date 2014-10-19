@@ -13,7 +13,6 @@ class InvaderSprite : SKSpriteNode {
     
     private var textures: [SKTexture]
     private var alive : Bool
-    private var scaledSize : CGSize
     
     init(imageNames: [NSString], scale: CGFloat) {
         
@@ -27,8 +26,6 @@ class InvaderSprite : SKSpriteNode {
             textures += [texture]
         }
         
-        scaledSize = CGSizeMake(textures[0].size().width*scale, textures[0].size().height*scale)
-        
         super.init(texture: textures[0], color: NSColor.clearColor(), size: textures[0].size())
         
         // Set up animation
@@ -36,7 +33,7 @@ class InvaderSprite : SKSpriteNode {
         runAction(SKAction.repeatActionForever(walk), withKey: "walk")
         
         // Configure physics body sized to texture
-        self.physicsBody = SKPhysicsBody(rectangleOfSize: scaledSize)
+        self.physicsBody = SKPhysicsBody(rectangleOfSize: textures[0].size())
         self.physicsBody?.usesPreciseCollisionDetection = true
         self.physicsBody?.categoryBitMask = ColliderType.Invader.rawValue
         self.physicsBody?.collisionBitMask = 0
@@ -80,7 +77,7 @@ class InvaderSprite : SKSpriteNode {
         if let pos = self.parent?.position {
             missile.position = CGPointMake(
                 self.position.x + pos.x,
-                self.position.y - self.scaledSize.height + pos.y
+                self.position.y - self.size.height + pos.y
             )
         }
         self.parent?.addChild(missile)

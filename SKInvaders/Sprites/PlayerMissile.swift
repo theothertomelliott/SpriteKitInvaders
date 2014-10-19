@@ -23,9 +23,8 @@ class PlayerMissile : SKSpriteNode {
         self.zPosition = 2
         
         let scale = CGFloat(0.6)
-        let size = CGSizeMake(texture.size().width*scale, texture.size().height*scale)
-        
-        self.physicsBody = SKPhysicsBody(rectangleOfSize: size)
+
+        self.physicsBody = SKPhysicsBody(rectangleOfSize: texture.size())
         self.physicsBody?.usesPreciseCollisionDetection = true
         self.physicsBody?.categoryBitMask = ColliderType.PlayerMissile.rawValue
         self.physicsBody?.collisionBitMask = 0
