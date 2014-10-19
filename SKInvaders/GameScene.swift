@@ -80,11 +80,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         startGame()
     }
     
-    func scoreUpdated(sender: ScoreController){
-        p1ScoreLabel?.text = NSString(format:"%04d", sender.score)
-        HighScoreLabel?.text = NSString(format:"%04d", sender.highScore)
-    }
-    
     // Number of lives in "reserve", not counting the life in play
     var lives : Int = 3 {
         didSet {
@@ -145,34 +140,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     }
     
     /**
-    * Add a border with a given collision category to the play area
-    */
-    func addBorder(from: CGPoint, to: CGPoint, category: UInt32) -> SKNode {
-        
-        // Show the border
-        //drawLine(from, to: to, color: SKColor.redColor())
-        
-        var border = SKNode()
-        border.physicsBody = SKPhysicsBody(edgeFromPoint: from, toPoint: to)
-        border.physicsBody?.usesPreciseCollisionDetection = true
-        border.physicsBody?.categoryBitMask = category
-        border.physicsBody?.collisionBitMask = 0
-        border.physicsBody?.contactTestBitMask = ColliderType.Player.rawValue | ColliderType.PlayerMissile.rawValue | ColliderType.Invader.rawValue
-        self.addChild(border)
-        return border
-    }
-    
-    func drawLine(from: CGPoint, to: CGPoint, color: SKColor){
-        let pathToDraw = CGPathCreateMutable()
-        CGPathMoveToPoint(pathToDraw, nil, from.x,from.y)
-        CGPathAddLineToPoint(pathToDraw, nil, to.x, to.y)
-        let yourLine : SKShapeNode = SKShapeNode()
-        yourLine.path = pathToDraw
-        yourLine.strokeColor = color
-        self.addChild(yourLine)
-    }
-    
-    /**
     * End the game, player loses
     */
     private func gameOver(){
@@ -208,6 +175,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         self.runAction(fullSeq)
     }
     
+    override func keyDown(theEvent: NSEvent){
+        shipSprite.interpretKeyEvents([theEvent])
+    }
+    
+    // MARK: Collision helpers
+    
     /**
     * Handle collision between an invader missile and the player
     */
@@ -227,14 +200,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         }
     }
     
-    func isCollisionInvolving(contact: SKPhysicsContact!, type : ColliderType) -> Bool {
+    private func isCollisionInvolving(contact: SKPhysicsContact!, type : ColliderType) -> Bool {
         
         return (type.rawValue == contact.bodyA.categoryBitMask ||
             type.rawValue == contact.bodyB.categoryBitMask )
         
     }
     
-    func getColliderOfType(contact: SKPhysicsContact!, type : ColliderType) -> SKPhysicsBody? {
+    private func getColliderOfType(contact: SKPhysicsContact!, type : ColliderType) -> SKPhysicsBody? {
         if (type.rawValue == contact.bodyA.categoryBitMask){
             return contact.bodyA
         }
@@ -243,6 +216,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         }
         return nil
     }
+    
+    // MARK: SKPhysicsContactDelegate
     
     func didBeginContact(contact: SKPhysicsContact!) {
         
@@ -286,21 +261,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         }
     }
     
-    func landed(){
-        gameOver()
-    }
-    
-    func SheetCompleted() {
-        
-        // Wait for a couple of seconds, then create a new sheet
-        let wait = SKAction.waitForDuration(2)
-        let nextSheet = SKAction.runBlock({
-            self.addInvaderSheet()
-            self.invaderSheet.start();
-        })
-        self.runAction(SKAction.sequence([wait, nextSheet]))
-    }
-    
     func didEndContact(contact: SKPhysicsContact!) {
         
         /*** Shield collisions ***/
@@ -331,8 +291,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         }
     }
     
-    override func keyDown(theEvent: NSEvent){
-        shipSprite.interpretKeyEvents([theEvent])
+    // MARK: ScoreUpdateDelegate
+    
+    func scoreUpdated(sender: ScoreController){
+        p1ScoreLabel?.text = NSString(format:"%04d", sender.score)
+        HighScoreLabel?.text = NSString(format:"%04d", sender.highScore)
     }
+    
+    // MARK: InvaderDelegate
+    
+    func landed(){
+        gameOver()
+    }
+    
+    func SheetCompleted() {
+        
+        // Wait for a couple of seconds, then create a new sheet
+        let wait = SKAction.waitForDuration(2)
+        let nextSheet = SKAction.runBlock({
+            self.addInvaderSheet()
+            self.invaderSheet.start();
+        })
+        self.runAction(SKAction.sequence([wait, nextSheet]))
+    }
+
+    
     
 }
