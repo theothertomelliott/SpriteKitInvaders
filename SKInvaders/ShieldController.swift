@@ -26,7 +26,7 @@ class ShieldController : GameSubController, SKPhysicsContactDelegate {
             shield.position =
                 CGPointMake(
                     x,
-                    _playArea.position.y-_playArea.frame.height/2 + 130
+                    _playArea.position.y-_playArea.frame.height/2+shield.size.height
             )
             _scene.addChild(shield)
             

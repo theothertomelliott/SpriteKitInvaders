@@ -147,7 +147,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         // Put ship in play
         shipSprite = PlayerSprite()
         shipSprite.playArea = playArea
-        shipSprite.position = CGPointMake(playArea.position.x - playArea.frame.width/2,playArea.position.y - playArea.frame.height/2 + shipSprite.frame.height/2)
+        shipSprite.position = CGPointMake(playArea.position.x - playArea.frame.width/2,playArea.position.y - playArea.frame.height/2 - shipSprite.frame.height/2)
         self.addChild(shipSprite)
     }
     
