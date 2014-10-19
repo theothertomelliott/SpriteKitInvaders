@@ -285,11 +285,9 @@ class InvaderSheetController {
     }
     
     func start(){
-        
         setMoveSequence()
         setFiringSequence()
         setMothershipSequence()
-        
     }
     
     /** Add the invaders to the scene **/
