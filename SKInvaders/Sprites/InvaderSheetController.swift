@@ -182,11 +182,6 @@ class InvaderSheetController {
                 missileCollision(otherBody.node as PlayerMissile, invader: invaderHit.node as InvaderSprite)
         }
         
-        /** When an invader reaches the bottom of the screen **/
-        if(ColliderType.BottomEdge.rawValue == otherBody.categoryBitMask){
-            // TODO: Force a game over
-            delegate?.landed()
-        }
     }
     
     func didEndContact(contact: SKPhysicsContact!) {
@@ -201,6 +196,13 @@ class InvaderSheetController {
         
         if let invaderNode = invaderHit?.node as? InvaderSprite {
             invaderNode.didEndContact(otherBody, contact: contact)
+            
+            /** When an invader reaches the bottom of the screen **/
+            if(ColliderType.PlayArea.rawValue == otherBody.categoryBitMask){
+                // Let the invader know it's gone out of bounds
+                invaderNode.outOfBounds(delegate)
+            }
+
         }
         
     }

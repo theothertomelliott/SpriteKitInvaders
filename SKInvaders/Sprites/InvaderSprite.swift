@@ -83,7 +83,8 @@ class InvaderSprite : SKSpriteNode {
         // Anything we need to do after moving this sprite
     }
     
-    func outOfBounds(){
+    func outOfBounds(delegate: InvaderDelegate){
+        delegate.landed()
     }
     
     /**

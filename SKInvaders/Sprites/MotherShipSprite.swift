@@ -30,7 +30,7 @@ class MotherShipSprite : InvaderSprite {
         return 50
     }
     
-    override func outOfBounds(){
+    override func outOfBounds(delegate: InvaderDelegate){
         // Get rid of this sprite if it ever goes out of the play area
         self.removeFromParent()
     }
