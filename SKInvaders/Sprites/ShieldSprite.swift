@@ -29,7 +29,7 @@ class ShieldSprite : SKSpriteNode {
         let h : CGFloat = sd.frame.height
         
         for var x : CGFloat = 0; x < size.width; x+=w {
-            for var y : CGFloat = 0; y < size.height; y+=h {
+            for var y : CGFloat = 0; y < size.height+h; y+=h {
                 let segment = ShieldDamageSprite()
                 segment.position = CGPointMake(x-size.width/2,y-size.height/2)
                 self.addChild(segment)
