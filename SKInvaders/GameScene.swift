@@ -308,6 +308,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         let wait = SKAction.waitForDuration(2)
         let nextSheet = SKAction.runBlock({
             self.addInvaderSheet()
+            self.invaderSheet.start();
         })
         self.runAction(SKAction.sequence([wait, nextSheet]))
     }
