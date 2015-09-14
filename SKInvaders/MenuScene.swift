@@ -27,24 +27,32 @@ class MenuScene : SKScene {
         let HighScoreLabel : SKLabelNode = self.childNodeWithName("HighScoreLabel") as! SKLabelNode
         HighScoreLabel.text = NSString(format:"%04d",scoreCtl.highScore) as String
         
+        let tapRecognizer = UITapGestureRecognizer(target: self, action:"tapped:")
+        tapRecognizer.allowedPressTypes = [NSNumber(integer: UIPressType.Select.rawValue)];
+        self.view?.addGestureRecognizer(tapRecognizer)
+        
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    func tapped(sender: AnyObject?){
         if let scene = GameScene(fileNamed: "GameScene") {
             // Configure the view.
             if let skView = self.view {
                 skView.showsFPS = true
                 skView.showsNodeCount = true
-            
+                
                 /* Sprite Kit applies additional optimizations to improve rendering performance */
                 skView.ignoresSiblingOrder = true
-            
+                
                 /* Set the scale mode to scale to fit the window */
                 scene.scaleMode = .AspectFit
-            
+                
                 skView.presentScene(scene)
             }
         }
+    }
+
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
     }
     
 }

@@ -74,24 +74,28 @@ class PlayerSprite : SKSpriteNode {
         
         if(" " == insertString as! NSString){
 
-            let missile = PlayerMissile();
-            missile.position = CGPointMake(position.x, position.y+40);
-            
-            var hasMissile = false
-            
-            // Check there isn't already a missile on the parent
-            if let nodeList = parent?.children {
-                for node in nodeList {
-                    if(node is PlayerMissile){
-                        hasMissile = true
-                        break
-                    }
+            fire()
+        }
+    }
+    
+    func fire(){
+        let missile = PlayerMissile();
+        missile.position = CGPointMake(position.x, position.y+40);
+        
+        var hasMissile = false
+        
+        // Check there isn't already a missile on the parent
+        if let nodeList = parent?.children {
+            for node in nodeList {
+                if(node is PlayerMissile){
+                    hasMissile = true
+                    break
                 }
             }
-            
-            if(!hasMissile){
-                parent?.addChild(missile)
-            }
+        }
+        
+        if(!hasMissile){
+            parent?.addChild(missile)
         }
     }
     
@@ -106,7 +110,7 @@ class PlayerSprite : SKSpriteNode {
 //    override
     func moveLeft(sender: AnyObject?) {
         if(alive && !atLeftEdge){
-            let a = SKAction.moveBy(CGVectorMake(-20,0),duration:0.1);
+            let a = SKAction.moveBy(CGVectorMake(-40,0),duration:0.1);
             let b = SKAction.runBlock({
                     self.checkEdges();
                 })
@@ -118,7 +122,7 @@ class PlayerSprite : SKSpriteNode {
     //override
     func moveRight(sender: AnyObject?){
         if(alive && !atRightEdge){
-            let a = SKAction.moveBy(CGVectorMake(20,0),duration:0.1);
+            let a = SKAction.moveBy(CGVectorMake(40,0),duration:0.1);
             let b = SKAction.runBlock({
                 self.checkEdges();
             })

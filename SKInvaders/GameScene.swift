@@ -80,15 +80,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         
         startGame()
         
-        NSLog("Done")
+        let tapRecognizer = UITapGestureRecognizer(target: self, action:"selectTapped:")
+        tapRecognizer.allowedPressTypes = [NSNumber(integer: UIPressType.Select.rawValue)];
+        self.view?.addGestureRecognizer(tapRecognizer)
+        
+        let swipeRecognizerL = UISwipeGestureRecognizer(target: self, action:"swipedLeft:")
+        swipeRecognizerL.direction = .Left
+        self.view?.addGestureRecognizer(swipeRecognizerL)
+
+        let swipeRecognizerR = UISwipeGestureRecognizer(target: self, action:"swipedRight:")
+        swipeRecognizerR.direction = .Right
+        self.view?.addGestureRecognizer(swipeRecognizerR)
+
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        shipSprite.moveRight(self)
+    func swipedLeft(sender: AnyObject?){
+        shipSprite.moveLeft(sender)
+    }
+
+    func swipedRight(sender: AnyObject?){
+        shipSprite.moveRight(sender)
     }
     
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        shipSprite.moveLeft(self)
+    func selectTapped(sender: AnyObject?){
+        shipSprite.fire()
     }
     
     // Number of lives in "reserve", not counting the life in play
