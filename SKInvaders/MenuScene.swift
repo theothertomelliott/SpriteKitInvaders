@@ -47,20 +47,4 @@ class MenuScene : SKScene {
         }
     }
     
-    /**
-        Handle key events, move to the game itself
-        - parameter theEvent: Event for this keypress
-    */
-    // TODO: Replace this appropriately
-//    override func keyDown(theEvent: NSEvent){
-//        if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
-//            /* Set the scale mode to scale to fit the window */
-//            scene.scaleMode = .AspectFill
-//
-//            self.view!.presentScene(scene)
-//        }
-//
-//    }
-
-    
 }
