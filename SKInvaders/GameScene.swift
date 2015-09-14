@@ -248,7 +248,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     
     // MARK: SKPhysicsContactDelegate
     
-    func didBeginContact(contact: SKPhysicsContact!) {
+    func didBeginContact(contact: SKPhysicsContact) {
         
         /*** Shield collisions ***/
         if(isCollisionInvolving(contact, type: ColliderType.Shield)){
@@ -290,7 +290,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         }
     }
     
-    func didEndContact(contact: SKPhysicsContact!) {
+    func didEndContact(contact: SKPhysicsContact) {
         
         /*** Shield collisions ***/
         if(isCollisionInvolving(contact, type: ColliderType.Shield)){
