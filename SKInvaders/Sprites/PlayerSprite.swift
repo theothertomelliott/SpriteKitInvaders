@@ -64,19 +64,6 @@ class PlayerSprite : SKSpriteNode {
         runAction(dieSequence, withKey: "die")
 
     }
-
-    // TODO: Make an appropriate replacement
-    //override
-    func insertText(insertString: AnyObject){
-        if(!alive){
-            return
-        }
-        
-        if(" " == insertString as! NSString){
-
-            fire()
-        }
-    }
     
     func fire(){
         let missile = PlayerMissile();
@@ -106,8 +93,6 @@ class PlayerSprite : SKSpriteNode {
         }
     }
     
-    // TODO: Make an appropriate replacement
-//    override
     func moveLeft(sender: AnyObject?) {
         if(alive && !atLeftEdge){
             let a = SKAction.moveBy(CGVectorMake(-40,0),duration:0.1);
@@ -118,8 +103,6 @@ class PlayerSprite : SKSpriteNode {
         }
     }
     
-    // TODO: Make an appropriate replacement
-    //override
     func moveRight(sender: AnyObject?){
         if(alive && !atRightEdge){
             let a = SKAction.moveBy(CGVectorMake(40,0),duration:0.1);
