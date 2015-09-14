@@ -11,7 +11,7 @@ import SpriteKit
 
 class InvaderMissile : SKSpriteNode {
     
-    override init(){
+    override init(texture: SKTexture?, color: NSColor, size: CGSize) {
         let texture = SKTexture(imageNamed: "InvaderMissile")
         
         super.init(texture: texture, color: NSColor.clearColor(), size: texture.size())
@@ -28,7 +28,6 @@ class InvaderMissile : SKSpriteNode {
         setScale(scale)
         
         setMovement()
-
     }
     
     required init(coder: NSCoder) {

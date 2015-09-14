@@ -18,7 +18,7 @@ class PlayerSprite : SKSpriteNode {
         fatalError("NSCoding not supported")
     }
     
-    override init() {
+    override init(texture: SKTexture?, color: NSColor, size: CGSize) {
         let texture = SKTexture(imageNamed: "Spaceship")
         
         atLeftEdge = false
@@ -70,7 +70,7 @@ class PlayerSprite : SKSpriteNode {
             return
         }
         
-        if(" " == insertString as NSString){
+        if(" " == insertString as! NSString){
 
             let missile = PlayerMissile();
             missile.position = CGPointMake(position.x, position.y+40);

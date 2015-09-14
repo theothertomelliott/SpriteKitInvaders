@@ -12,15 +12,17 @@ import SpriteKit
 
 extension SKNode {
     class func unarchiveFromFile(file : NSString) -> SKNode? {
-        if let path = NSBundle.mainBundle().pathForResource(file, ofType: "sks") {
-            if let sceneData = NSData(contentsOfFile: path, options: .DataReadingMappedIfSafe, error: nil) {
-                var archiver = NSKeyedUnarchiver(forReadingWithData: sceneData)
+        if let path = NSBundle.mainBundle().pathForResource(file as String, ofType: "sks") {
+            do {
+                let sceneData = try NSData(contentsOfFile: path, options: .DataReadingMappedIfSafe)
+                let archiver = NSKeyedUnarchiver(forReadingWithData: sceneData)
             
                 archiver.setClass(self.classForKeyedUnarchiver(), forClassName: "SKScene")
-                let scene = archiver.decodeObjectForKey(NSKeyedArchiveRootObjectKey) as SKNode
+                let scene = archiver.decodeObjectForKey(NSKeyedArchiveRootObjectKey) as! SKNode
                 archiver.finishDecoding()
                 return scene
-            } else {
+                
+            } catch {
                 return nil
             }
         } else {
@@ -34,7 +36,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var skView: SKView!
     
-    func applicationDidFinishLaunching(aNotification: NSNotification?) {
+    func applicationDidFinishLaunching(aNotification: NSNotification) {
         /* Pick a size for the scene */
         if let scene = MenuScene.unarchiveFromFile("GameScene") as? MenuScene {
             /* Set the scale mode to scale to fit the window */

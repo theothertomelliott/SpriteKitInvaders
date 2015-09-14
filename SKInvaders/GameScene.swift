@@ -35,7 +35,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     
     /**
         Called when this scene is launched. Initializes the scene.
-        :param: view View containing this scene
+        - parameter view: View containing this scene
     */
     override func didMoveToView(view: SKView) {
         
@@ -47,22 +47,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         scoreCtl = ScoreController()
         scoreCtl.delegate = self
         // Show the current score
-        p1ScoreLabel = self.childNodeWithName("p1ScoreLabel") as SKLabelNode
-        HighScoreLabel = self.childNodeWithName("HighScoreLabel") as SKLabelNode
+        p1ScoreLabel = self.childNodeWithName("p1ScoreLabel") as! SKLabelNode
+        HighScoreLabel = self.childNodeWithName("HighScoreLabel") as! SKLabelNode
         scoreUpdated(scoreCtl);
         
         // Configure collisions
         self.physicsWorld.contactDelegate = self;
         
         // Show the current number of lives
-        livesCountLabel = self.childNodeWithName("LivesCountLabel") as SKLabelNode
+        livesCountLabel = self.childNodeWithName("LivesCountLabel") as! SKLabelNode
         
         // Obtain the bounds of the game area
-        playArea = self.childNodeWithName("PlayArea") as SKShapeNode
+        playArea = self.childNodeWithName("PlayArea") as! SKShapeNode
         playArea.hidden = true
         
         // Create the game over label
-        gameOverLabel = self.childNodeWithName("GameOverLabel") as SKLabelNode
+        gameOverLabel = self.childNodeWithName("GameOverLabel") as! SKLabelNode
         gameOverLabel.hidden = true
         
         // Create the player
@@ -166,12 +166,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         
         let pause = SKAction.waitForDuration(0.25)
         let drawLetter = SKAction.runBlock({
-            let current = countElements(self.gameOverLabel.text)
-            self.gameOverLabel.text = "GAME OVER".substringToIndex(current+1)
+            if let got = self.gameOverLabel.text {
+                let current = got.characters.count
+                self.gameOverLabel.text = "GAME OVER".substringToIndex(current+1)
+            }
         })
         
         let drawSequence = SKAction.sequence([drawLetter, pause]);
-        let drawFullText = SKAction.repeatAction(drawSequence, count: countElements("GAME OVER"))
+        let drawFullText = SKAction.repeatAction(drawSequence, count: "GAME OVER".characters.count)
         
         let loadMenu = SKAction.runBlock({
             if let scene = MenuScene.unarchiveFromFile("GameScene") as? MenuScene {
@@ -195,8 +197,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     
     /**
         Handle collision between an invader missile and the player
-        :param: invaderMissile The invader missile involved in the collision
-        :param: player The player sprite involved in the collision
+        - parameter invaderMissile: The invader missile involved in the collision
+        - parameter player: The player sprite involved in the collision
     */
     private func missileCollision(invadermissile: InvaderMissile, player: PlayerSprite){
         invadermissile.hitPlayer()
@@ -216,8 +218,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     
     /**
         Determine if a collision involves a physics body of a particular type
-        :param: contact The physics contact representing this collision
-        :param: type The collider type to test for
+        - parameter contact: The physics contact representing this collision
+        - parameter type: The collider type to test for
         :return: true if either of the bodies in the contact is of the specified type
     */
     private func isCollisionInvolving(contact: SKPhysicsContact!, type : ColliderType) -> Bool {
@@ -230,8 +232,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     /**
         Get the physics body of a particular type from a contact.
         Note that this will only return bodyA if both bodies are of the same type.
-        :param: contact The physics contact to be checked
-        :param: type The type of the body we want to retrieve
+        - parameter contact: The physics contact to be checked
+        - parameter type: The type of the body we want to retrieve
         :return: The first body of the specified type in this contact
     */
     private func getColliderOfType(contact: SKPhysicsContact!, type : ColliderType) -> SKPhysicsBody? {
@@ -261,16 +263,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         /*** Handle missile to missile collisions ***/
         if(ColliderType.InvaderMissile.rawValue == contact.bodyA.categoryBitMask &&
             ColliderType.PlayerMissile.rawValue == contact.bodyB.categoryBitMask){
-                let im = contact.bodyA.node as InvaderMissile
-                let pm = contact.bodyB.node as PlayerMissile
+                let im = contact.bodyA.node as! InvaderMissile
+                let pm = contact.bodyB.node as! PlayerMissile
                 im.hitPlayer()
                 pm.hitInvader()
         }
 
         if(ColliderType.InvaderMissile.rawValue == contact.bodyB.categoryBitMask &&
             ColliderType.PlayerMissile.rawValue == contact.bodyA.categoryBitMask){
-                let im = contact.bodyB.node as InvaderMissile
-                let pm = contact.bodyA.node as PlayerMissile
+                let im = contact.bodyB.node as! InvaderMissile
+                let pm = contact.bodyA.node as! PlayerMissile
                 im.hitPlayer()
                 pm.hitInvader()
         }
@@ -279,12 +281,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         if(ColliderType.InvaderMissile.rawValue == contact.bodyA.categoryBitMask &&
         ColliderType.Player.rawValue == contact.bodyB.categoryBitMask)
         {
-            missileCollision(contact.bodyA.node as InvaderMissile, player: contact.bodyB.node as PlayerSprite)
+            missileCollision(contact.bodyA.node as! InvaderMissile, player: contact.bodyB.node as! PlayerSprite)
         }
         if(ColliderType.InvaderMissile.rawValue == contact.bodyB.categoryBitMask &&
             ColliderType.Player.rawValue == contact.bodyA.categoryBitMask)
         {
-            missileCollision(contact.bodyB.node as InvaderMissile, player: contact.bodyA.node as PlayerSprite)
+            missileCollision(contact.bodyB.node as! InvaderMissile, player: contact.bodyA.node as! PlayerSprite)
         }
     }
     
@@ -307,10 +309,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         // Someone went out of bounds!
         if(isCollisionInvolving(contact, type: ColliderType.PlayArea)){
             if let collider = getColliderOfType(contact, type: ColliderType.PlayerMissile) {
-                (collider.node as PlayerMissile).hitInvader()
+                (collider.node as! PlayerMissile).hitInvader()
             }
             if let collider = getColliderOfType(contact, type: ColliderType.InvaderMissile){
-                (collider.node as InvaderMissile).hitPlayer()
+                (collider.node as! InvaderMissile).hitPlayer()
             }
         }
     }
@@ -318,8 +320,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
     // MARK: ScoreUpdateDelegate
     
     func scoreUpdated(sender: ScoreController){
-        p1ScoreLabel?.text = NSString(format:"%04d", sender.score)
-        HighScoreLabel?.text = NSString(format:"%04d", sender.highScore)
+        p1ScoreLabel?.text = NSString(format:"%04d", sender.score) as String
+        HighScoreLabel?.text = NSString(format:"%04d", sender.highScore) as String
     }
     
     // MARK: InvaderDelegate

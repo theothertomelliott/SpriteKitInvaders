@@ -22,7 +22,7 @@ class InvaderSprite : SKSpriteNode {
         alive = true;
         
         for imageN in imageNames {
-            let texture = SKTexture(imageNamed: imageN)
+            let texture = SKTexture(imageNamed: imageN as String)
             textures += [texture]
         }
         

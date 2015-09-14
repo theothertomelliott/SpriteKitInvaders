@@ -49,22 +49,22 @@ class InvaderSheetController {
         _invaders = []
         
         // Type A
-        for i in 1...2 {
-            for i in 1...columns{
+        for _ in 1...2 {
+            for _ in 1...columns{
                 _invaders.append(InvaderASprite())
             }
         }
         
         // Type B
-        for i in 1...2 {
-            for i in 1...columns {
+        for _ in 1...2 {
+            for _ in 1...columns {
                 _invaders.append(InvaderBSprite())
             }
         }
         
         // Type C
-        for i in 1...1 {
-            for i in 1...columns {
+        for _ in 1...1 {
+            for _ in 1...columns {
                 _invaders.append(InvaderCSprite())
             }
         }
@@ -173,13 +173,13 @@ class InvaderSheetController {
             invaderHit = contact.bodyA
         }
         
-        if let invaderNode = invaderHit?.node as? InvaderSprite {
+        if let invaderNode = invaderHit.node as? InvaderSprite {
             invaderNode.didBeginContact(otherBody, contact: contact)
         }
         
         /** Player missile collisions **/
         if(ColliderType.PlayerMissile.rawValue == otherBody.categoryBitMask){
-                missileCollision(otherBody.node as PlayerMissile, invader: invaderHit.node as InvaderSprite)
+                missileCollision(otherBody.node as! PlayerMissile, invader: invaderHit.node as! InvaderSprite)
         }
         
     }
@@ -194,7 +194,7 @@ class InvaderSheetController {
             invaderHit = contact.bodyA
         }
         
-        if let invaderNode = invaderHit?.node as? InvaderSprite {
+        if let invaderNode = invaderHit.node as? InvaderSprite {
             invaderNode.didEndContact(otherBody, contact: contact)
             
             /** When an invader reaches the bottom of the screen **/
@@ -212,10 +212,6 @@ class InvaderSheetController {
      */
     func getNextSprite(){
         // Move on to the next non-dead sprite
-        
-        let workingStart = workingSprite
-        
-        var done = false
         workingSprite++
         while workingSprite < _invaders.count && _invaders[workingSprite].isDestroyed() {
             workingSprite++
@@ -347,15 +343,15 @@ class InvaderSheetController {
     }
     
     func setMoveSequence(){
-        var moveSprite = SKAction.runBlock({
+        let moveSprite = SKAction.runBlock({
             self.moveWorking()
         })
         
         let delay = Int(cycleInterval) / _invaders.count
         
-        var waitAction = SKAction.waitForDuration(NSTimeInterval(delay))
+        let waitAction = SKAction.waitForDuration(NSTimeInterval(delay))
         
-        var seq = SKAction.sequence([waitAction,moveSprite])
+        let seq = SKAction.sequence([waitAction,moveSprite])
         
         _scene.runAction(SKAction.repeatActionForever(seq), withKey: "invaders.move")
     }

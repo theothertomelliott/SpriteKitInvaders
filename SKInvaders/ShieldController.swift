@@ -34,40 +34,40 @@ class ShieldController : GameSubController, SKPhysicsContactDelegate {
         }
     }
     
-    func didBeginContact(contact: SKPhysicsContact!) {
+    func didBeginContact(contact: SKPhysicsContact) {
         
         var collidedShield : ShieldDamageSprite!
         
         if(contact.bodyA.categoryBitMask == ColliderType.Shield.rawValue){
-            collidedShield = contact.bodyA.node as ShieldDamageSprite
+            collidedShield = contact.bodyA.node as! ShieldDamageSprite
         }
         if(contact.bodyB.categoryBitMask == ColliderType.Shield.rawValue){
-            collidedShield = contact.bodyB.node as ShieldDamageSprite
+            collidedShield = contact.bodyB.node as! ShieldDamageSprite
         }
         collidedShield.shot()
         
         if(contact.bodyA.categoryBitMask == ColliderType.PlayerMissile.rawValue){
-            let missile : PlayerMissile = contact.bodyA.node as PlayerMissile
+            let missile : PlayerMissile = contact.bodyA.node as! PlayerMissile
             missile.hitInvader()
         }
         if(contact.bodyB.categoryBitMask == ColliderType.PlayerMissile.rawValue){
-            let missile : PlayerMissile = contact.bodyB.node as PlayerMissile
+            let missile : PlayerMissile = contact.bodyB.node as! PlayerMissile
             missile.hitInvader()
         }
         
         if(contact.bodyA.categoryBitMask == ColliderType.InvaderMissile.rawValue){
-            let missile : InvaderMissile = contact.bodyA.node as InvaderMissile
+            let missile : InvaderMissile = contact.bodyA.node as! InvaderMissile
             missile.hitPlayer()
         }
         if(contact.bodyB.categoryBitMask == ColliderType.InvaderMissile.rawValue){
-            let missile : InvaderMissile = contact.bodyB.node as InvaderMissile
+            let missile : InvaderMissile = contact.bodyB.node as! InvaderMissile
             missile.hitPlayer()
         }
         
         
     }
     
-    func didEndContact(contact: SKPhysicsContact!) {
+    func didEndContact(contact: SKPhysicsContact) {
     
     }
     

@@ -14,7 +14,7 @@ class MenuScene : SKScene {
     
     /**
         Called when this scene is launched. Initializes the scene.
-        :param: view View containing this scene
+        - parameter view: View containing this scene
     */
     override func didMoveToView(view: SKView) {
         self.childNodeWithName("GameOverLabel")?.hidden = true
@@ -24,14 +24,14 @@ class MenuScene : SKScene {
         // Set up the score controller
         let scoreCtl = ScoreController()
         // Show the current score
-        let HighScoreLabel : SKLabelNode = self.childNodeWithName("HighScoreLabel") as SKLabelNode
-        HighScoreLabel.text = NSString(format:"%04d",scoreCtl.highScore)
+        let HighScoreLabel : SKLabelNode = self.childNodeWithName("HighScoreLabel") as! SKLabelNode
+        HighScoreLabel.text = NSString(format:"%04d",scoreCtl.highScore) as String
         
     }
     
     /**
         Handle key events, move to the game itself
-        :param: theEvent Event for this keypress
+        - parameter theEvent: Event for this keypress
     */
     override func keyDown(theEvent: NSEvent){
         if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {

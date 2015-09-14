@@ -15,7 +15,7 @@ class ShieldSprite : SKSpriteNode {
         fatalError("NSCoding not supported")
     }
     
-    override init() {
+    override init(texture: SKTexture?, color: NSColor, size: CGSize) {
         let texture = SKTexture(imageNamed: "Shield")
         
         super.init(texture: texture, color: NSColor.clearColor(), size: texture.size())
@@ -23,7 +23,7 @@ class ShieldSprite : SKSpriteNode {
         let scale = CGFloat(1)
         let size = CGSizeMake(texture.size().width*scale, texture.size().height*scale)
         
-        var sd : ShieldDamageSprite = ShieldDamageSprite()
+        let sd : ShieldDamageSprite = ShieldDamageSprite()
         
         let w : CGFloat = sd.frame.width / 2.5
         let h : CGFloat = sd.frame.height
