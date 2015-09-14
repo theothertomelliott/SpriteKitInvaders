@@ -87,6 +87,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         shipSprite.moveRight(self)
     }
     
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        shipSprite.moveLeft(self)
+    }
+    
     // Number of lives in "reserve", not counting the life in play
     private var lives : Int = 3 {
         didSet {
@@ -194,12 +198,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         
         self.runAction(fullSeq)
     }
-    
-    // TODO: Replace this appropriately
-//    override func keyDown(theEvent: NSEvent){
-//        shipSprite.interpretKeyEvents([theEvent])
-//    }
-
     
     // MARK: Collision helpers
     
