@@ -26,7 +26,7 @@ class InvaderSprite : SKSpriteNode {
             textures += [texture]
         }
         
-        super.init(texture: textures[0], color: NSColor.clearColor(), size: textures[0].size())
+        super.init(texture: textures[0], color: UIColor.clearColor(), size: textures[0].size())
         
         // Set up animation
         let walk = SKAction.animateWithTextures(textures, timePerFrame: NSTimeInterval(0.5))

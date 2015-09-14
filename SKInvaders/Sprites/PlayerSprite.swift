@@ -18,7 +18,7 @@ class PlayerSprite : SKSpriteNode {
         fatalError("NSCoding not supported")
     }
     
-    override init(texture: SKTexture?, color: NSColor, size: CGSize) {
+    override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         let texture = SKTexture(imageNamed: "Spaceship")
         
         atLeftEdge = false
@@ -26,7 +26,7 @@ class PlayerSprite : SKSpriteNode {
         
         alive = true
         
-        super.init(texture: texture, color: NSColor.clearColor(), size: texture.size())
+        super.init(texture: texture, color: UIColor.clearColor(), size: texture.size())
         
         let scale = CGFloat(0.8)
         
@@ -65,7 +65,9 @@ class PlayerSprite : SKSpriteNode {
 
     }
 
-    override func insertText(insertString: AnyObject){
+    // TODO: Make an appropriate replacement
+    //override
+    func insertText(insertString: AnyObject){
         if(!alive){
             return
         }
@@ -100,7 +102,9 @@ class PlayerSprite : SKSpriteNode {
         }
     }
     
-    override func moveLeft(sender: AnyObject?) {
+    // TODO: Make an appropriate replacement
+//    override
+    func moveLeft(sender: AnyObject?) {
         if(alive && !atLeftEdge){
             let a = SKAction.moveBy(CGVectorMake(-20,0),duration:0.1);
             let b = SKAction.runBlock({
@@ -110,7 +114,9 @@ class PlayerSprite : SKSpriteNode {
         }
     }
     
-    override func moveRight(sender: AnyObject?){
+    // TODO: Make an appropriate replacement
+    //override
+    func moveRight(sender: AnyObject?){
         if(alive && !atRightEdge){
             let a = SKAction.moveBy(CGVectorMake(20,0),duration:0.1);
             let b = SKAction.runBlock({

@@ -7,88 +7,69 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E2043A3019C40714003BDBAD /* InvaderSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2043A2F19C40714003BDBAD /* InvaderSheetController.swift */; };
-		E229FDF119CE5A8C00D7DF71 /* ShieldSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E229FDF019CE5A8C00D7DF71 /* ShieldSprite.swift */; };
-		E229FDF319CE7C5F00D7DF71 /* ShieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E229FDF219CE7C5F00D7DF71 /* ShieldController.swift */; };
-		E229FDF519CE7D4200D7DF71 /* GameSubController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E229FDF419CE7D4200D7DF71 /* GameSubController.swift */; };
-		E242D91519CE91DA000B795F /* ShieldDamageSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E242D91419CE91DA000B795F /* ShieldDamageSprite.swift */; };
-		E24C79B919C9BD1200962731 /* InvaderMissileA.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24C79B819C9BD1200962731 /* InvaderMissileA.swift */; };
-		E24C79BB19C9BD3000962731 /* InvaderMissileB.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24C79BA19C9BD3000962731 /* InvaderMissileB.swift */; };
-		E24C79BD19C9BD3A00962731 /* InvaderMissileC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24C79BC19C9BD3A00962731 /* InvaderMissileC.swift */; };
-		E2799A1319C3EC7B008229FB /* InvaderASprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2799A0B19C3EC7B008229FB /* InvaderASprite.swift */; };
-		E2799A1419C3EC7B008229FB /* InvaderBSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2799A0C19C3EC7B008229FB /* InvaderBSprite.swift */; };
-		E2799A1519C3EC7B008229FB /* InvaderCSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2799A0D19C3EC7B008229FB /* InvaderCSprite.swift */; };
-		E2799A1619C3EC7B008229FB /* InvaderMissile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2799A0E19C3EC7B008229FB /* InvaderMissile.swift */; };
-		E2799A1819C3EC7B008229FB /* InvaderSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2799A1019C3EC7B008229FB /* InvaderSprite.swift */; };
-		E2799A1919C3EC7B008229FB /* PlayerMissile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2799A1119C3EC7B008229FB /* PlayerMissile.swift */; };
-		E2799A1A19C3EC7B008229FB /* PlayerSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2799A1219C3EC7B008229FB /* PlayerSprite.swift */; };
-		E2799A1E19C3ECA0008229FB /* space_invaders.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E2799A1D19C3ECA0008229FB /* space_invaders.ttf */; };
-		E282EA5A19CBECCB0081836F /* MotherShipSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E282EA5919CBECCB0081836F /* MotherShipSprite.swift */; };
-		E2851AB719C7D3EE00397025 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2851AB619C7D3EE00397025 /* MenuScene.swift */; };
-		E2A4500419C6327A00DB12AC /* ScoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A4500319C6327A00DB12AC /* ScoreController.swift */; };
-		E2D6BF0A19CE9B7B008F0539 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D6BF0919CE9B7B008F0539 /* Common.swift */; };
-		E2FEF5F919C3EA1400B3E366 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEF5F819C3EA1400B3E366 /* main.swift */; };
-		E2FEF5FB19C3EA1400B3E366 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEF5FA19C3EA1400B3E366 /* AppDelegate.swift */; };
-		E2FEF5FD19C3EA1400B3E366 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEF5FC19C3EA1400B3E366 /* GameScene.swift */; };
-		E2FEF5FF19C3EA1400B3E366 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E2FEF5FE19C3EA1400B3E366 /* GameScene.sks */; };
-		E2FEF60419C3EA1400B3E366 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2FEF60219C3EA1400B3E366 /* MainMenu.xib */; };
-		E2FEF61019C3EA1400B3E366 /* SKInvadersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEF60F19C3EA1400B3E366 /* SKInvadersTests.swift */; };
-		E2FEF62F19C3EA5200B3E366 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2FEF62E19C3EA5200B3E366 /* Images.xcassets */; };
+		E2CE3AD61BA6684000A46F41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE3AD51BA6684000A46F41 /* AppDelegate.swift */; };
+		E2CE3ADC1BA6684000A46F41 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE3ADB1BA6684000A46F41 /* GameViewController.swift */; };
+		E2CE3ADE1BA6684000A46F41 /* Game.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2CE3ADD1BA6684000A46F41 /* Game.xcassets */; };
+		E2CE3AE11BA6684000A46F41 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2CE3ADF1BA6684000A46F41 /* Main.storyboard */; };
+		E2CE3AE31BA6684000A46F41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2CE3AE21BA6684000A46F41 /* Assets.xcassets */; };
+		E2CE3B571BA674B700A46F41 /* space_invaders.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E2CE3B451BA674B700A46F41 /* space_invaders.ttf */; };
+		E2CE3B581BA674B700A46F41 /* ScoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE3B461BA674B700A46F41 /* ScoreController.swift */; };
+		E2CE3B591BA674B700A46F41 /* ShieldController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE3B471BA674B700A46F41 /* ShieldController.swift */; };
+		E2CE3B5A1BA674B700A46F41 /* InvaderASprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE3B491BA674B700A46F41 /* InvaderASprite.swift */; };
+		E2CE3B5B1BA674B700A46F41 /* InvaderBSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE3B4A1BA674B700A46F41 /* InvaderBSprite.swift */; };
+		E2CE3B5C1BA674B700A46F41 /* InvaderCSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE3B4B1BA674B700A46F41 /* InvaderCSprite.swift */; };
+		E2CE3B5D1BA674B700A46F41 /* InvaderMissile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE3B4C1BA674B700A46F41 /* InvaderMissile.swift */; };
+		E2CE3B5E1BA674B700A46F41 /* InvaderMissileA.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE3B4D1BA674B700A46F41 /* InvaderMissileA.swift */; };
+		E2CE3B5F1BA674B700A46F41 /* InvaderMissileB.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE3B4E1BA674B700A46F41 /* InvaderMissileB.swift */; };
+		E2CE3B601BA674B700A46F41 /* InvaderMissileC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE3B4F1BA674B700A46F41 /* InvaderMissileC.swift */; };
+		E2CE3B611BA674B700A46F41 /* InvaderSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE3B501BA674B700A46F41 /* InvaderSheetController.swift */; };
+		E2CE3B621BA674B700A46F41 /* InvaderSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE3B511BA674B700A46F41 /* InvaderSprite.swift */; };
+		E2CE3B631BA674B700A46F41 /* MotherShipSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE3B521BA674B700A46F41 /* MotherShipSprite.swift */; };
+		E2CE3B641BA674B700A46F41 /* PlayerMissile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE3B531BA674B700A46F41 /* PlayerMissile.swift */; };
+		E2CE3B651BA674B700A46F41 /* PlayerSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE3B541BA674B700A46F41 /* PlayerSprite.swift */; };
+		E2CE3B661BA674B700A46F41 /* ShieldDamageSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE3B551BA674B700A46F41 /* ShieldDamageSprite.swift */; };
+		E2CE3B671BA674B700A46F41 /* ShieldSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE3B561BA674B700A46F41 /* ShieldSprite.swift */; };
+		E2CE3B691BA674D500A46F41 /* GameSubController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE3B681BA674D500A46F41 /* GameSubController.swift */; };
+		E2CE3B6B1BA6755F00A46F41 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE3B6A1BA6755F00A46F41 /* Common.swift */; };
+		E2CE3B6F1BA6768800A46F41 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E2CE3B6C1BA6768800A46F41 /* GameScene.sks */; };
+		E2CE3B701BA6768800A46F41 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE3B6D1BA6768800A46F41 /* GameScene.swift */; };
+		E2CE3B711BA6768800A46F41 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CE3B6E1BA6768800A46F41 /* MenuScene.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		E2FEF60A19C3EA1400B3E366 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E2FEF5EB19C3EA1400B3E366 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E2FEF5F219C3EA1400B3E366;
-			remoteInfo = SKInvaders;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		E2043A2F19C40714003BDBAD /* InvaderSheetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InvaderSheetController.swift; path = Sprites/InvaderSheetController.swift; sourceTree = "<group>"; };
-		E229FDF019CE5A8C00D7DF71 /* ShieldSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShieldSprite.swift; sourceTree = "<group>"; };
-		E229FDF219CE7C5F00D7DF71 /* ShieldController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShieldController.swift; sourceTree = "<group>"; };
-		E229FDF419CE7D4200D7DF71 /* GameSubController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSubController.swift; sourceTree = "<group>"; };
-		E242D91419CE91DA000B795F /* ShieldDamageSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShieldDamageSprite.swift; sourceTree = "<group>"; };
-		E24C79B819C9BD1200962731 /* InvaderMissileA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderMissileA.swift; sourceTree = "<group>"; };
-		E24C79BA19C9BD3000962731 /* InvaderMissileB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderMissileB.swift; sourceTree = "<group>"; };
-		E24C79BC19C9BD3A00962731 /* InvaderMissileC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderMissileC.swift; sourceTree = "<group>"; };
-		E2799A0B19C3EC7B008229FB /* InvaderASprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderASprite.swift; sourceTree = "<group>"; };
-		E2799A0C19C3EC7B008229FB /* InvaderBSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderBSprite.swift; sourceTree = "<group>"; };
-		E2799A0D19C3EC7B008229FB /* InvaderCSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderCSprite.swift; sourceTree = "<group>"; };
-		E2799A0E19C3EC7B008229FB /* InvaderMissile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderMissile.swift; sourceTree = "<group>"; };
-		E2799A1019C3EC7B008229FB /* InvaderSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderSprite.swift; sourceTree = "<group>"; };
-		E2799A1119C3EC7B008229FB /* PlayerMissile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerMissile.swift; sourceTree = "<group>"; };
-		E2799A1219C3EC7B008229FB /* PlayerSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerSprite.swift; sourceTree = "<group>"; };
-		E2799A1D19C3ECA0008229FB /* space_invaders.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = space_invaders.ttf; sourceTree = "<group>"; };
-		E282EA5919CBECCB0081836F /* MotherShipSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotherShipSprite.swift; sourceTree = "<group>"; };
-		E2851AB619C7D3EE00397025 /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
-		E2A4500319C6327A00DB12AC /* ScoreController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreController.swift; sourceTree = "<group>"; };
-		E2D6BF0919CE9B7B008F0539 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
-		E2FEF5F319C3EA1400B3E366 /* SKInvaders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SKInvaders.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E2FEF5F719C3EA1400B3E366 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E2FEF5F819C3EA1400B3E366 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		E2FEF5FA19C3EA1400B3E366 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E2FEF5FC19C3EA1400B3E366 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
-		E2FEF5FE19C3EA1400B3E366 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		E2FEF60319C3EA1400B3E366 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		E2FEF60919C3EA1400B3E366 /* SKInvadersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SKInvadersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E2FEF60E19C3EA1400B3E366 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E2FEF60F19C3EA1400B3E366 /* SKInvadersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKInvadersTests.swift; sourceTree = "<group>"; };
-		E2FEF62E19C3EA5200B3E366 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E2CE3AD21BA6684000A46F41 /* SKInvaders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SKInvaders.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2CE3AD51BA6684000A46F41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E2CE3ADB1BA6684000A46F41 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		E2CE3ADD1BA6684000A46F41 /* Game.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Game.xcassets; sourceTree = "<group>"; };
+		E2CE3AE01BA6684000A46F41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E2CE3AE21BA6684000A46F41 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E2CE3AE41BA6684000A46F41 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2CE3B451BA674B700A46F41 /* space_invaders.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = space_invaders.ttf; sourceTree = "<group>"; };
+		E2CE3B461BA674B700A46F41 /* ScoreController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreController.swift; sourceTree = "<group>"; };
+		E2CE3B471BA674B700A46F41 /* ShieldController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShieldController.swift; sourceTree = "<group>"; };
+		E2CE3B491BA674B700A46F41 /* InvaderASprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderASprite.swift; sourceTree = "<group>"; };
+		E2CE3B4A1BA674B700A46F41 /* InvaderBSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderBSprite.swift; sourceTree = "<group>"; };
+		E2CE3B4B1BA674B700A46F41 /* InvaderCSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderCSprite.swift; sourceTree = "<group>"; };
+		E2CE3B4C1BA674B700A46F41 /* InvaderMissile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderMissile.swift; sourceTree = "<group>"; };
+		E2CE3B4D1BA674B700A46F41 /* InvaderMissileA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderMissileA.swift; sourceTree = "<group>"; };
+		E2CE3B4E1BA674B700A46F41 /* InvaderMissileB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderMissileB.swift; sourceTree = "<group>"; };
+		E2CE3B4F1BA674B700A46F41 /* InvaderMissileC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderMissileC.swift; sourceTree = "<group>"; };
+		E2CE3B501BA674B700A46F41 /* InvaderSheetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderSheetController.swift; sourceTree = "<group>"; };
+		E2CE3B511BA674B700A46F41 /* InvaderSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvaderSprite.swift; sourceTree = "<group>"; };
+		E2CE3B521BA674B700A46F41 /* MotherShipSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotherShipSprite.swift; sourceTree = "<group>"; };
+		E2CE3B531BA674B700A46F41 /* PlayerMissile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerMissile.swift; sourceTree = "<group>"; };
+		E2CE3B541BA674B700A46F41 /* PlayerSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerSprite.swift; sourceTree = "<group>"; };
+		E2CE3B551BA674B700A46F41 /* ShieldDamageSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShieldDamageSprite.swift; sourceTree = "<group>"; };
+		E2CE3B561BA674B700A46F41 /* ShieldSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShieldSprite.swift; sourceTree = "<group>"; };
+		E2CE3B681BA674D500A46F41 /* GameSubController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSubController.swift; sourceTree = "<group>"; };
+		E2CE3B6A1BA6755F00A46F41 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Common.swift; path = Sprites/Common.swift; sourceTree = "<group>"; };
+		E2CE3B6C1BA6768800A46F41 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		E2CE3B6D1BA6768800A46F41 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		E2CE3B6E1BA6768800A46F41 /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		E2FEF5F019C3EA1400B3E366 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E2FEF60619C3EA1400B3E366 /* Frameworks */ = {
+		E2CE3ACF1BA6684000A46F41 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -98,157 +79,91 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E229FDEF19CE5A8000D7DF71 /* Shield */ = {
+		E2CE3AC91BA6684000A46F41 = {
 			isa = PBXGroup;
 			children = (
-				E229FDF019CE5A8C00D7DF71 /* ShieldSprite.swift */,
-				E242D91419CE91DA000B795F /* ShieldDamageSprite.swift */,
-			);
-			name = Shield;
-			sourceTree = "<group>";
-		};
-		E2799A0A19C3EC7B008229FB /* Sprites */ = {
-			isa = PBXGroup;
-			children = (
-				E229FDEF19CE5A8000D7DF71 /* Shield */,
-				E2A4500719C640FD00DB12AC /* Player */,
-				E2A4500619C640EE00DB12AC /* Invaders */,
-				E2A4500519C640E200DB12AC /* Missiles */,
-			);
-			path = Sprites;
-			sourceTree = "<group>";
-		};
-		E2799A1B19C3ECA0008229FB /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				E2799A1C19C3ECA0008229FB /* Fonts */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		E2799A1C19C3ECA0008229FB /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				E2799A1D19C3ECA0008229FB /* space_invaders.ttf */,
-			);
-			path = Fonts;
-			sourceTree = "<group>";
-		};
-		E2A4500219C6325D00DB12AC /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				E2043A2F19C40714003BDBAD /* InvaderSheetController.swift */,
-				E2A4500319C6327A00DB12AC /* ScoreController.swift */,
-				E229FDF219CE7C5F00D7DF71 /* ShieldController.swift */,
-				E229FDF419CE7D4200D7DF71 /* GameSubController.swift */,
-			);
-			name = Controllers;
-			sourceTree = "<group>";
-		};
-		E2A4500519C640E200DB12AC /* Missiles */ = {
-			isa = PBXGroup;
-			children = (
-				E2799A1119C3EC7B008229FB /* PlayerMissile.swift */,
-				E2799A0E19C3EC7B008229FB /* InvaderMissile.swift */,
-				E24C79B819C9BD1200962731 /* InvaderMissileA.swift */,
-				E24C79BA19C9BD3000962731 /* InvaderMissileB.swift */,
-				E24C79BC19C9BD3A00962731 /* InvaderMissileC.swift */,
-			);
-			name = Missiles;
-			sourceTree = "<group>";
-		};
-		E2A4500619C640EE00DB12AC /* Invaders */ = {
-			isa = PBXGroup;
-			children = (
-				E2799A0B19C3EC7B008229FB /* InvaderASprite.swift */,
-				E2799A0C19C3EC7B008229FB /* InvaderBSprite.swift */,
-				E2799A0D19C3EC7B008229FB /* InvaderCSprite.swift */,
-				E2799A1019C3EC7B008229FB /* InvaderSprite.swift */,
-				E282EA5919CBECCB0081836F /* MotherShipSprite.swift */,
-			);
-			name = Invaders;
-			sourceTree = "<group>";
-		};
-		E2A4500719C640FD00DB12AC /* Player */ = {
-			isa = PBXGroup;
-			children = (
-				E2799A1219C3EC7B008229FB /* PlayerSprite.swift */,
-			);
-			name = Player;
-			sourceTree = "<group>";
-		};
-		E2FEF5EA19C3EA1400B3E366 = {
-			isa = PBXGroup;
-			children = (
-				E2FEF5F519C3EA1400B3E366 /* SKInvaders */,
-				E2FEF60C19C3EA1400B3E366 /* SKInvadersTests */,
-				E2FEF5F419C3EA1400B3E366 /* Products */,
+				E2CE3AD41BA6684000A46F41 /* SKInvaders */,
+				E2CE3AD31BA6684000A46F41 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		E2FEF5F419C3EA1400B3E366 /* Products */ = {
+		E2CE3AD31BA6684000A46F41 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E2FEF5F319C3EA1400B3E366 /* SKInvaders.app */,
-				E2FEF60919C3EA1400B3E366 /* SKInvadersTests.xctest */,
+				E2CE3AD21BA6684000A46F41 /* SKInvaders.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E2FEF5F519C3EA1400B3E366 /* SKInvaders */ = {
+		E2CE3AD41BA6684000A46F41 /* SKInvaders */ = {
 			isa = PBXGroup;
 			children = (
-				E2A4500219C6325D00DB12AC /* Controllers */,
-				E2799A1B19C3ECA0008229FB /* Resources */,
-				E2799A0A19C3EC7B008229FB /* Sprites */,
-				E2FEF5FA19C3EA1400B3E366 /* AppDelegate.swift */,
-				E2851AB619C7D3EE00397025 /* MenuScene.swift */,
-				E2D6BF0919CE9B7B008F0539 /* Common.swift */,
-				E2FEF5FC19C3EA1400B3E366 /* GameScene.swift */,
-				E2FEF5FE19C3EA1400B3E366 /* GameScene.sks */,
-				E2FEF62E19C3EA5200B3E366 /* Images.xcassets */,
-				E2FEF60219C3EA1400B3E366 /* MainMenu.xib */,
-				E2FEF5F619C3EA1400B3E366 /* Supporting Files */,
+				E2CE3B6C1BA6768800A46F41 /* GameScene.sks */,
+				E2CE3B6D1BA6768800A46F41 /* GameScene.swift */,
+				E2CE3B6E1BA6768800A46F41 /* MenuScene.swift */,
+				E2CE3B431BA674B700A46F41 /* Resources */,
+				E2CE3B461BA674B700A46F41 /* ScoreController.swift */,
+				E2CE3B471BA674B700A46F41 /* ShieldController.swift */,
+				E2CE3B481BA674B700A46F41 /* Sprites */,
+				E2CE3AD51BA6684000A46F41 /* AppDelegate.swift */,
+				E2CE3B6A1BA6755F00A46F41 /* Common.swift */,
+				E2CE3B681BA674D500A46F41 /* GameSubController.swift */,
+				E2CE3ADB1BA6684000A46F41 /* GameViewController.swift */,
+				E2CE3ADD1BA6684000A46F41 /* Game.xcassets */,
+				E2CE3ADF1BA6684000A46F41 /* Main.storyboard */,
+				E2CE3AE21BA6684000A46F41 /* Assets.xcassets */,
+				E2CE3AE41BA6684000A46F41 /* Info.plist */,
 			);
 			path = SKInvaders;
 			sourceTree = "<group>";
 		};
-		E2FEF5F619C3EA1400B3E366 /* Supporting Files */ = {
+		E2CE3B431BA674B700A46F41 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				E2FEF5F719C3EA1400B3E366 /* Info.plist */,
-				E2FEF5F819C3EA1400B3E366 /* main.swift */,
+				E2CE3B441BA674B700A46F41 /* Fonts */,
 			);
-			name = "Supporting Files";
+			path = Resources;
 			sourceTree = "<group>";
 		};
-		E2FEF60C19C3EA1400B3E366 /* SKInvadersTests */ = {
+		E2CE3B441BA674B700A46F41 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				E2FEF60F19C3EA1400B3E366 /* SKInvadersTests.swift */,
-				E2FEF60D19C3EA1400B3E366 /* Supporting Files */,
+				E2CE3B451BA674B700A46F41 /* space_invaders.ttf */,
 			);
-			path = SKInvadersTests;
+			path = Fonts;
 			sourceTree = "<group>";
 		};
-		E2FEF60D19C3EA1400B3E366 /* Supporting Files */ = {
+		E2CE3B481BA674B700A46F41 /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
-				E2FEF60E19C3EA1400B3E366 /* Info.plist */,
+				E2CE3B491BA674B700A46F41 /* InvaderASprite.swift */,
+				E2CE3B4A1BA674B700A46F41 /* InvaderBSprite.swift */,
+				E2CE3B4B1BA674B700A46F41 /* InvaderCSprite.swift */,
+				E2CE3B4C1BA674B700A46F41 /* InvaderMissile.swift */,
+				E2CE3B4D1BA674B700A46F41 /* InvaderMissileA.swift */,
+				E2CE3B4E1BA674B700A46F41 /* InvaderMissileB.swift */,
+				E2CE3B4F1BA674B700A46F41 /* InvaderMissileC.swift */,
+				E2CE3B501BA674B700A46F41 /* InvaderSheetController.swift */,
+				E2CE3B511BA674B700A46F41 /* InvaderSprite.swift */,
+				E2CE3B521BA674B700A46F41 /* MotherShipSprite.swift */,
+				E2CE3B531BA674B700A46F41 /* PlayerMissile.swift */,
+				E2CE3B541BA674B700A46F41 /* PlayerSprite.swift */,
+				E2CE3B551BA674B700A46F41 /* ShieldDamageSprite.swift */,
+				E2CE3B561BA674B700A46F41 /* ShieldSprite.swift */,
 			);
-			name = "Supporting Files";
+			path = Sprites;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E2FEF5F219C3EA1400B3E366 /* SKInvaders */ = {
+		E2CE3AD11BA6684000A46F41 /* SKInvaders */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E2FEF61319C3EA1400B3E366 /* Build configuration list for PBXNativeTarget "SKInvaders" */;
+			buildConfigurationList = E2CE3AE71BA6684000A46F41 /* Build configuration list for PBXNativeTarget "SKInvaders" */;
 			buildPhases = (
-				E2FEF5EF19C3EA1400B3E366 /* Sources */,
-				E2FEF5F019C3EA1400B3E366 /* Frameworks */,
-				E2FEF5F119C3EA1400B3E366 /* Resources */,
+				E2CE3ACE1BA6684000A46F41 /* Sources */,
+				E2CE3ACF1BA6684000A46F41 /* Frameworks */,
+				E2CE3AD01BA6684000A46F41 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -256,48 +171,24 @@
 			);
 			name = SKInvaders;
 			productName = SKInvaders;
-			productReference = E2FEF5F319C3EA1400B3E366 /* SKInvaders.app */;
+			productReference = E2CE3AD21BA6684000A46F41 /* SKInvaders.app */;
 			productType = "com.apple.product-type.application";
-		};
-		E2FEF60819C3EA1400B3E366 /* SKInvadersTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E2FEF61619C3EA1400B3E366 /* Build configuration list for PBXNativeTarget "SKInvadersTests" */;
-			buildPhases = (
-				E2FEF60519C3EA1400B3E366 /* Sources */,
-				E2FEF60619C3EA1400B3E366 /* Frameworks */,
-				E2FEF60719C3EA1400B3E366 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E2FEF60B19C3EA1400B3E366 /* PBXTargetDependency */,
-			);
-			name = SKInvadersTests;
-			productName = SKInvadersTests;
-			productReference = E2FEF60919C3EA1400B3E366 /* SKInvadersTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		E2FEF5EB19C3EA1400B3E366 /* Project object */ = {
+		E2CE3ACA1BA6684000A46F41 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftMigration = 0710;
-				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Tom Elliott";
 				TargetAttributes = {
-					E2FEF5F219C3EA1400B3E366 = {
-						CreatedOnToolsVersion = 6.1;
-					};
-					E2FEF60819C3EA1400B3E366 = {
-						CreatedOnToolsVersion = 6.1;
-						TestTargetID = E2FEF5F219C3EA1400B3E366;
+					E2CE3AD11BA6684000A46F41 = {
+						CreatedOnToolsVersion = 7.1;
 					};
 				};
 			};
-			buildConfigurationList = E2FEF5EE19C3EA1400B3E366 /* Build configuration list for PBXProject "SKInvaders" */;
+			buildConfigurationList = E2CE3ACD1BA6684000A46F41 /* Build configuration list for PBXProject "SKInvaders" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -305,99 +196,76 @@
 				en,
 				Base,
 			);
-			mainGroup = E2FEF5EA19C3EA1400B3E366;
-			productRefGroup = E2FEF5F419C3EA1400B3E366 /* Products */;
+			mainGroup = E2CE3AC91BA6684000A46F41;
+			productRefGroup = E2CE3AD31BA6684000A46F41 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E2FEF5F219C3EA1400B3E366 /* SKInvaders */,
-				E2FEF60819C3EA1400B3E366 /* SKInvadersTests */,
+				E2CE3AD11BA6684000A46F41 /* SKInvaders */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E2FEF5F119C3EA1400B3E366 /* Resources */ = {
+		E2CE3AD01BA6684000A46F41 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2FEF5FF19C3EA1400B3E366 /* GameScene.sks in Resources */,
-				E2799A1E19C3ECA0008229FB /* space_invaders.ttf in Resources */,
-				E2FEF62F19C3EA5200B3E366 /* Images.xcassets in Resources */,
-				E2FEF60419C3EA1400B3E366 /* MainMenu.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E2FEF60719C3EA1400B3E366 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				E2CE3AE11BA6684000A46F41 /* Main.storyboard in Resources */,
+				E2CE3B6F1BA6768800A46F41 /* GameScene.sks in Resources */,
+				E2CE3AE31BA6684000A46F41 /* Assets.xcassets in Resources */,
+				E2CE3ADE1BA6684000A46F41 /* Game.xcassets in Resources */,
+				E2CE3B571BA674B700A46F41 /* space_invaders.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		E2FEF5EF19C3EA1400B3E366 /* Sources */ = {
+		E2CE3ACE1BA6684000A46F41 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E24C79B919C9BD1200962731 /* InvaderMissileA.swift in Sources */,
-				E2799A1319C3EC7B008229FB /* InvaderASprite.swift in Sources */,
-				E24C79BD19C9BD3A00962731 /* InvaderMissileC.swift in Sources */,
-				E2FEF5FD19C3EA1400B3E366 /* GameScene.swift in Sources */,
-				E2D6BF0A19CE9B7B008F0539 /* Common.swift in Sources */,
-				E229FDF319CE7C5F00D7DF71 /* ShieldController.swift in Sources */,
-				E2799A1819C3EC7B008229FB /* InvaderSprite.swift in Sources */,
-				E2799A1919C3EC7B008229FB /* PlayerMissile.swift in Sources */,
-				E2799A1519C3EC7B008229FB /* InvaderCSprite.swift in Sources */,
-				E2043A3019C40714003BDBAD /* InvaderSheetController.swift in Sources */,
-				E282EA5A19CBECCB0081836F /* MotherShipSprite.swift in Sources */,
-				E229FDF519CE7D4200D7DF71 /* GameSubController.swift in Sources */,
-				E2851AB719C7D3EE00397025 /* MenuScene.swift in Sources */,
-				E242D91519CE91DA000B795F /* ShieldDamageSprite.swift in Sources */,
-				E2799A1419C3EC7B008229FB /* InvaderBSprite.swift in Sources */,
-				E24C79BB19C9BD3000962731 /* InvaderMissileB.swift in Sources */,
-				E2A4500419C6327A00DB12AC /* ScoreController.swift in Sources */,
-				E2FEF5FB19C3EA1400B3E366 /* AppDelegate.swift in Sources */,
-				E2799A1619C3EC7B008229FB /* InvaderMissile.swift in Sources */,
-				E2FEF5F919C3EA1400B3E366 /* main.swift in Sources */,
-				E2799A1A19C3EC7B008229FB /* PlayerSprite.swift in Sources */,
-				E229FDF119CE5A8C00D7DF71 /* ShieldSprite.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E2FEF60519C3EA1400B3E366 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E2FEF61019C3EA1400B3E366 /* SKInvadersTests.swift in Sources */,
+				E2CE3B5B1BA674B700A46F41 /* InvaderBSprite.swift in Sources */,
+				E2CE3B641BA674B700A46F41 /* PlayerMissile.swift in Sources */,
+				E2CE3B591BA674B700A46F41 /* ShieldController.swift in Sources */,
+				E2CE3B601BA674B700A46F41 /* InvaderMissileC.swift in Sources */,
+				E2CE3B5C1BA674B700A46F41 /* InvaderCSprite.swift in Sources */,
+				E2CE3B611BA674B700A46F41 /* InvaderSheetController.swift in Sources */,
+				E2CE3B691BA674D500A46F41 /* GameSubController.swift in Sources */,
+				E2CE3B581BA674B700A46F41 /* ScoreController.swift in Sources */,
+				E2CE3B5E1BA674B700A46F41 /* InvaderMissileA.swift in Sources */,
+				E2CE3B5F1BA674B700A46F41 /* InvaderMissileB.swift in Sources */,
+				E2CE3B5A1BA674B700A46F41 /* InvaderASprite.swift in Sources */,
+				E2CE3B671BA674B700A46F41 /* ShieldSprite.swift in Sources */,
+				E2CE3B701BA6768800A46F41 /* GameScene.swift in Sources */,
+				E2CE3B711BA6768800A46F41 /* MenuScene.swift in Sources */,
+				E2CE3B6B1BA6755F00A46F41 /* Common.swift in Sources */,
+				E2CE3B5D1BA674B700A46F41 /* InvaderMissile.swift in Sources */,
+				E2CE3B661BA674B700A46F41 /* ShieldDamageSprite.swift in Sources */,
+				E2CE3B651BA674B700A46F41 /* PlayerSprite.swift in Sources */,
+				E2CE3ADC1BA6684000A46F41 /* GameViewController.swift in Sources */,
+				E2CE3B621BA674B700A46F41 /* InvaderSprite.swift in Sources */,
+				E2CE3B631BA674B700A46F41 /* MotherShipSprite.swift in Sources */,
+				E2CE3AD61BA6684000A46F41 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		E2FEF60B19C3EA1400B3E366 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E2FEF5F219C3EA1400B3E366 /* SKInvaders */;
-			targetProxy = E2FEF60A19C3EA1400B3E366 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
-		E2FEF60219C3EA1400B3E366 /* MainMenu.xib */ = {
+		E2CE3ADF1BA6684000A46F41 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E2FEF60319C3EA1400B3E366 /* Base */,
+				E2CE3AE01BA6684000A46F41 /* Base */,
 			);
-			name = MainMenu.xib;
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		E2FEF61119C3EA1400B3E366 /* Debug */ = {
+		E2CE3AE51BA6684000A46F41 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -414,33 +282,34 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
+				SDKROOT = appletvos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
-		E2FEF61219C3EA1400B3E366 /* Release */ = {
+		E2CE3AE61BA6684000A46F41 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -457,117 +326,72 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
-				COPY_PHASE_STRIP = YES;
+				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = macosx;
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		E2FEF61419C3EA1400B3E366 /* Debug */ = {
+		E2CE3AE81BA6684000A46F41 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				COMBINE_HIDPI_IMAGES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = SKInvaders/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.theothertomelliott.$(PRODUCT_NAME:rfc1034identifier)";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.telliott.SKInvaders;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		E2FEF61519C3EA1400B3E366 /* Release */ = {
+		E2CE3AE91BA6684000A46F41 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				COMBINE_HIDPI_IMAGES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = SKInvaders/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.theothertomelliott.$(PRODUCT_NAME:rfc1034identifier)";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.telliott.SKInvaders;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		E2FEF61719C3EA1400B3E366 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = SKInvadersTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.theothertomelliott.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SKInvaders.app/Contents/MacOS/SKInvaders";
-			};
-			name = Debug;
-		};
-		E2FEF61819C3EA1400B3E366 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = SKInvadersTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.theothertomelliott.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SKInvaders.app/Contents/MacOS/SKInvaders";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E2FEF5EE19C3EA1400B3E366 /* Build configuration list for PBXProject "SKInvaders" */ = {
+		E2CE3ACD1BA6684000A46F41 /* Build configuration list for PBXProject "SKInvaders" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E2FEF61119C3EA1400B3E366 /* Debug */,
-				E2FEF61219C3EA1400B3E366 /* Release */,
+				E2CE3AE51BA6684000A46F41 /* Debug */,
+				E2CE3AE61BA6684000A46F41 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E2FEF61319C3EA1400B3E366 /* Build configuration list for PBXNativeTarget "SKInvaders" */ = {
+		E2CE3AE71BA6684000A46F41 /* Build configuration list for PBXNativeTarget "SKInvaders" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E2FEF61419C3EA1400B3E366 /* Debug */,
-				E2FEF61519C3EA1400B3E366 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E2FEF61619C3EA1400B3E366 /* Build configuration list for PBXNativeTarget "SKInvadersTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E2FEF61719C3EA1400B3E366 /* Debug */,
-				E2FEF61819C3EA1400B3E366 /* Release */,
+				E2CE3AE81BA6684000A46F41 /* Debug */,
+				E2CE3AE91BA6684000A46F41 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = E2FEF5EB19C3EA1400B3E366 /* Project object */;
+	rootObject = E2CE3ACA1BA6684000A46F41 /* Project object */;
 }

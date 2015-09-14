@@ -29,19 +29,38 @@ class MenuScene : SKScene {
         
     }
     
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if let scene = GameScene(fileNamed: "GameScene") {
+            // Configure the view.
+            if let skView = self.view {
+                skView.showsFPS = true
+                skView.showsNodeCount = true
+            
+                /* Sprite Kit applies additional optimizations to improve rendering performance */
+                skView.ignoresSiblingOrder = true
+            
+                /* Set the scale mode to scale to fit the window */
+                scene.scaleMode = .AspectFit
+            
+                skView.presentScene(scene)
+            }
+        }
+    }
+    
     /**
         Handle key events, move to the game itself
         - parameter theEvent: Event for this keypress
     */
-    override func keyDown(theEvent: NSEvent){
-        if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
-            /* Set the scale mode to scale to fit the window */
-            scene.scaleMode = .AspectFill
-
-            self.view!.presentScene(scene)
-        }
-
-    }
+    // TODO: Replace this appropriately
+//    override func keyDown(theEvent: NSEvent){
+//        if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
+//            /* Set the scale mode to scale to fit the window */
+//            scene.scaleMode = .AspectFill
+//
+//            self.view!.presentScene(scene)
+//        }
+//
+//    }
 
     
 }

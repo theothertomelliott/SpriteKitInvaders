@@ -11,10 +11,10 @@ import SpriteKit
 
 class InvaderMissile : SKSpriteNode {
     
-    override init(texture: SKTexture?, color: NSColor, size: CGSize) {
+    override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         let texture = SKTexture(imageNamed: "InvaderMissile")
         
-        super.init(texture: texture, color: NSColor.clearColor(), size: texture.size())
+        super.init(texture: texture, color: UIColor.clearColor(), size: texture.size())
         
         self.zPosition = 2
         

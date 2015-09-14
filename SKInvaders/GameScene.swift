@@ -79,6 +79,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         addShields()
         
         startGame()
+        
+        NSLog("Done")
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        shipSprite.moveRight(self)
     }
     
     // Number of lives in "reserve", not counting the life in play
@@ -89,7 +95,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
                 let texture = SKTexture(imageNamed: "Spaceship")
                 var xPos : CGFloat = CGFloat(livesCountLabel.position.x + 50)
                 for(var i = 0; i < (lives-1); i++){
-                    let life = SKSpriteNode(texture: texture, color: NSColor.clearColor(), size: texture.size())
+                    let life = SKSpriteNode(texture: texture, color: UIColor.clearColor(), size: texture.size())
                     life.setScale(0.6)
                     life.position = CGPointMake(xPos, livesCountLabel.position.y + life.size.height/2)
                     livesSprites.append(life)
@@ -176,7 +182,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         let drawFullText = SKAction.repeatAction(drawSequence, count: "GAME OVER".characters.count)
         
         let loadMenu = SKAction.runBlock({
-            if let scene = MenuScene.unarchiveFromFile("GameScene") as? MenuScene {
+            if let scene = MenuScene(fileNamed: "GameScene") {
                 /* Set the scale mode to scale to fit the window */
                 scene.scaleMode = .AspectFill
                 
@@ -189,9 +195,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, ScoreUpdateDelegate, Invader
         self.runAction(fullSeq)
     }
     
-    override func keyDown(theEvent: NSEvent){
-        shipSprite.interpretKeyEvents([theEvent])
-    }
+    // TODO: Replace this appropriately
+//    override func keyDown(theEvent: NSEvent){
+//        shipSprite.interpretKeyEvents([theEvent])
+//    }
+
     
     // MARK: Collision helpers
     

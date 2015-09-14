@@ -28,7 +28,7 @@ class InvaderSheetController {
     private var _invaderSpeedX : CGFloat!
     private var _invaderSpeedY : CGFloat!
     
-    var cycleInterval : NSTimeInterval
+    var cycleInterval : NSTimeInterval = 0.5
     
     var delegate : InvaderDelegate!
     
@@ -69,16 +69,14 @@ class InvaderSheetController {
             }
         }
         
-        cycleInterval = NSTimeInterval(0.5)
-        
         let sw : CGFloat = startingSize().width
         let sh : CGFloat = startingSize().height
         
         _invaderSpeedX = (_playArea.frame.width - sw)/15
         _invaderSpeedY = (_playArea.frame.height - sh)/10
         
-        NSLog("Play area width = %@, starting width = %@", _playArea.frame.width, sw)
-        NSLog("Invader speed = %@", _invaderSpeedX)
+        NSLog("Play area width = %f, starting width = %f", _playArea.frame.width, sw)
+        NSLog("Invader speed = %f", _invaderSpeedX)
     }
     
     private func invaderSeparation() -> CGSize {
@@ -347,7 +345,7 @@ class InvaderSheetController {
             self.moveWorking()
         })
         
-        let delay = Int(cycleInterval) / _invaders.count
+        let delay = cycleInterval / Double(_invaders.count)
         
         let waitAction = SKAction.waitForDuration(NSTimeInterval(delay))
         
